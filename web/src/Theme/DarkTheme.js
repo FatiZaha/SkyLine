@@ -5,17 +5,17 @@ export const darkTheme=createTheme({
     palette: {
         mode:"dark",
         primary:{
-            main:"#ffffff"
+            main:"#1ab1ae"
         },
         secondary:{
-            main:"#00d1cd"
+            main:"#37383C"
         },
         black:{
             main:"#242B2E",
         },
         background:{
             main:"#444444",
-            default:"#37383C",
+            default:"#1E1E20",
             paper:"#37383C"
         },
         textColor:{
