@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -21,4 +24,7 @@ public class Aeroport {
 
     @ManyToOne
     private Ville ville;
+
+    @OneToMany
+    private List<Vol> vols = new ArrayList<>();
 }
