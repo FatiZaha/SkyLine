@@ -14,16 +14,20 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Ville {
+public class Siege {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String nom;
-    private String image;
+    private int capacite;
+
+    private Type type;
 
     @JsonIgnore
-    @OneToMany(cascade= CascadeType.ALL,mappedBy="")
-    private List<Aeroport> aeroports = new ArrayList<>();
+    @OneToMany(cascade= CascadeType.ALL,mappedBy="siege")
+    private List<Place> places=new ArrayList<>();
+
+    @ManyToOne
+    private Avion avion;
 }
