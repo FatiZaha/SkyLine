@@ -27,7 +27,7 @@ export const Home = () => {
           <MultitemCarousel/>
         </section>
         <section className='px-5 lg:px-20'>
-          <h1 className='text-2xl font-semibold text-gray-400 py-3'>Flight Compagnies</h1>
+          <h1 className='text-2xl font-semibold text-gray-400 py-3'>Flight</h1>
           <div>
             
           </div>
