@@ -8,7 +8,7 @@ export const Home = () => {
         <section className='banner -z-50 relative flex flex-col justify-center items-center'>
 
             <div className='w-[50vw] z-10 text-center'>
-                <p className='title text-6xl lg:text-6xl z-10 py-5'>SkyLine</p>
+                <p className='title text-6xl lg:text-6xl z-10 py-5'>SkyLink</p>
                 <p className='z-10 text-gray-300 text-xl lg:text-3xl'>Where Journeys Begin and Connections Flourish</p>
 
             </div>
@@ -27,9 +27,9 @@ export const Home = () => {
           <MultitemCarousel/>
         </section>
         <section className='px-5 lg:px-20'>
-          <h1 className='text-2xl font-semibold text-gray-400 py-3'>Flight</h1>
+          <h1 className='text-2xl font-semibold text-gray-400 py-3'>Flights</h1>
           <div>
-            
+          <MultitemCarousel/>
           </div>
         </section>
 
