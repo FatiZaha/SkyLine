@@ -5,7 +5,8 @@ export const Flights=[
         subtitle:"Flight from London to New York City (LHR - JFK)",
         price: "£500",
         airline: "https://logos-world.net/wp-content/uploads/2023/01/Royal-Air-Maroc-Logo-500x281.png",
-
+        duration:"Duration 4h 30mins",
+        depart_date: new Date("October 28,  2024"),
 
     },
     {
@@ -14,7 +15,8 @@ export const Flights=[
         subtitle: "Flight from London to Marrakech (LHR - MRU)",
         price: "£350",
         airline: "https://logos-world.net/wp-content/uploads/2023/01/Royal-Air-Maroc-Logo-500x281.png",
-
+        duration:"Duration 4h 30mins",
+        depart_date: new Date("October 28,  2024"),
     },
     {
         image:"https://cdn.pixabay.com/photo/2021/07/30/20/23/paris-6510643_640.jpg",
@@ -22,7 +24,8 @@ export const Flights=[
         subtitle: "Flight from London to Paris (LHR - CDG)",
         price: "£450",
         airline: "https://logos-world.net/wp-content/uploads/2023/01/Royal-Air-Maroc-Logo-500x281.png",
-
+        duration:"Duration 4h 30mins",
+        depart_date: new Date("October 28,  2024"),
     },
     {
         image:"https://cdn.pixabay.com/photo/2019/10/06/12/08/japan-4530051_640.jpg",
@@ -30,7 +33,8 @@ export const Flights=[
         subtitle: "Flight from London to Tokyo (LHR - NRT)",
         price: "£250",
         airline: "https://logos-world.net/wp-content/uploads/2023/01/Royal-Air-Maroc-Logo-500x281.png",
-
+        duration:"Duration 4h 30mins",
+        depart_date: new Date("October 28,  2024"),
     },
     {
         image:"https://cdn.pixabay.com/photo/2014/06/20/13/11/sydney-opera-house-373144_640.jpg",
@@ -38,7 +42,8 @@ export const Flights=[
         subtitle: "Flight from London to  Sydney (LHR - SYD)",
         price: "£600",
         airline: "https://logos-world.net/wp-content/uploads/2023/01/Royal-Air-Maroc-Logo-500x281.png",
-
+        duration:"Duration 4h 30mins",
+        depart_date: new Date("October 28,  2024"),
     },
     {
         image:"https://cdn.pixabay.com/photo/2017/02/24/20/16/city-2096093_640.jpg",
@@ -46,7 +51,8 @@ export const Flights=[
         subtitle: "Flight from London to  Cape Town (LHR - CPT)",
         price: "£300",
         airline: "https://logos-world.net/wp-content/uploads/2023/01/Royal-Air-Maroc-Logo-500x281.png",
-
+        duration:"Duration 4h 30mins",
+        depart_date: new Date("October 28,  2024"),
     },
     {
         image: "Image not available.",
@@ -54,6 +60,8 @@ export const Flights=[
         subtitle: "",
         price: "",
         airline: "https://logos-world.net/wp-content/uploads/2023/01/Royal-Air-Maroc-Logo-500x281.png",
+        duration:"Duration 4h 30mins",
+        depart_date: new Date("October 28,  2024"),
     }
     ,
     {
@@ -62,6 +70,8 @@ export const Flights=[
         subtitle: "",
         price: "",
         airline: "https://logos-world.net/wp-content/uploads/2023/01/Royal-Air-Maroc-Logo-500x281.png",
+        duration:"Duration 4h 30mins",
+        depart_date: new Date("October 28,  2024"),
     }
     ,
     {
@@ -70,6 +80,8 @@ export const Flights=[
         subtitle: "",
         price: "",
         airline: "https://logos-world.net/wp-content/uploads/2023/01/Royal-Air-Maroc-Logo-500x281.png",
+        duration:"Duration 4h 30mins",
+        depart_date: new Date("October 28,  2024"),
     }
 
 ]

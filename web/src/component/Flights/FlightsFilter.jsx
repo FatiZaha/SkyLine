@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid,Divider,Typography,FormControl,Paper,InputBase,IconButton} from '@mui/material'
+import { Grid,Divider,Typography,FormControl,Stack,Paper,InputBase,IconButton} from '@mui/material'
 import ConnectingAirportsIcon from '@mui/icons-material/ConnectingAirports';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -10,6 +10,11 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import SearchIcon from '@mui/icons-material/Search';
 import AirplaneTicketOutlinedIcon from '@mui/icons-material/AirplaneTicketOutlined';
+import FlightDetails from './FlightDetails';
+import { Flights } from './Flights';
+
+
+
 
 const FlightsFilter = () => {
   return (
@@ -29,8 +34,8 @@ const FlightsFilter = () => {
             <h3 className='text-gray-500 text-4xl lg:text-4xl z-10 py-2'><ConnectingAirportsIcon sx={{ fontSize: 50 }}/> Find your flight</h3>
         </section>
         <Divider/>
-        <section className='pt-[2rem] lg:flex relative'>
-            <div className='space-y-10 lg:w-[20%] filter'>
+        <section className='pt-[2rem]  space-y-5 lg:flex relative'>
+            <div className='space-y-10 lg:w-[35%] filter'>
                 <div className='box space-y-5 lg:sticky top-28'>
                     <div>
                         <Typography variant='h5' sx={{paddingBottom:"1rem"}}>
@@ -55,6 +60,7 @@ const FlightsFilter = () => {
                                 
                                 
                             </Paper>
+                            
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DemoContainer
                                     components={[
@@ -64,22 +70,28 @@ const FlightsFilter = () => {
                                     
                                     
                                 >
+                                    <Stack>
                                     <DemoItem label={<Label componentName="DatePicker" valueType="date" />}>
                                         <DatePicker minDate={dayjs()}/>
                                     </DemoItem>
                                     <DemoItem label={<Label componentName="TimePicker" valueType="time" />}>
                                         <TimePicker />
                                     </DemoItem>
+                                    </Stack>
                                 </DemoContainer>
                             </LocalizationProvider>
+                                
+                            
                         </FormControl>
                     </div>
 
                 </div>
             </div>
 
-            <div className='space-y-5 lg:w-[80%] filter lg:pl-10'>
-                Flights
+            <div className='space-y-5 lg:w-[65%] filter lg:pl-10'>
+                {Flights.map((item)=>(
+                <FlightDetails image={item.image} title={item.title} subtitle={item.subtitle} price={item.price} airline={item.airline}/>
+                ))}
 
             </div>
 
