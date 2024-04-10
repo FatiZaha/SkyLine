@@ -15,9 +15,9 @@ function App() {
       <CssBaseline/>
       <Navbar/>
       
-      <SignIn/>
+      {/*<SignIn/>
       <SignUp/>
-      <Home/>
+  <Home/>*/}
       <FlightsFilter />
     </ThemeProvider>
   );
