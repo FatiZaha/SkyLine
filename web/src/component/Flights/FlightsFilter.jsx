@@ -90,7 +90,7 @@ const FlightsFilter = () => {
 
             <div className='space-y-5 lg:w-[65%] filter lg:pl-10'>
                 {Flights.map((item)=>(
-                <FlightDetails image={item.image} title={item.title} subtitle={item.subtitle} price={item.price} airline={item.airline}/>
+                <FlightDetails image={item.image} title={item.title} subtitle={item.subtitle} price={item.price} airline={item.airline} depart_date={item.depart_date} arrive_date={item.arrive_date}/>
                 ))}
 
             </div>

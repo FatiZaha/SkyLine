@@ -32,8 +32,8 @@ const FlightDetails = ({title,image,subtitle,price,airline,depart_date,arrive_da
       </div>
     </AccordionSummary>
     <AccordionDetails>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-      malesuada lacus ex, sit amet blandit leo lobortis eget.
+    <p className='text-gray-300 text-lg'>Depart date  </p>{depart_date.toString()}
+    <p className='text-gray-300 text-lg'>Arrive date  </p>{arrive_date.toString()}
     </AccordionDetails>
     <AccordionActions>
       <Button>Reserve a Seat</Button>
