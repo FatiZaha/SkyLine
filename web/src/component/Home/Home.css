@@ -3,14 +3,16 @@
 }
 
 .banner{
-    background-image:url("../Home/assets/airplane-wing-clouds-from-window-view.jpg");
+    background-image:url(https://source.unsplash.com/random?airline);
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
     height: 90vh;
 
 }
-
+div{
+    font-family: Abel;
+}
 .cover{
     width: 100%;
     height: 90vh;
