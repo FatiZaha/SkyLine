@@ -26,7 +26,7 @@ private String login;
 private String password;
 
 @JsonIgnore
-@OneToMany
+@OneToMany(cascade = CascadeType.ALL, mappedBy = "cl")
 private List<Reservation> reservations = new ArrayList<>();
 
 

@@ -28,7 +28,7 @@ public class Vol {
     private float prix;
 
     @JsonIgnore
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vl")
     private List<Reservation> reservations = new ArrayList<>();
 
     @ManyToOne
