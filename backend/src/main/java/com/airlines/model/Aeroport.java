@@ -25,6 +25,6 @@ public class Aeroport {
     @ManyToOne
     private Ville ville;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "aeroports")
     private List<Vol> vols = new ArrayList<>();
 }
