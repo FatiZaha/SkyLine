@@ -9,19 +9,22 @@ import FlightsFilter from './component/Flights/FlightsFilter';
 import SignIn from './component/SignIn/SignIn';
 import SignUp from './component/SignUp/SignUp';
 import Sidebar from './component/Dashboard/Sidebar';
+ 
 function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-     {/* <CssBaseline/>
+    {/* <CssBaseline/>
       <Navbar/>
       
       <SignIn/>
       <SignUp/>
       <Home/>
       <FlightsFilter />
-  */}
-      <Sidebar/>
+  
+     
+    */}
+       <Sidebar/>
     </ThemeProvider>
   );
 }
