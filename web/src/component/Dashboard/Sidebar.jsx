@@ -14,6 +14,12 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import FlightIcon from '@mui/icons-material/Flight';
 import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 import { PieChart } from '@mui/icons-material';
+import BasicTable from '../Reservations/Reservation';
+import CompaniesTable from '../Companies/AllCompanies';
+import FlightsTable from '../Flights/AllFlights';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import FullScreenDialog from '../Companies/AddCompany';
+import FlightsDialog from '../Flights/AddFlights';
 
 const drawerWidth = 240;
 
@@ -22,7 +28,7 @@ export default function PermanentDrawerLeft() {
   const [companiesMenuAnchor, setCompaniesMenuAnchor] = React.useState(null);
   const [flightsMenuAnchor, setFlightsMenuAnchor] = React.useState(null);
   const [reservationMenuAnchor, setReservationMenuAnchor] = React.useState(null);
-  const [restatisticsMenuAnchor, setStatisticsMenuAnchor] = React.useState(null);
+  const [statisticsMenuAnchor, setStatisticsMenuAnchor] = React.useState(null);
   const handleClickCompanies = (event) => {
     setContexteActif('companies');
     setCompaniesMenuAnchor(event.currentTarget);
@@ -39,7 +45,7 @@ export default function PermanentDrawerLeft() {
   };
 
   const handleClickStatistics = (event) => {
-    setContexteActif('statistics');
+    setContexteActif('statistics'); 
     setReservationMenuAnchor(event.currentTarget);
   };
   const handleCloseMenu = () => {
@@ -48,28 +54,35 @@ export default function PermanentDrawerLeft() {
     setReservationMenuAnchor(null);
     setStatisticsMenuAnchor(null);
   };
-
+  
+  
+  
   const afficherContenuCompanies = () => {
     if (contexteActif === 'companies') {
       return (
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button style={{ background: '#158a88', color: '#fff', marginRight: '10px' }} onClick={handleCloseMenu}>Ajouter</Button>
-          <Button style={{ background: '#158a88', color: '#fff', marginRight: '10px' }} onClick={handleCloseMenu}>Modifier</Button>
-          <Button style={{ background: '#158a88', color: '#fff'}} onClick={handleCloseMenu}>Supprimer</Button>
+        <div style={{ display: 'block' }}>
+          <FullScreenDialog/>
+            
+          <div style={{ marginTop: '20px' }}>
+              <CompaniesTable />
+          </div>
         </div>
       );
     }
     return null;
   };
 
+  
   const afficherContenuFlights = () => {
     if (contexteActif === 'flights') {
       return (
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button style={{ background: '#158a88', color: '#fff', marginRight: '10px' }} onClick={handleCloseMenu}>Ajouter</Button>
-          <Button style={{ background: '#158a88', color: '#fff', marginRight: '10px' }} onClick={handleCloseMenu}>Modifier</Button>
-          <Button style={{ background: '#158a88', color: '#fff'}} onClick={handleCloseMenu}>Supprimer</Button>
+        <div style={{ display: 'block'}}>
+            <FlightsDialog/>
+            <div style={{ marginTop:'20px' }}>
+                <FlightsTable/>
+            </div>
         </div>
+        
       );
     }
     return null;
@@ -78,10 +91,16 @@ export default function PermanentDrawerLeft() {
   const afficherContenuReservation = () => {
     if (contexteActif === 'reservation') {
       return (
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button  style={{ background: '#158a88', color: '#fff', marginRight: '10px' }} onClick={handleCloseMenu}>Exporter</Button>
-          <Button style={{ background: '#158a88', color: '#fff'}} onClick={handleCloseMenu}>Importer</Button>
+        <div style={{ display: 'block'}}>
+        
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Button  style={{ background: '#158a88', color: '#fff', marginRight: '10px' }} onClick={handleCloseMenu}>Exporter</Button>
+            <Button style={{ background: '#158a88', color: '#fff'}} onClick={handleCloseMenu}>Importer</Button>
+          </div>
+          <div style={{ marginTop:'20px' }}>
+          <BasicTable/>
         </div>
+      </div>
       );
     }
     return null;
@@ -154,7 +173,7 @@ export default function PermanentDrawerLeft() {
           </ListItem>
           <ListItem button onClick={handleClickStatistics}>
             <ListItemIcon>
-              <AirplaneTicketIcon />
+              <BarChartIcon />
             </ListItemIcon>
             <ListItemText primary="Statistics" />
           </ListItem>
@@ -188,7 +207,7 @@ export default function PermanentDrawerLeft() {
             </div>
           </div>
           <div>
-            <Button color="inherit" style={{ marginLeft: 'auto' }}>
+            <Button color="inherit" style={{ marginLeft: 'auto',background: '#158a88' }}>
               Logout
             </Button>
           </div>
