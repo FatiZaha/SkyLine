@@ -14,17 +14,18 @@ function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
+
     {/* <SignIn/>
       <SignUp/>
       <Home/>
-      
-       <Sidebar/> 
-    */}<CssBaseline/>
+      <CssBaseline/>
     <Navbar/>
      
       <FlightsFilter />
-      
-  
+      */}
+
+       <Sidebar/> 
+
     </ThemeProvider>
   );
 }
