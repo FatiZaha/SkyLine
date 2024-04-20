@@ -6,7 +6,7 @@ import Badge from '@mui/material/Badge';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
-
+import "./Navbar.css";
 
 export const Navbar = () => {
   return (
