@@ -17,12 +17,12 @@ function App() {
     {/* <SignIn/>
       <SignUp/>
       <Home/>
-      <Navbar/>
-       <FlightsFilter />
-    */}<CssBaseline/>
-    
-     <Sidebar/> 
       
+       <Sidebar/> 
+    */}<CssBaseline/>
+    <Navbar/>
+     
+      <FlightsFilter />
       
   
     </ThemeProvider>
