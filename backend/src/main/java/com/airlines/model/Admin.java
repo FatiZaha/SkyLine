@@ -1,9 +1,7 @@
 package com.airlines.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +13,19 @@ import java.util.List;
 
 public class Admin {
 
+
     @Id
-    // @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter
+    @Getter
     private long id;
 
+    @Setter
+    @Getter
     private String login;
+
+    @Setter
+    @Getter
     private String password;
 
     @OneToMany(cascade= CascadeType.ALL,mappedBy="")

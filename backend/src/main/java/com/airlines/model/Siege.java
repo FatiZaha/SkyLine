@@ -2,9 +2,7 @@ package com.airlines.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +15,17 @@ import java.util.List;
 public class Siege {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter
+    @Getter
     private long id;
 
+    @Setter
+    @Getter
     private int capacite;
 
+    @Setter
+    @Getter
     private Type type;
 
     @JsonIgnore

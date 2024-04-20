@@ -6,9 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
@@ -19,14 +17,25 @@ import java.util.Date;
 public class Reservation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter
+    @Getter
     private Long num_res;
 
-
+    @Setter
+    @Getter
     private  String ville_dep;
+
+    @Setter
+    @Getter
     private String Ville_arriv;
+
+    @Setter
+    @Getter
     private Date date_res;
+
+    @Setter
+    @Getter
     private float prix_total;
 
 
