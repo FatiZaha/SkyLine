@@ -14,6 +14,7 @@ function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
+
     {/* <SignIn/>
       <SignUp/>
       <Home/>
@@ -23,8 +24,7 @@ function App() {
     
      <Sidebar/> 
       
-      
-  
+
     </ThemeProvider>
   );
 }
