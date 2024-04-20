@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card,Chip,Avatar } from '@mui/material'
-import './FlightCard.css'
+
 
 const FlightCard = ({image,title,subtitle,price,airline}) => {
   return (
