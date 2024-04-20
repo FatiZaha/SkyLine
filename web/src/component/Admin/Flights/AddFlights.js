@@ -13,7 +13,7 @@ import { TextField } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
-import BasicDatePicker from '../DatePicker/DatePicker';
+import BasicDatePicker from '../Admin/DatePicker/DatePicker';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
