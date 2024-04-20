@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import { Flights } from './Flights';
 
-import FlightCard from '../Flights/FlightsCard';
+import FlightCard from './FlightCard';
 
 const FlightCardsCarousel = () => {
     const settings={

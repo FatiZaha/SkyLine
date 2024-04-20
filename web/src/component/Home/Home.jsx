@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Home.css";
 import MultitemCarousel from './MultitemCarousel';
-import FlightCardsCarousel from '../Flights/FlightCardCarousel';
+import FlightCardsCarousel from '../Flights/FlightCardsCarousel';
 const Home = () => {
   
   return (
