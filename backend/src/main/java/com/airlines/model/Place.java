@@ -1,9 +1,7 @@
 package com.airlines.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 @Entity
@@ -13,7 +11,9 @@ import lombok.NoArgsConstructor;
 public class Place {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter
+    @Getter
     private long numplace;
 
     @ManyToOne

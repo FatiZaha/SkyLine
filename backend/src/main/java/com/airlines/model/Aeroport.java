@@ -1,9 +1,7 @@
 package com.airlines.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +13,15 @@ import java.util.List;
 
 public class Aeroport {
 
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter
+    @Getter
     private Long id;
 
-
+    @Setter
+    @Getter
     private String nom;
 
     @ManyToOne
@@ -27,4 +29,11 @@ public class Aeroport {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "aeroports")
     private List<Vol> vols = new ArrayList<>();
+
+    public Aeroport(String nom, Ville ville, List<Vol> vols) {
+        this.nom = nom;
+        this.ville = ville;
+        this.vols = vols;
+    }
+
 }

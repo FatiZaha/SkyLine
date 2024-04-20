@@ -2,9 +2,8 @@ package com.airlines.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +15,13 @@ public class Avion{
 
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter
+    @Getter
     private long numero;
 
+    @Setter
+    @Getter
     private String Modele;
 
     @JsonIgnore //Ignorer un champ lors de la serialisation et la deserialisation des objets JSON
