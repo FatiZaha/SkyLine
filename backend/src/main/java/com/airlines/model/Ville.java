@@ -31,4 +31,6 @@ public class Ville {
     @JsonIgnore
     @OneToMany(cascade= CascadeType.ALL,mappedBy="")
     private List<Aeroport> aeroports = new ArrayList<>();
+
+
 }
