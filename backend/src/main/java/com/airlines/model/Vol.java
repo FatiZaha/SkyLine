@@ -45,6 +45,8 @@ public class Vol {
     private List<Reservation> reservations = new ArrayList<>();
 
     @ManyToOne
-    private Aeroport aeroports;
+    private Aeroport aeroport_depart;
 
+    @ManyToOne
+    private Aeroport aeroport_dest;
 }
