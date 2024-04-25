@@ -44,7 +44,13 @@ public class Vol {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vl")
     private List<Reservation> reservations = new ArrayList<>();
 
-    @ManyToOne
-    private Aeroport aeroports;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "aeroport_depart_id")
+    private Aeroport aeroportDepart;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "aeroport_destination_id")
+    private Aeroport aeroportDestination;
+
 
 }
