@@ -18,10 +18,11 @@ public class Aeroport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    @Column(nullable = false)
     private String nom;
 
     @ManyToOne
+    @Column(nullable = false)
     private Ville ville;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "aeroportDepart")

@@ -40,8 +40,8 @@ public class Reservation {
 
 
     @ManyToOne
-    private Client cl;
+    private Client client;
 
     @ManyToOne
-    private Vol vl;
+    private Vol vol;
 }

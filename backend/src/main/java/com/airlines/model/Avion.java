@@ -22,11 +22,15 @@ public class Avion{
 
     @Setter
     @Getter
+    @Column(nullable = false)
     private String Modele;
 
     @JsonIgnore //Ignorer un champ lors de la serialisation et la deserialisation des objets JSON
     @OneToMany(cascade= CascadeType.ALL,mappedBy="avion")
     private List<Siege> sieges=new ArrayList<>();
+
+    @OneToMany(cascade= CascadeType.ALL,mappedBy="avionVol")
+    private List<Vol> vols=new ArrayList<>();
 
     @ManyToOne
     private Compagnie compagnie;
