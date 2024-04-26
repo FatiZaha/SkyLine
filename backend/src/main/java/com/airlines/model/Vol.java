@@ -16,28 +16,20 @@ public class Vol {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter
-    @Getter
-    private Long code_vol;
+    private Long codeVol;
 
-    @Setter
-    @Getter
-    private Date date_depart;
+    private Date dateDepart;
 
-    @Setter
-    @Getter
-    private Date date_arrive;
 
-    @Setter
-    @Getter
-    private String status;
+    private Date dateArrive;
 
-    @Setter
-    @Getter
+
+    private Status status;
+
+    @Transient
     private String duree;
 
-    @Setter
-    @Getter
+
     private float prix;
 
     @JsonIgnore
@@ -52,5 +44,7 @@ public class Vol {
     @JoinColumn(name = "aeroport_destination_id")
     private Aeroport aeroportDestination;
 
+    @ManyToOne
+    private Avion avionVol;
 
 }

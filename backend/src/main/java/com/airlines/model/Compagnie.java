@@ -22,14 +22,17 @@ public class Compagnie {
 
     @Setter
     @Getter
+    @Column(nullable = false)
     private String Nom;
 
     @Setter
     @Getter
+    @Column(nullable = false)
     private String Adresse;
 
     @Setter
     @Getter
+    @Column(nullable = false)
     private String Tel;
 
     @Setter

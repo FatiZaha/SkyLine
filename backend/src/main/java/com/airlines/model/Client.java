@@ -15,32 +15,21 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter
-    @Getter
     private Long id;
 
-    @Setter
-    @Getter
+    @Column(nullable = false)
     private String nom;
 
-    @Setter
-    @Getter
+    @Column(nullable = false)
     private String prenom;
 
-    @Setter
-    @Getter
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @Setter
-    @Getter
+
     private String tel;
 
-    @Setter
-    @Getter
-    private String login;
-
-    @Setter
-    @Getter
+    @Column(nullable = false)
     private String password;
 
 @JsonIgnore
