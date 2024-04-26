@@ -22,7 +22,7 @@ public class Aeroport {
     private String nom;
 
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
     private Ville ville;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "aeroportDepart")

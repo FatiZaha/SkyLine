@@ -33,7 +33,7 @@ public class Client {
     private String password;
 
 @JsonIgnore
-@OneToMany(cascade = CascadeType.ALL, mappedBy = "cl")
+@OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
 private List<Reservation> reservations = new ArrayList<>();
 
 

@@ -23,22 +23,22 @@ public class Compagnie {
     @Setter
     @Getter
     @Column(nullable = false)
-    private String Nom;
+    private String nom;
 
     @Setter
     @Getter
     @Column(nullable = false)
-    private String Adresse;
+    private String adresse;
 
     @Setter
     @Getter
     @Column(nullable = false)
-    private String Tel;
+    private String tel;
 
     @Setter
     @Getter
     //@Column(length=1000)
-    private String Logo;
+    private String logo;
 
     @JsonIgnore
     @OneToMany(cascade= CascadeType.ALL,mappedBy="compagnie")
