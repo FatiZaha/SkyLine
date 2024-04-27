@@ -16,16 +16,10 @@ public class Ville {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter
-    @Getter
     private long id;
 
-    @Setter
-    @Getter
     private String nom;
 
-    @Setter
-    @Getter
     private String image;
 
     @JsonIgnore
