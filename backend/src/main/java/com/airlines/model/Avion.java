@@ -16,12 +16,9 @@ public class Avion{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter
-    @Getter
     private long numero;
 
-    @Setter
-    @Getter
+
     @Column(nullable = false)
     private String Modele;
 

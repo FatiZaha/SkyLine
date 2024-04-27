@@ -16,16 +16,10 @@ public class Siege {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter
-    @Getter
     private long id;
 
-    @Setter
-    @Getter
     private int capacite;
-
-    @Setter
-    @Getter
+    
     private Type type;
 
     @JsonIgnore

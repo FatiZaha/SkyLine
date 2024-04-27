@@ -16,27 +16,17 @@ public class Compagnie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter
-    @Getter
     private long code;
 
-    @Setter
-    @Getter
     @Column(nullable = false)
     private String nom;
 
-    @Setter
-    @Getter
     @Column(nullable = false)
     private String adresse;
 
-    @Setter
-    @Getter
     @Column(nullable = false)
     private String tel;
 
-    @Setter
-    @Getter
     //@Column(length=1000)
     private String logo;
 
