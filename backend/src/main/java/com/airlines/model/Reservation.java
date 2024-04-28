@@ -18,15 +18,16 @@ public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long num_res;
+    private Long numRes;
 
-    private  String ville_dep;
+    private  String villeDep;
 
-    private String Ville_arriv;
+    private String villeArriv;
 
-    private Date date_res;
+    private Date dateRes;
 
-    private float prix_total;
+    private float prixTotal;
+
 
 
     @ManyToOne
@@ -34,4 +35,13 @@ public class Reservation {
 
     @ManyToOne
     private Vol vol;
+
+    public Reservation(String ville_dep, String ville_arriv, Date date_res, float prix_total, Client client, Vol vol) {
+        this.villeDep = ville_dep;
+        villeArriv = ville_arriv;
+        this.dateRes = date_res;
+        this.prixTotal = prix_total;
+        this.client = client;
+        this.vol = vol;
+    }
 }
