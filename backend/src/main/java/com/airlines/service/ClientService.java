@@ -27,4 +27,5 @@ public class ClientService {
         return clientRepository.findByEmailAndPassword(email, password);
 
     }
+
 }
