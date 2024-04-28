@@ -35,8 +35,9 @@ public class AppConfig {
               .cors(cors -> cors.configurationSource(corsConfigrationSource()));
 
 
-        return http.build();
-    }
+      return http.build();
+  }
+
 
     private CorsConfigurationSource corsConfigrationSource() {
         return new CorsConfigurationSource() {
