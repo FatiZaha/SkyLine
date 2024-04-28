@@ -26,7 +26,7 @@ public class AppConfig {
   SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
       http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
               .authorizeHttpRequests(Authorize -> Authorize
-                      .requestMatchers("/api/admin/**").hasAnyRole("ADMIN")
+                      .requestMatchers("/api/**").hasAnyRole("ADMIN","USER")
                       .anyRequest().permitAll()
               )
               .addFilterBefore(new JwtTokenValidator(), BasicAuthenticationFilter.class)
