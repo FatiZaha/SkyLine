@@ -22,19 +22,19 @@ import java.util.Collections;
 
 public class AppConfig {
 
-  @Bean
-  SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-      http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-              .authorizeHttpRequests(Authorize -> Authorize
-                      .requestMatchers("/api/admin/**").hasAnyRole("ADMIN")
-                      .anyRequest().permitAll()
-              )
-              .addFilterBefore(new JwtTokenValidator(), BasicAuthenticationFilter.class)
-              .csrf(csrf -> csrf.disable())
-              .cors(cors -> cors.configurationSource(corsConfigrationSource()));
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(Authorize -> Authorize
+                        .requestMatchers("/api/admin/**").hasAnyRole("ADMIN")
+                        .anyRequest().permitAll()
+                )
+                .addFilterBefore(new JwtTokenValidator(), BasicAuthenticationFilter.class)
+                .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.configurationSource(corsConfigrationSource()));
 
-      return http.build();
-  }
+        return http.build();
+    }
 
     private CorsConfigurationSource corsConfigrationSource() {
         return new CorsConfigurationSource() {
