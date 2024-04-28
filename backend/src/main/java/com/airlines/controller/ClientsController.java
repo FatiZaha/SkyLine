@@ -12,7 +12,7 @@ import java.util.List;
 import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.linkTo;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/clients")
 
 public class ClientsController {
 
@@ -21,7 +21,7 @@ public class ClientsController {
     private final String apiKey = "bd563713ec75f13ff436f0846aeaa2e626d1e7f7"; // Remplacez par votre clé API de Hunter.io
 
 
-    @RequestMapping(value = "/clients",method = RequestMethod.GET)
+    @GetMapping
     public List listClient(){
         List<Client> clients=clientService.getClients();
         return clients;
