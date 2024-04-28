@@ -18,24 +18,14 @@ public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter
-    @Getter
     private Long num_res;
 
-    @Setter
-    @Getter
     private  String ville_dep;
 
-    @Setter
-    @Getter
     private String Ville_arriv;
 
-    @Setter
-    @Getter
     private Date date_res;
 
-    @Setter
-    @Getter
     private float prix_total;
 
 

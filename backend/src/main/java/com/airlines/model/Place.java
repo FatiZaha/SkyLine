@@ -12,8 +12,6 @@ public class Place {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter
-    @Getter
     private long numplace;
 
     @ManyToOne

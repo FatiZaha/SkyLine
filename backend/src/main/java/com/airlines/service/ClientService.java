@@ -15,6 +15,7 @@ public class ClientService {
 
 
 
+
     public List<Client> getClients(){
         return clientRepository.findAll();
     }
@@ -25,5 +26,6 @@ public class ClientService {
 
     public Client Connexion(String email,String password){
         return clientRepository.findByEmailAndPassword(email,password);
+
     }
-}
+
