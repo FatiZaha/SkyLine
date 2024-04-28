@@ -14,18 +14,17 @@ public class ClientService {
     private ClientRepository clientRepository;
 
 
-
-
-    public List<Client> getClients(){
+    public List<Client> getClients() {
         return clientRepository.findAll();
     }
-    public Client Inscription(String nom, String prenom, String email, String tel, String password){
-        Client client = new Client(nom,prenom,email,tel,password);
+
+    public Client Inscription(String nom, String prenom, String email, String tel, String password) {
+        Client client = new Client(nom, prenom, email, tel, password);
         return clientRepository.save(client);
     }
 
-    public Client Connexion(String email,String password){
-        return clientRepository.findByEmailAndPassword(email,password);
+    public Client Connexion(String email, String password) {
+        return clientRepository.findByEmailAndPassword(email, password);
 
     }
-
+}
