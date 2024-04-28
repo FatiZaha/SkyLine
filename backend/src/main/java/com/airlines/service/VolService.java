@@ -1,6 +1,7 @@
 package com.airlines.service;
 
 
+import com.airlines.model.Status;
 import com.airlines.model.Ville;
 import com.airlines.model.Vol;
 import com.airlines.repository.VolRepository;
@@ -16,16 +17,24 @@ public class VolService  {
     @Autowired
     private VolRepository volRepository;
 
-    public Vol SaveVol(Vol vol) {
-        return volRepository.saveVol(vol);
+    public void saveVol(Vol vol) {
+        volRepository.save(vol);
+    }
+
+    public void updateVol(Long codeVol, Date dateDepart, Date dateArrivee, Status status, float prix) {
+        Vol vol = volRepository.findById(codeVol).orElse(null);
+        if (vol != null) {
+            vol.setDateDepart(dateDepart);
+            vol.setDateArrive(dateArrivee);
+            vol.setStatus(status);
+            vol.setPrix(prix);
+            volRepository.save(vol);
+        }
+
     }
 
     public void DeleteVol(Long codeVol){
         volRepository.deleteVolByCodeVol(codeVol);
-    }
-
-    public void UpdateVol(Long codeVol,Vol vol) {
-        volRepository.updateVolByCodeVol(codeVol,vol);
     }
 
     public List<Vol> GetVolByDepart(Ville ville){
@@ -52,5 +61,12 @@ public class VolService  {
         return volRepository.findVolsByAvionVolCompagnieNom(nom);
     }
 
+    public List<Vol> GetAllVols(){
+        return volRepository.findAll();
+    }
+
+    public Vol GetVolByCodeVol(Long codeVol){
+        return volRepository.findByCodeVol(codeVol);
+    }
 }
 
