@@ -37,6 +37,7 @@ public class Client {
 private List<Reservation> reservations = new ArrayList<>();
 
     public Client(String nom, String prenom, String email, String tel, String password) {
+
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;

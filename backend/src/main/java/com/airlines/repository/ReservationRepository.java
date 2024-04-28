@@ -10,12 +10,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation,Long> {
 
 
 
-    List<Reservation> findReservationsByClient_Id(Long id);
-
+    public List<Reservation> findReservationsByClient_Id(Long id);
+    public Optional<Reservation> findByNumResAndClient_Id(Long idR,Long id);
+    public Optional<Reservation> findByNumRes(Long id);
 }

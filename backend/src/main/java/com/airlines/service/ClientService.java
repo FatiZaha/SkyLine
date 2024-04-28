@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -23,9 +24,17 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
-    public Client Connexion(String email, String password) {
+    public Optional<Client> Connexion(String email, String password) {
         return clientRepository.findByEmailAndPassword(email, password);
 
+    }
+
+    public Optional<Client> oneClient(Long id) {
+        return clientRepository.findById(id);
+
+    }
+    public boolean ifClientExist(String email){
+        return clientRepository.findClientByEmail(email)!=null;
     }
 
 }

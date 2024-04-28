@@ -1,10 +1,27 @@
 package com.airlines.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.airlines.model.Admin;
+import com.airlines.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("api/")
 public class AdminController {
 
+    @Autowired
+    private AdminService adminService;
+
+    @GetMapping("/admin")
+    public Optional<Admin> connexionAdmin(@RequestParam("login")String login,
+                                          @RequestParam("password")String password){
+        return adminService.getAdmin(login,password);
+    }
+
+    @GetMapping("/admin/{id}")
+    public Optional<Admin> getAdmin(@PathVariable Long id){
+        return adminService.getAdminById(id);
+    }
 }
