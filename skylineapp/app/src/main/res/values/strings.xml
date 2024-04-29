@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">skyline app</string>
+    <string name="please_enter_email">Please enter your email</string>
+    <string name="please_enter_password">Please enter your password</string>
+    <string name="please_enter_full_name">Please enter your full name</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="signup_title">Sign Up</string>
+    <string name="already_have_an_account">already have an account</string>
+    <string name="login">Login</string>
+</resources>
