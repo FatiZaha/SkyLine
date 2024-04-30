@@ -17,13 +17,13 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/vols")
+@RequestMapping("/api/")
 public class VolsController {
 
     @Autowired
     private VolService volService;
 
-    @PostMapping("/add")
+    @PostMapping("/admin/{id}/vols/add")
     public ResponseEntity<?> addVol(@RequestBody Vol vol, BindingResult bindingResult) {
 
 
@@ -31,7 +31,7 @@ public class VolsController {
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
         LocalDate dateActuelle = LocalDate.now();
-        if (dateDepart.isBefore(dateActuelle) || (vol.getDateArrive() == null) || (vol.getStatus() == null) || (vol.getPrix() <= 0)) {
+        if (dateDepart.isBefore(dateActuelle) || (vol.getDateArrive() == null) || (vol.getStatus() == null) || (vol.getPrixClass1() <= 0) || (vol.getPrixClass2() <= 0)) {
             return ResponseEntity.badRequest().build();
         }
 
@@ -39,7 +39,7 @@ public class VolsController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PutMapping("/{codeVol}")
+    @PutMapping("/admin/{id}/vols/{codeVol}")
     public ResponseEntity<String> updateVol(@PathVariable("codeVol") Long codeVol,@RequestBody Vol request) {
 
         // Vérifier si le vol existe
@@ -54,12 +54,16 @@ public class VolsController {
                 request.getDateDepart(),
                 request.getDateArrive(),
                 request.getStatus(),
-                request.getPrix());
+                request.getPrixClass1(),
+                request.getPrixClass2()
+        );
+
+
 
         return ResponseEntity.ok("Vol mis à jour avec succès.");
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/{id}/vols/{codeVol}")
     public  ResponseEntity<?> deleteVol(@PathVariable Long codeVol){
         try {
             volService.DeleteVol(codeVol);
@@ -69,37 +73,52 @@ public class VolsController {
         }
     }
 
-    @GetMapping("/villeDepart")
-    public List<Vol> getVolByDepart(Ville ville){
-        return volService.GetVolByDepart(ville);
+    @GetMapping("clients/{id}/vols/{villeDepart}")
+    public List<Vol> getVolByDepart(@PathVariable Ville villeDepart){
+        return volService.GetVolByDepart(villeDepart);
     }
-    @GetMapping("/villeArrivee")
-    public List<Vol> getVolByDestination(Ville ville){
-        return volService.GetVolByDestination(ville);
-    }
-
-    @GetMapping("/prix")
-    public List<Vol> getVolByPrice(Float prix){
-        return volService.GetVolByPrice(prix);
+    @GetMapping("clients/{id}/vols/{villeArrivee}")
+    public List<Vol> getVolByDestination(@PathVariable Ville villeArrivee){
+        return volService.GetVolByDestination(villeArrivee);
     }
 
-    @GetMapping("/dateDepart")
-    public List<Vol> getVolByDateArrive(Date date){
-        return volService.GetVolByDateArrive(date);
+    @GetMapping("clients/{id}/vols/{prixClass2}")
+    public List<Vol> getVolByPrice(@PathVariable float prixClass2){
+        return volService.GetVolByPrice(prixClass2);
     }
 
-    @GetMapping("/dateArrivee")
-    public List<Vol> getVolByDateDepart(Date date){
-        return volService.GetVolByDateDepart(date);
+    @GetMapping("clients/{id}/vols/{dateArrive}")
+    public List<Vol> getVolByDateArrive(@PathVariable Date dateArrive){
+        return volService.GetVolByDateArrive(dateArrive);
     }
 
-    @GetMapping("/company")
-    public List<Vol> getVolByCompanyName(String nom){
-        return volService.GetVolByCompanyName(nom);
+    @GetMapping("clients/{id}/vols/{dateDepart}")
+    public List<Vol> getVolByDateDepart(@PathVariable Date dateDepart){
+        return volService.GetVolByDateDepart(dateDepart);
     }
-    @GetMapping("/allVols")
-    public List<Vol> GetVols(String nom){
+
+    @GetMapping("clients/{id}/vols/{companyNom}")
+    public List<Vol> getVolByCompanyName(@PathVariable String companyNom){
+        return volService.GetVolByCompanyName(companyNom);
+    }
+    @GetMapping("clients/{id}/vols/allVols")
+    public List<Vol> GetVols_Admin(){
         return volService.GetAllVols();
+    }
+
+    @GetMapping("admin/{id}/vols/{idv}")
+    public Vol GetVolsById_Admin(@PathVariable Long idv){
+        return volService.GetVolByCodeVol(idv);
+    }
+
+    @GetMapping("admin/{id}/vols/allVols")
+    public List<Vol> GetVols_Client(){
+        return volService.GetAllVols();
+    }
+
+    @GetMapping("clients/{id}/vols/{idv}")
+    public Vol GetVolsById_Client(@PathVariable Long idv){
+        return volService.GetVolByCodeVol(idv);
     }
 
 

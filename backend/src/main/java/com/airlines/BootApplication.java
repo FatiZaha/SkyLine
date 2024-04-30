@@ -1,5 +1,6 @@
 package com.airlines;
 
+import com.airlines.timechecker.FlightStatusChecker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,7 +8,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BootApplication {
 
     public static void main(String[] args) {
+
+        
+        FlightStatusChecker.startCheckingFlightStatus();
+
         SpringApplication.run(BootApplication.class, args);
+
     }
 
 }

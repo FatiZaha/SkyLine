@@ -16,4 +16,6 @@ public class Place {
 
     @ManyToOne
     private Siege siege;
+
+
 }
