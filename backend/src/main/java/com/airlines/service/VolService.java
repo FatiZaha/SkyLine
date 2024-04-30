@@ -21,13 +21,14 @@ public class VolService  {
         volRepository.save(vol);
     }
 
-    public void updateVol(Long codeVol, Date dateDepart, Date dateArrivee, Status status, float prix) {
+    public void updateVol(Long codeVol, Date dateDepart, Date dateArrivee, Status status, float prixClass1, float prixClass2) {
         Vol vol = volRepository.findById(codeVol).orElse(null);
         if (vol != null) {
             vol.setDateDepart(dateDepart);
             vol.setDateArrive(dateArrivee);
             vol.setStatus(status);
-            vol.setPrix(prix);
+            vol.setPrixClass1(prixClass1);
+            vol.setPrixClass2(prixClass2);
             volRepository.save(vol);
         }
 
@@ -45,8 +46,8 @@ public class VolService  {
         return volRepository.findVolsByAeroportDestinationVille(ville);
     }
 
-    public List<Vol> GetVolByPrice(Float prix){
-        return volRepository.findVolsByPrix(prix);
+    public List<Vol> GetVolByPrice(Float prixClass2){
+        return volRepository.findVolsByPrixClass2(prixClass2);
     }
 
     public List<Vol> GetVolByDateArrive(Date date){
