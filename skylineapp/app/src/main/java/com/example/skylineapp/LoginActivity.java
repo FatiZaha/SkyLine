@@ -53,6 +53,4 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Sign Up clicked", Toast.LENGTH_SHORT).show();
                 // Ajoutez ici le code pour rediriger vers l'activité d'inscription ou une autre activité
             }
-        });
-    }
-}
+        });}}
