@@ -26,10 +26,10 @@ public class FlightStatusChecker {
 
 
 
-            volRepository.findAll().forEach(vol -> {
+            volRepository.findAllByStatus(Status.AVAILABLE).forEach(vol -> {
 
                 if (vol.getDateDepart().getTime()>= new Date().getTime()){
-                    vol.setStatus(Status.BOOKED);
+                    volRepository.updateVolByCodeVol(vol.getCodeVol(),Status.BOOKED);
                 }
             });
 
