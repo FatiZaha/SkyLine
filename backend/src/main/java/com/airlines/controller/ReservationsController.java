@@ -39,7 +39,7 @@ public class ReservationsController {
     }
 
     @PostMapping("clients/{idc}/vols/{codeVol}/newReservation")
-    public Object inscriptionClient(@RequestParam("villeDep")String villeDep,
+    public Object bookingFlight(@RequestParam("villeDep")String villeDep,
                                     @RequestParam("villeArriv")String villeArriv,
                                     @RequestParam("classType")String classType,
                                     @PathVariable Long idc,
@@ -55,6 +55,16 @@ public class ReservationsController {
         return  reservationService.bookingFlight(villeDep,villeArriv,dateRes,classType,idc,codeVol);
 
 
+    }
+
+    @DeleteMapping("clients/{idc}/reservations/{idR}")
+    public Reservation cancelReservation(@PathVariable Long idR){
+        return  reservationService.deleteReservationById(idR);
+    }
+
+    @PutMapping("clients/{idc}/reservations/{idR}")
+    public Reservation confirmReservation(@PathVariable Long idR){
+        return  reservationService.confirmReservationById(idR);
     }
 
 

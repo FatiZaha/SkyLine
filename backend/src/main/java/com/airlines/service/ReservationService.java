@@ -35,6 +35,14 @@ public class ReservationService {
         return reservationRepository.findReservationsByClient_Id(id);
     }
 
+    public Reservation deleteReservationById(Long numRes){
+        return reservationRepository.deleteReservationByNumRes(numRes);
+    }
+
+    public Reservation confirmReservationById(Long numRes){
+        return reservationRepository.updateReservationByNumRes(EtatPaiement.PAID,numRes);
+    }
+
     public Reservation bookingFlight(String ville_dep, String ville_arriv, Date date_res, String classType, Long idClient, Long idVol){
         Vol vol= volRepository.findByCodeVol(idVol);
         Client client = clientRepository.getReferenceById(idClient);
@@ -80,7 +88,7 @@ public class ReservationService {
                         .findFirst();
 
                 Place lastPlace = optionalLastPlace.orElse(null);
-                if (lastPlace == null) vol.setStatus(Status.BOOKED);
+                if (lastPlace == null) volRepository.updateVolByCodeVol(vol.getCodeVol(),Status.BOOKED);
 
                 return reservationRepository.save(reservation);
             }

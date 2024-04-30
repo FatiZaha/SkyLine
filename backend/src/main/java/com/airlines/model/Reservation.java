@@ -31,6 +31,8 @@ public class Reservation {
     @ManyToOne
     private Place place;
 
+    private EtatPaiement confirmerResevation;
+
 
     @ManyToOne
     private Client client;
@@ -46,5 +48,6 @@ public class Reservation {
         this.client = client;
         this.vol = vol;
         this.place=place;
+        this.confirmerResevation=EtatPaiement.NOT_PAID;
     }
 }
