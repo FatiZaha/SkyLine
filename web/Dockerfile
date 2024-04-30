@@ -6,7 +6,7 @@ COPY package-lock.json /code/package-lock.json
 
 COPY . .
 
-RUN npm run build
+RUN npm install
 
 EXPOSE 3000
 

@@ -1,5 +1,9 @@
 FROM openjdk:latest
-COPY src/main/java /app
+
 WORKDIR /app
+
+COPY ./target/classes /app
+
 EXPOSE 8080
-CMD ["java", "MainClass"]
+
+CMD ["java", "com.airlines.BackendApplication"]
