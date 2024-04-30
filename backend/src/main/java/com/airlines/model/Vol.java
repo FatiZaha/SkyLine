@@ -30,7 +30,8 @@ public class Vol {
     private String duree;
 
 
-    private float prix;
+    private float prixClass1;
+    private float prixClass2;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vol")

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/black">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Flight Reservations"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColorHint="@android:color/white"/>
+
+    <EditText
+        android:id="@+id/editTextCitySearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewTitle"
+        android:layout_marginTop="16dp"
+        android:hint="Search by City"
+        android:minHeight="48dp"
+        android:textColorHint="@android:color/white"/>
+
+    <LinearLayout
+        android:id="@+id/linearDateSelection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextCitySearch"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/textViewDepartureDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Departure Date"
+            android:inputType="date"
+            android:minHeight="48dp"
+            android:textColorHint="@android:color/white"/>
+
+        <EditText
+            android:id="@+id/textViewArrivalDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Arrival Date"
+            android:inputType="date"
+            android:minHeight="48dp"
+            android:textColorHint="@android:color/white"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearCitySelection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearDateSelection"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spinnerDepartureCity"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:spinnerMode="dropdown"
+            android:dropDownVerticalOffset="40dp"
+            android:prompt="select_departure_city"
+            android:textColorHint="@android:color/white"/>
+        <Spinner
+            android:id="@+id/spinnerArrivalCity"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:spinnerMode="dropdown"
+            android:dropDownVerticalOffset="40dp"
+            android:prompt="select_arrival_city"
+            android:textColorHint="@android:color/white"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearCitySelection"
+        android:layout_marginTop="16dp"
+        android:text="Search Flights"
+        android:textColorHint="@android:color/white" />
+
+    <!-- Placeholder for flight reservations list -->
+    <ListView
+        android:id="@+id/listViewReservations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonSearch"
+        android:layout_marginTop="16dp"
+        android:textColorHint="@android:color/white"/>
+</RelativeLayout>

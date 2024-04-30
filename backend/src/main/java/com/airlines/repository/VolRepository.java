@@ -1,6 +1,7 @@
 package com.airlines.repository;
 
 import com.airlines.model.Aeroport;
+import com.airlines.model.Status;
 import com.airlines.model.Vol;
 import com.airlines.model.Ville;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,31 +17,42 @@ import java.util.List;
 public interface VolRepository extends JpaRepository<Vol, Long> {
 
     @Modifying
-    @Query("UPDATE Vol SET dateDepart = :dateDepart, dateArrive = :dateArrive, status = :status, prix = :prix WHERE codeVol = :codeVol")
+    @Query("UPDATE Vol SET dateDepart = :dateDepart, dateArrive = :dateArrive, status = :status,prixClass1 =:prixClass1, prixClass2 =:prixClass2 WHERE codeVol = :codeVol")
     void updateVolByCodeVol(
             @Param("codeVol") Long codeVol,
             @Param("dateDepart") Date dateDepart,
             @Param("dateArrive") Date dateArrive,
-            @Param("status") String status,
-            @Param("prix") float prix
+            @Param("status") Status status,
+            @Param("prixClass1") float prixClass1,
+            @Param("prixClass2") float prixClass2
     );
-    void deleteVolByCodeVol(Long codeVol);
+    @Modifying
+    @Query("UPDATE Vol SET status = :status WHERE codeVol = :codeVol")
+    void updateVolByCodeVol(
+            @Param("codeVol") Long codeVol,
+            @Param("status") Status status
 
-    List<Vol> findVolsByAeroportDepartVille(Ville ville);
+    );
+    public void deleteVolByCodeVol(Long codeVol);
 
-    List<Vol> findVolsByAeroportDestinationVille(Ville ville);
+    public List<Vol> findVolsByAeroportDepartVille(Ville ville);
 
-    List<Vol>findVolsByPrix(Float prix);
+    public List<Vol> findVolsByAeroportDestinationVille(Ville ville);
 
-    List<Vol>findVolsByDateArrive(Date date);
+    public List<Vol>findVolsByPrixClass2(Float prix);
 
-    List<Vol>findVolsByDateDepart(Date date);
+    public List<Vol>findVolsByDateArrive(Date date);
 
-    List<Vol>findVolsByAvionVolCompagnieNom(String nom);
+    public List<Vol>findVolsByDateDepart(Date date);
 
-    List<Vol>findAll();
+    public List<Vol>findVolsByAvionVolCompagnieNom(String nom);
 
-    Vol findByCodeVol(Long codeVol);
+
+    public List<Vol> findAllByStatus(Status status);
+
+
+
+    public Vol findByCodeVol(Long codeVol);
 
 
 

@@ -4,18 +4,16 @@ import com.airlines.emailverification.EmailVerificationResponse;
 import com.airlines.model.Client;
 import com.airlines.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.linkTo;
 
 @RestController
-@RequestMapping("/api/clients")
+@RequestMapping("/api")
 
 public class ClientsController {
 
@@ -24,22 +22,25 @@ public class ClientsController {
     private final String apiKey = "bd563713ec75f13ff436f0846aeaa2e626d1e7f7"; // Remplacez par votre clé API de Hunter.io
 
 
-    @GetMapping("/allClients")
+    @GetMapping("/clients")
     public List<Client> listClient(){
         return clientService.getClients();
 
     }
-    @GetMapping("/connexion/{email}{password}")
-    public Client connexionClient(@PathVariable String email,@PathVariable String password){
+    @GetMapping("/connexion")
+    public Optional<Client> connexionClient(@RequestParam("email") String email,@RequestParam("password") String password){
         return clientService.Connexion(email,password);
     }
+    @GetMapping("/clients/{id}")
+    public Optional<Client> oneClient(@PathVariable Long id){
+        return clientService.oneClient(id);
+    }
     @PostMapping("/inscription")
-    public ResponseEntity<?> inscriptionClient(@RequestParam("email") String email,
-                                               @RequestParam("nom") String nom,
-                                               @RequestParam("prenom") String prenom,
-                                               @RequestParam("tel") String tel,
-                                               @RequestParam("password") String password,
-                                               BindingResult bindingResult) {
+    public Object inscriptionClient(@RequestParam("email") String email,
+                                    @RequestParam("nom") String nom,
+                                    @RequestParam("prenom") String prenom,
+                                    @RequestParam("tel") String tel,
+                                    @RequestParam("password") String password) {
 
 
         // Effectuer la vérification de l'email en utilisant l'API de Hunter.io
@@ -47,10 +48,13 @@ public class ClientsController {
 
         if (isEmailVerified) {
 
-            clientService.Inscription(nom,prenom,email,tel,password);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+            if(clientService.ifClientExist(email)){
+                return "this account already exist";
+            }
+
+            else return clientService.Inscription(nom,prenom,email,tel,password);
         } else {
-            return ResponseEntity.badRequest().build();
+            return "email invalid";
         }
     }
 
