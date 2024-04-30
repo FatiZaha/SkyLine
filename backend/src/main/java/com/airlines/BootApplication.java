@@ -1,13 +1,19 @@
 package com.airlines;
 
+import com.airlines.timechecker.FlightStatusChecker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BackendApplication {
+public class BootApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BackendApplication.class, args);
+
+        
+        FlightStatusChecker.startCheckingFlightStatus();
+
+        SpringApplication.run(BootApplication.class, args);
+
     }
 
 }

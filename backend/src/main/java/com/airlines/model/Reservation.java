@@ -28,6 +28,8 @@ public class Reservation {
 
     private float prixTotal;
 
+    @ManyToOne
+    private Place place;
 
 
     @ManyToOne
@@ -36,12 +38,13 @@ public class Reservation {
     @ManyToOne
     private Vol vol;
 
-    public Reservation(String ville_dep, String ville_arriv, Date date_res, float prix_total, Client client, Vol vol) {
+    public Reservation(String ville_dep, String ville_arriv, Date date_res, float prix_total, Client client, Vol vol,Place place) {
         this.villeDep = ville_dep;
         villeArriv = ville_arriv;
         this.dateRes = date_res;
         this.prixTotal = prix_total;
         this.client = client;
         this.vol = vol;
+        this.place=place;
     }
 }
