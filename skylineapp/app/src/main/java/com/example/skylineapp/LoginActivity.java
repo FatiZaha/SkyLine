@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText editTextEmail;
@@ -14,6 +15,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button buttonLogin;
     private Button buttonSignUp;
     private TextView textViewSignup;
+    private TextView textViewForgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonSignUp = findViewById(R.id.buttonSignUp);
         textViewSignup = findViewById(R.id.textViewSignup);
+        textViewForgotPassword = findViewById(R.id.textViewForgotPassword);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,13 +35,12 @@ public class LoginActivity extends AppCompatActivity {
                 String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
 
-                // Ajoutez ici votre logique de vérification des informations de connexion
-                // Par exemple, vous pouvez comparer les informations avec une base de données ou une API
-
                 if (email.equals("client@gmail.com") && password.equals("password")) {
                     // Connexion réussie
                     Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                    // Ajoutez ici le code pour rediriger vers l'activité principale ou une autre activité
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     // Échec de la connexion
                     Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
@@ -49,8 +51,21 @@ public class LoginActivity extends AppCompatActivity {
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Ajoutez ici le code pour gérer le clic sur le bouton Sign Up
+
                 Toast.makeText(LoginActivity.this, "Sign Up clicked", Toast.LENGTH_SHORT).show();
-                // Ajoutez ici le code pour rediriger vers l'activité d'inscription ou une autre activité
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(intent);
             }
-        });}}
+        });
+
+        textViewForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(LoginActivity.this, "Forgot Password clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+}
