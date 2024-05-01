@@ -32,9 +32,17 @@ public class Client {
     @Column(nullable = false)
     private String password;
 
-@JsonIgnore
-@OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
-private List<Reservation> reservations = new ArrayList<>();
+    @Column(name = "reset_password_token")
+    @Getter
+    @Setter
+    private String resetPasswordToken;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+    private List<Reservation> reservations = new ArrayList<>();
+
+    @ElementCollection
+    private List<AirlinesDto> fav=new ArrayList<>();
 
     public Client(String nom, String prenom, String email, String tel, String password) {
 
@@ -45,6 +53,5 @@ private List<Reservation> reservations = new ArrayList<>();
         this.password = password;
     }
 
-    @ElementCollection
-    private List<AirlinesDto> fav=new ArrayList();
+
 }
