@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
@@ -29,11 +29,10 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 if (email.isEmpty()) {
                     Toast.makeText(ForgotPasswordActivity.this, "Please enter your email", Toast.LENGTH_SHORT).show();
                 } else {
-
-
-                    Toast.makeText(ForgotPasswordActivity.this, "Password reset instructions sent to your email", Toast.LENGTH_SHORT).show();
-
-
+                    // Add code to start the ResetPasswordActivity and pass the email as an extra
+                    Intent intent = new Intent(ForgotPasswordActivity.this, ResetPasswordActivity.class);
+                    intent.putExtra("email", email);
+                    startActivity(intent);
                     finish();
                 }
             }

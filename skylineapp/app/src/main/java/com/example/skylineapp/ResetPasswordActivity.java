@@ -37,7 +37,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                     // TODO: Reset the password
 
                     Toast.makeText(ResetPasswordActivity.this, "Password reset successfully", Toast.LENGTH_SHORT).show();
-                    finish(); // Close the reset password activity
+                    finish();
                 }
             }
         });
@@ -45,10 +45,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
 
     private void resetPassword(String newPassword) {
-        // Logic to reset the password
-        // This can involve updating the password in a database or using an API
-        // Add your own implementation here based on your system
-        // Display a Toast message or a dialog box to inform the user that the password has been successfully reset
+
         Toast.makeText(this, "Password reset successfully", Toast.LENGTH_SHORT).show();
     }
 }

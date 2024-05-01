@@ -1,29 +1,33 @@
-
-
-
 package com.example.skylineapp;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class ReservationActivity extends AppCompatActivity {
 
-    private EditText editTextCitySearch;
+    private DatePicker datePicker;
+    private EditText editTextDuration;
+    private Spinner spinnerCity;
+    private Spinner spinnerClass;
+    private Button buttonReserve;
+    private ListView listViewReservations;
     private TextView textViewDepartureDate;
-    private TextView textViewArrivalDate;
-    private Spinner spinnerDepartureCity;
-    private Spinner spinnerArrivalCity;
-    private Button buttonSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,45 +35,51 @@ public class ReservationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reservation);
 
         // Initialize views
-        editTextCitySearch = findViewById(R.id.editTextCitySearch);
+        datePicker = findViewById(R.id.datePickerDepartureDate);
+        editTextDuration = findViewById(R.id.editTextDuration);
+        spinnerCity = findViewById(R.id.spinnerCity);
+        spinnerClass = findViewById(R.id.spinnerClass);
+        buttonReserve = findViewById(R.id.buttonReserve);
+        listViewReservations = findViewById(R.id.listViewReservations);
         textViewDepartureDate = findViewById(R.id.textViewDepartureDate);
-        textViewArrivalDate = findViewById(R.id.textViewArrivalDate);
-        spinnerDepartureCity = findViewById(R.id.spinnerDepartureCity);
-        spinnerArrivalCity = findViewById(R.id.spinnerArrivalCity);
-        buttonSearch = findViewById(R.id.buttonSearch);
 
-        // Set click listener for search button
-        buttonSearch.setOnClickListener(new View.OnClickListener() {
+        // Set up the spinner for cities
+        ArrayAdapter<CharSequence> cityAdapter = ArrayAdapter.createFromResource(this, R.array.city_array, android.R.layout.simple_spinner_item);
+        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCity.setAdapter(cityAdapter);
+
+        // Set up the spinner for flight classes
+        ArrayAdapter<CharSequence> classAdapter = ArrayAdapter.createFromResource(this, R.array.class_array, android.R.layout.simple_spinner_item);
+        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerClass.setAdapter(classAdapter);
+
+        buttonReserve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Perform search based on selected criteria
-                String city = editTextCitySearch.getText().toString();
+                String city = spinnerCity.getSelectedItem().toString();
+                String duration = editTextDuration.getText().toString();
+                String flightClass = spinnerClass.getSelectedItem().toString();
                 String departureDate = textViewDepartureDate.getText().toString();
-                String arrivalDate = textViewArrivalDate.getText().toString();
-                String departureCity = spinnerDepartureCity.getSelectedItem().toString();
-                String arrivalCity = spinnerArrivalCity.getSelectedItem().toString();
 
-                // TODO: Perform flight search and display results
+                // Display a toast message
+                Toast.makeText(ReservationActivity.this, "Reservation made: " + city + ", " + departureDate + ", " + duration + ", " + flightClass, Toast.LENGTH_SHORT).show();
             }
         });
 
-        // Set click listeners for date selection
         textViewDepartureDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDatePickerDialog(textViewDepartureDate);
+                showDatePickerDialog();
             }
         });
 
-        textViewArrivalDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog(textViewArrivalDate);
-            }
-        });
+        // Set up the list view
+        List<String> reservationsList = new ArrayList<>();
+        ArrayAdapter<String> reservationsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, reservationsList);
+        listViewReservations.setAdapter(reservationsAdapter);
     }
 
-    private void showDatePickerDialog(final TextView textView) {
+    private void showDatePickerDialog() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
@@ -79,13 +89,11 @@ public class ReservationActivity extends AppCompatActivity {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        // Update the TextView with the selected date
                         String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
-                        textView.setText(selectedDate);
+                        textViewDepartureDate.setText(selectedDate);
                     }
                 }, year, month, dayOfMonth);
 
-        // Show the date picker dialog
         datePickerDialog.show();
     }
 }

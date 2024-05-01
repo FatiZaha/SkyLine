@@ -7,4 +7,14 @@
     <string name="signup_title">Sign Up</string>
     <string name="already_have_an_account">already have an account</string>
     <string name="login">Login</string>
+    <string-array name="class_array">
+        <item>class 1</item>
+        <item>class 2</item>
+    </string-array>
+        <string-array name="city_array">
+            <item>New York</item>
+            <item>London</item>
+            <item>Paris</item>
+            <item>Tokyo</item>
+        </string-array>
 </resources>
