@@ -67,7 +67,7 @@ public class CompagniesController {
     public Compagnie GetCompanyName(String nom){
         return compagnieService.getCompagnyName(nom);
     }
-    @GetMapping("/all")
+    @GetMapping("/admin/{id}/all")
     public List<Compagnie> GetAllCompagnies(){
         return compagnieService.getAllCompanies();
     }
