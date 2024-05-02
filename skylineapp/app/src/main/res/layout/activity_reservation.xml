@@ -22,8 +22,7 @@
         android:layout_marginTop="16dp"
         android:padding="8dp"
         android:popupBackground="@color/white"
-        android:hint="Select City"
-        android:textColorHint="@android:color/white" />
+        android:hint="Select City" />
 
     <LinearLayout
         android:id="@+id/linearDateSelection"
@@ -42,7 +41,7 @@
             android:datePickerMode="spinner"
             android:minHeight="48dp"
             android:hint="Date of Departure"
-            android:textColorHint="@color/white" />
+            android:textColorHint="@android:color/white"/>
 
         <EditText
             android:id="@+id/editTextDuration"
@@ -52,7 +51,7 @@
             android:hint="Duration"
             android:inputType="number"
             android:minHeight="48dp"
-            android:textColorHint="@android:color/white" />
+            android:textColorHint="@android:color/white"/>
 
     </LinearLayout>
 
@@ -63,9 +62,8 @@
         android:layout_below="@id/linearDateSelection"
         android:layout_marginTop="16dp"
         android:padding="8dp"
-        android:popupBackground="@color/white"
-        android:hint="Select Class"
-        android:textColorHint="@android:color/white" />
+        android:textColorHint="@android:color/white"
+        android:hint="Select Class" />
 
     <Button
         android:id="@+id/buttonReserve"
@@ -74,7 +72,7 @@
         android:layout_below="@id/spinnerClass"
         android:layout_marginTop="16dp"
         android:text="Reserve"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/white" />
 
     <ListView
         android:id="@+id/listViewReservations"
@@ -82,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonReserve"
         android:layout_marginTop="16dp"
-        android:textColorHint="@android:color/white" />
+        android:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/textViewDepartureDate"
@@ -92,5 +90,4 @@
         android:layout_marginTop="16dp"
         android:text="Departure Date"
         android:textColor="@android:color/white" />
-
 </RelativeLayout>

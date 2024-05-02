@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 public class ReservationActivity extends AppCompatActivity {
 
     private DatePicker datePicker;
@@ -28,6 +30,8 @@ public class ReservationActivity extends AppCompatActivity {
     private Button buttonReserve;
     private ListView listViewReservations;
     private TextView textViewDepartureDate;
+
+    private Button buttonConfirmReserve;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

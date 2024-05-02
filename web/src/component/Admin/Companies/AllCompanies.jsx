@@ -14,36 +14,18 @@ export default function CompaniesTable() {
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
-    // Effectuez une requête à votre base de données pour récupérer les données de réservation
-    // Utilisez les méthodes appropriées pour accéder à votre base de données (par exemple, une API REST ou un ORM)
-
-    // Exemple de requête fictive
     const fetchCompanies = async () => {
       try {
-        const response = await fetch('/api/reservations'); // Remplacez '/api/reservations' par l'URL de votre endpoint pour récupérer les réservations
+        const response = await fetch('http://localhost:8080/api/admin/1/compagnies/all');
         const data = await response.json();
-        setCompanies(data); // Mettez à jour les données de réservation dans le state
+        setCompanies(data);
       } catch (error) {
-        console.error('Erreur lors de la récupération des réservations :', error);
+        console.error('Erreur lors de la récupération des compagnies :', error);
       }
     };
-
+  
     fetchCompanies();
   }, []);
-
-  // Ajoutez une ligne d'enregistrement pour le test
-  useEffect(() => {
-    setCompanies([
-      {
-        id: 1,
-        logo: 'logo',
-        nom: 'Nom de l\'entreprise',
-        adresse: 'Adresse de l\'entreprise',
-        tel: 'Numéro de téléphone de l\'entreprise',
-      },
-      ...companies,
-    ]);
-  }, []); // Assurez-vous de passer un tableau vide en tant que seconde argument pour exécuter ce useEffect une seule fois
 
   return (
     <TableContainer component={Paper}>
@@ -58,22 +40,21 @@ export default function CompaniesTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {companies.map((company) => (
-            <TableRow key={company.id}>
+          {companies.map((Compagnie) => (
+            <TableRow key={Compagnie.id}>
               <TableCell align="right">
-                <img src={company.logo} alt="Logo de l'entreprise" />
+                <img src={Compagnie.logo} alt="Logo de l'entreprise" />
               </TableCell>
-              <TableCell align="right">{company.nom}</TableCell>
-              <TableCell align="right">{company.adresse}</TableCell>
-              <TableCell align="right">{company.tel}</TableCell>
+              <TableCell align="right">{Compagnie.nom}</TableCell>
+              <TableCell align="right">{Compagnie.adresse}</TableCell>
+              <TableCell align="right">{Compagnie.tel}</TableCell>
               <TableCell align="right">
-                  <IconButton>
-                      <ModeEditIcon />
-                  </IconButton>
-                  <IconButton>
-                      <DeleteIcon />
-                  </IconButton>
-                
+                <IconButton>
+                  <ModeEditIcon />
+                </IconButton>
+                <IconButton>
+                  <DeleteIcon />
+                </IconButton>
               </TableCell>
             </TableRow>
           ))}

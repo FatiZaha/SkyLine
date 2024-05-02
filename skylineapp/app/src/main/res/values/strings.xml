@@ -11,10 +11,10 @@
         <item>class 1</item>
         <item>class 2</item>
     </string-array>
-        <string-array name="city_array">
-            <item>New York</item>
-            <item>London</item>
-            <item>Paris</item>
-            <item>Tokyo</item>
-        </string-array>
+    <string-array name="city_array">
+        <item>New York</item>
+        <item>London</item>
+        <item>Paris</item>
+        <item>Tokyo</item>
+    </string-array>
 </resources>
