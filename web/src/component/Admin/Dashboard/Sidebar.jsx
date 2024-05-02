@@ -20,6 +20,7 @@ import FlightsTable from '../Flights/AllFlights';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import FullScreenDialog from '../../Admin/Companies/AddCompany';
 import FlightsDialog from '../Flights/AddFlights';
+import AllCompanies from '../Companies/AllCompanies';
 
 const drawerWidth = 240;
 
@@ -64,7 +65,7 @@ export default function PermanentDrawerLeft() {
           <FullScreenDialog/>
             
           <div style={{ marginTop: '20px' }}>
-              <CompaniesTable />
+              <AllCompanies />
           </div>
         </div>
       );

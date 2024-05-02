@@ -10,7 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import IconButton from '@mui/material/IconButton';
 
-export default function CompaniesTable() {
+export default function AllCompanies() {
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
