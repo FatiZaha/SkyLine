@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Redirect, Outlet, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import { Navbar } from './component/User/Navbar/Navbar';
 import Home from './component/User/Home/Home';
 import { CssBaseline, ThemeProvider } from '@mui/material';
@@ -8,7 +8,7 @@ import FlightsFilter from './component/User/Flights/FlightsFilter';
 import SignIn from './component/SignIn/SignIn';
 import SignUp from './component/SignUp/SignUp';
 import Sidebar from './component/Admin/Dashboard/Sidebar';
-import { useState } from 'react';
+
 
 function App() {
   return (
@@ -25,16 +25,16 @@ function App() {
 
 function AppRouter() {
   const location = useLocation();
-  const hideNavbar = location.pathname === '/signin' || location.pathname === '/signup';
+  const hideNavbar = location.pathname === '/signin' || location.pathname === '/' ;
 
   return (
     <>
-      {!hideNavbar && <Navbar />} {/* Afficher la Navbar sauf dans les pages "SignIn" et "SignUp" */}
+      {!hideNavbar && <Navbar />} {/* Afficher la Navbar sauf dans la page "SignIn" */}
       <Outlet />
       <Routes>
-        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/" element={<SignUp />} /> 
         <Route exact path="/signin" element={<SignIn />} />
-        <Route exact path="/signup" element={<SignUp />} />
+        <Route exact path="/home" element={<Home />} />
         <Route exact path="/filter" element={<FlightsFilter />} />
         <Route exact path="/sidebar" element={<Sidebar />} />
       </Routes>

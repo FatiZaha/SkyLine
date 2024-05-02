@@ -15,7 +15,6 @@ import FlightIcon from '@mui/icons-material/Flight';
 import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 import { PieChart } from '@mui/icons-material';
 import BasicTable from '../../User/Reservations/Reservation';
-import CompaniesTable from '../Companies/AllCompanies';
 import FlightsTable from '../Flights/AllFlights';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import FullScreenDialog from '../../Admin/Companies/AddCompany';
