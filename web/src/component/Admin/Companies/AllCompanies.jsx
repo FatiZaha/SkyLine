@@ -41,7 +41,7 @@ export default function CompaniesTable() {
         </TableHead>
         <TableBody>
           {companies.map((Compagnie) => (
-            <TableRow key={Compagnie.id}>
+            <TableRow key={Compagnie.code}>
               <TableCell align="right">
                 <img src={Compagnie.logo} alt="Logo de l'entreprise" />
               </TableCell>
