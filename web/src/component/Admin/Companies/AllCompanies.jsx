@@ -10,7 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import IconButton from '@mui/material/IconButton';
 
-export default function CompaniesTable() {
+export default function AllCompanies() {
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function CompaniesTable() {
         </TableHead>
         <TableBody>
           {companies.map((Compagnie) => (
-            <TableRow key={Compagnie.id}>
+            <TableRow key={Compagnie.code}>
               <TableCell align="right">
                 <img src={Compagnie.logo} alt="Logo de l'entreprise" />
               </TableCell>
