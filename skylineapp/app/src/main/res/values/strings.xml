@@ -12,9 +12,28 @@
         <item>class 2</item>
     </string-array>
     <string-array name="city_array">
+        <item>Marakech</item>
         <item>New York</item>
-        <item>London</item>
-        <item>Paris</item>
         <item>Tokyo</item>
+        <item>London</item>
+        <item>Sydney</item>
+        <item>Dubai</item>
+        <item>Rome</item>
+        <item>Berlin</item>
+        <item>Madrid</item>
+        <item>Moscow</item>
+        <item>Toronto</item>
+        <item>Mexico City</item>
+        <item>Singapore</item>
+        <item>Istanbul</item>
+        <item>Mumbai</item>
+        <item>Bangkok</item>
+        <item>Amsterdam</item>
+        <item>Hong Kong</item>
+        <item>Vancouver</item>
+        <item>Rio de Janeiro</item>
+        <item>Cape Town</item>
+        <item>Dublin</item>
+        <item>Casablanca</item>
     </string-array>
 </resources>
