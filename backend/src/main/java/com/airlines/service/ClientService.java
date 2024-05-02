@@ -24,12 +24,22 @@ public class ClientService {
     }
 
     public Client Inscription(String nom, String prenom, String email, String tel, String password) {
-        Client client = new Client(nom, prenom, email, tel, password);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(password);
+        Client client = new Client(nom, prenom, email, tel, encodedPassword);
         return clientRepository.save(client);
     }
 
     public Optional<Client> Connexion(String email, String password) {
-        return clientRepository.findByEmailAndPassword(email, password);
+        Optional<Client> client=clientRepository.findClientByEmail(email);
+        if(client.isPresent()){
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            boolean passwordsMatch = passwordEncoder.matches(password, client.get().getPassword());
+            if (passwordsMatch) return client;
+            else return Optional.empty();
+
+        }
+        else return Optional.empty();
 
     }
 
@@ -61,10 +71,10 @@ public class ClientService {
     }
 
     public void updatePassword(Client client, String newPassword) {
-        //BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        //String encodedPassword = passwordEncoder.encode(newPassword);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(newPassword);
         clientRepository.updateClientById(null,client.getId());
-        clientRepository.updateById(newPassword,client.getId());
+        clientRepository.updateById(encodedPassword,client.getId());
 
     }
 
