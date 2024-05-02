@@ -19,6 +19,37 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function FullScreenDialog() {
   const [open, setOpen] = React.useState(false);
+  const [logo, setLogo] = useState('');
+  const [nom, setNom] = useState('');
+  const [adresse, setAdresse] = useState('');
+  const [tel, setTel] = useState('');
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/api/admin/1/compagnies/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ logo, nom, adresse, tel }),
+      });
+  
+      if (response.ok) {
+        // Réinitialisez les valeurs des champs après l'envoi réussi
+        setLogo('');
+        setNom('');
+        setAdresse('');
+        setTel('');
+  
+        // Fermez la boîte de dialogue après l'envoi réussi
+        handleClose();
+      } else {
+        console.error('Erreur lors de l\'envoi du formulaire');
+      }
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi du formulaire :', error);
+    }
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -27,13 +58,12 @@ export default function FullScreenDialog() {
   const handleClose = () => {
     setOpen(false);
   };
-  const [ setLogoFile] = useState(null);
 
   const handleLogoInputChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       // Faites quelque chose avec le fichier sélectionné, par exemple, stockez-le dans l'état
-      setLogoFile(file);
+      setLogo(file);
     }
   };
 
@@ -55,7 +85,7 @@ export default function FullScreenDialog() {
             <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
               <CloseIcon />
             </IconButton>
-            <Button style={{ justifyContent: 'flex-end' }} autoFocus color="inherit" onClick={handleClose}>
+            <Button style={{ justifyContent: 'flex-end' }} autoFocus color="inherit" onClick={handleSubmit}>
               Save
             </Button>
           </Toolbar>
@@ -63,47 +93,68 @@ export default function FullScreenDialog() {
 
         <List style={{ display: 'flex', justifyContent: 'center', textAlign: 'center' }}>
           <div>
-            <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between',marginTop: 10 }}>
+            <Divider />
+            <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
               <Grid item>
-                <Typography variant="body1">Logo:</Typography>
+                <Typography variant="body1">Company Logo:</Typography>
               </Grid>
-              <Grid item style={{ marginLeft: 'auto' }}>
+              <Grid item>
                 <TextField
-                  id="logo-input"
+                  id="standard-basic"
+                  label="Enter the company logo"
                   variant="standard"
-                  type="file"
-                  inputProps={{ accept: '.png' }}
-                  onChange={(e) => handleLogoInputChange(e)}
+                  value={logo}
+                  onChange={(e) => setLogo(e.target.value)}
                 />
               </Grid>
             </Grid>
             <Divider />
-            <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between',marginTop: 10  }}>
+            <Divider />
+            <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
               <Grid item>
                 <Typography variant="body1">Company Name:</Typography>
               </Grid>
               <Grid item>
-                <TextField id="standard-basic" label="Enter the company name" variant="standard" />
+                <TextField
+                  id="standard-basic"
+                  label="Enter the company name"
+                  variant="standard"
+                  value={nom}
+                  onChange={(e) => setNom(e.target.value)}
+                />
               </Grid>
             </Grid>
             <Divider />
-            <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between',marginTop: 10  }}>
+            <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
               <Grid item>
                 <Typography variant="body1">Company Address:</Typography>
               </Grid>
               <Grid item>
-                <TextField id="standard-basic" label="Enter the company address" variant="standard" />
+                <TextField
+                  id="standard-basic"
+                  label="Enter the company address"
+                  variant="standard"
+                  value={adresse}
+                  onChange={(e) =>setAdresse(e.target.value)}
+                />
               </Grid>
             </Grid>
             <Divider />
-            <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between' ,marginTop: 10 }}>
+            <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
               <Grid item>
                 <Typography variant="body1">Company Phone:</Typography>
               </Grid>
               <Grid item>
-                <TextField id="standard-basic" label="Enter the company phone" variant="standard" />
+                <TextField
+                  id="standard-basic"
+                  label="Enter the company phone"
+                  variant="standard"
+                  value={tel}
+                  onChange={(e) => setTel(e.target.value)}
+                />
               </Grid>
             </Grid>
+            <Divider />
           </div>
         </List>
       </Dialog>

@@ -5,14 +5,16 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
+import {Link} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
+  
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
@@ -25,10 +27,10 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 
 const SignIn = () => {
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -36,6 +38,10 @@ const SignIn = () => {
       email: data.get('email'),
       password: data.get('password'),
     });
+  };
+
+  const handleHomeClick = () => {
+    navigate('/home');
   };
 
   return (
@@ -98,6 +104,7 @@ const SignIn = () => {
                 label="Remember me"
               />
               <Button
+                onClick={handleHomeClick}
                 type="submit"
                 fullWidth
                 variant="contained"
@@ -112,9 +119,9 @@ const SignIn = () => {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
+                  <a  href="/" variant="body2" >
+                    Don't have an account? Sign Up
+                  </a>
                 </Grid>
               </Grid>
               <Copyright sx={{ mt: 5 }} />

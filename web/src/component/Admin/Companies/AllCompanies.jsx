@@ -9,41 +9,38 @@ import Paper from '@mui/material/Paper';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import IconButton from '@mui/material/IconButton';
+import Avatar from  '@mui/material/Avatar';
 
-export default function CompaniesTable() {
+export default function AllCompanies() {
   const [companies, setCompanies] = useState([]);
 
-  useEffect(() => {
-    // Effectuez une requête à votre base de données pour récupérer les données de réservation
-    // Utilisez les méthodes appropriées pour accéder à votre base de données (par exemple, une API REST ou un ORM)
+  const handleDeleteCompany = async (code) => {
+    try {
+      // Appeler votre API de suppression en utilisant l'ID de la compagnie
+      await fetch(`http://localhost:8080/api/admin/1/compagnies/delete/${code}`, {
+        method: 'DELETE',
+      });
 
-    // Exemple de requête fictive
+      // Mettre à jour la liste des compagnies après la suppression
+      setCompanies(companies.filter((company) => company.code !== code));
+    } catch (error) {
+      console.error('Erreur lors de la suppression de la compagnie :', error);
+    }
+  };
+
+  useEffect(() => {
     const fetchCompanies = async () => {
       try {
-        const response = await fetch('/api/reservations'); // Remplacez '/api/reservations' par l'URL de votre endpoint pour récupérer les réservations
+        const response = await fetch('http://localhost:8080/api/admin/1/compagnies/all');
         const data = await response.json();
-        setCompanies(data); // Mettez à jour les données de réservation dans le state
+        setCompanies(data);
       } catch (error) {
-        console.error('Erreur lors de la récupération des réservations :', error);
+        console.error('Erreur lors de la récupération des compagnies :', error);
       }
     };
 
     fetchCompanies();
   }, []);
-
-  // Ajoutez une ligne d'enregistrement pour le test
-  useEffect(() => {
-    setCompanies([
-      {
-        id: 1,
-        logo: 'logo',
-        nom: 'Nom de l\'entreprise',
-        adresse: 'Adresse de l\'entreprise',
-        tel: 'Numéro de téléphone de l\'entreprise',
-      },
-      ...companies,
-    ]);
-  }, []); // Assurez-vous de passer un tableau vide en tant que seconde argument pour exécuter ce useEffect une seule fois
 
   return (
     <TableContainer component={Paper}>
@@ -58,22 +55,23 @@ export default function CompaniesTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {companies.map((company) => (
-            <TableRow key={company.id}>
-              <TableCell align="right">
-                <img src={company.logo} alt="Logo de l'entreprise" />
+          {companies.map((Compagnie) => (
+            <TableRow key={Compagnie.code}>
+              <TableCell align="left" style={{ paddingRight: 0 }}>
+              <Avatar sx={{bgcolor:"white",color:"#158a88"}}>
+                  <img src={Compagnie.logo}/>
+              </Avatar>
               </TableCell>
-              <TableCell align="right">{company.nom}</TableCell>
-              <TableCell align="right">{company.adresse}</TableCell>
-              <TableCell align="right">{company.tel}</TableCell>
-              <TableCell align="right">
-                  <IconButton>
-                      <ModeEditIcon />
-                  </IconButton>
-                  <IconButton>
-                      <DeleteIcon />
-                  </IconButton>
-                
+              <TableCell align="left">{Compagnie.nom}</TableCell>
+              <TableCell align="left">{Compagnie.adresse}</TableCell>
+              <TableCell align="left">{Compagnie.tel}</TableCell>
+              <TableCell align="left">
+                <IconButton>
+                  <ModeEditIcon />
+                </IconButton>
+                <IconButton onClick={() => handleDeleteCompany(Compagnie.code)}>
+                  <DeleteIcon />
+                </IconButton>
               </TableCell>
             </TableRow>
           ))}
