@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import IconButton from '@mui/material/IconButton';
-import { Code } from '@mui/icons-material';
+import Avatar from  '@mui/material/Avatar';
 
 export default function AllCompanies() {
   const [companies, setCompanies] = useState([]);
@@ -57,8 +57,10 @@ export default function AllCompanies() {
         <TableBody>
           {companies.map((Compagnie) => (
             <TableRow key={Compagnie.code}>
-              <TableCell align="left">
-                <img src={Compagnie.logo} />
+              <TableCell align="left" style={{ paddingRight: 0 }}>
+              <Avatar sx={{bgcolor:"white",color:"#158a88"}}>
+                  <img src={Compagnie.logo}/>
+              </Avatar>
               </TableCell>
               <TableCell align="left">{Compagnie.nom}</TableCell>
               <TableCell align="left">{Compagnie.adresse}</TableCell>
