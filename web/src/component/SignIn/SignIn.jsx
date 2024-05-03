@@ -41,7 +41,7 @@ const SignIn = () => {
   };
 
   const handleHomeClick = () => {
-    navigate('/home');
+    navigate('/Home');
   };
 
   return (

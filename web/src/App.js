@@ -8,6 +8,7 @@ import FlightsFilter from './component/User/Flights/FlightsFilter';
 import SignIn from './component/SignIn/SignIn';
 import SignUp from './component/SignUp/SignUp';
 import Sidebar from './component/Admin/Dashboard/Sidebar';
+import Resevation from './component/User/Reservations/Reservation'
 
 
 function App() {
@@ -35,8 +36,9 @@ function AppRouter() {
         <Route exact path="/" element={<SignUp />} /> 
         <Route exact path="/signin" element={<SignIn />} />
         <Route exact path="/home" element={<Home />} />
-        <Route exact path="/filter" element={<FlightsFilter />} />
+        <Route exact path="/flightsfilter" element={<FlightsFilter />} />
         <Route exact path="/sidebar" element={<Sidebar />} />
+        <Route exact path="/reservations" element={<Resevation />} />
       </Routes>
     </>
   );
