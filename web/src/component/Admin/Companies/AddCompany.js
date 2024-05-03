@@ -23,6 +23,8 @@ export default function FullScreenDialog() {
   const [nom, setNom] = useState('');
   const [adresse, setAdresse] = useState('');
   const [tel, setTel] = useState('');
+  
+
 
   const handleSubmit = async () => {
     try {
@@ -31,7 +33,7 @@ export default function FullScreenDialog() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ logo, nom, adresse, tel }),
+        body: JSON.stringify({ logo, nom, adresse, tel}),
       });
   
       if (response.ok) {
