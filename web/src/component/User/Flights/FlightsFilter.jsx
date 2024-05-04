@@ -10,7 +10,6 @@ import dayjs from 'dayjs';
 import SearchIcon from '@mui/icons-material/Search';
 import AirplaneTicketOutlinedIcon from '@mui/icons-material/AirplaneTicketOutlined';
 import FlightDetails from './FlightDetails';
-import { Flights } from './Flights';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
@@ -158,14 +157,7 @@ const [destCity, setDestCityValue] = React.useState(null);
 
                 </div>
             </div>
-
-            <div className='space-y-5 lg:w-[65%] filter lg:pl-10'>
-                {Flights.map((item)=>(
-                <FlightDetails image={item.image} title={item.title} subtitle={item.subtitle} price={item.price} airline={item.airline} depart_date={item.depart_date} arrive_date={item.arrive_date}/>
-                ))}
-
-            </div>
-
+                <FlightDetails/>
         </section>
     </div>
   )

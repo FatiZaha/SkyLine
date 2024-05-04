@@ -1,10 +1,28 @@
 import { Divider, Grid } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import AirplaneTicketOutlinedIcon from '@mui/icons-material/AirplaneTicketOutlined';
-import { Flights } from '../Flights/Flights';
 import FlightDetails from '../Flights/FlightDetails';
 
+
+
+
 function AllReservations() {
+const [flights, setFlights] = useState([]);
+
+useEffect(() => {
+    const fetchCompanies = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/admin/1/compagnies/all');
+        const data = await response.json();
+        setFlights(data);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des compagnies :', error);
+      }
+    };
+
+    fetchCompanies();
+  }, []);
+
   return (
     <div className='px-5 lg:px-12'>
         <section>
@@ -24,8 +42,8 @@ function AllReservations() {
         <Divider/>
         <section className='pt-[1rem]  space-y-5 lg:flex relative'>
         <div className='space-y-5 lg:w-[100%] filter '>
-                {Flights.map((item)=>(
-                <FlightDetails image={item.image} title={item.title} subtitle={item.subtitle} price={item.price} airline={item.airline} depart_date={item.depart_date} arrive_date={item.arrive_date}/>
+                {flights.map((item)=>(
+                <FlightDetails flight={item}/>
                 ))}
 
             </div>

@@ -16,6 +16,8 @@ import DialogActions from '@mui/material/DialogActions';
 import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import HomeIcon from '@mui/icons-material/Home';
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -30,11 +32,17 @@ export const Navbar = () => {
 
   const [newFirstName, setFirstName] = React.useState('zaha');
   const handleFirstNameChange = (event) => {
-    setFirstName(event.target.value);
+    
+    setFirstName(event.value);
+  };
+  const [newPhoneNumber, setPhoneNumber] = React.useState('0634581199');
+  const handlePhoneNumberChange = (event) => {
+    
+    setPhoneNumber(event.value);
   };
   const [newLastName, setLastName] = React.useState('fatima zahra');
   const handleLastNameChange = (event) => {
-    setFirstName(event.target.value);
+    setLastName(event.value);
   };
   const navigate = useNavigate();
   const handleHomeClick = () => {
@@ -57,7 +65,7 @@ export const Navbar = () => {
   const handleCloseUserMenu = (setting) => {
     if (setting === 'Logout') {
     navigate('/signin')}
-    else handleClickOpen();
+    else if (setting === 'Edit Profile') handleClickOpen();
     setAnchorElUser(null);
   };
 
@@ -70,29 +78,46 @@ export const Navbar = () => {
     setOpen(false);
   };
 
+  const handleSaveChanges = () => {
+    // Add your logic here to save the changes made in the input fields
+    handleClose();
+    handleFirstNameChange(document.getElementById("new-first-name"));
+    handleLastNameChange(document.getElementById("new-last-name"));
+    handlePhoneNumberChange(document.getElementById("new-phone-number"));
+  };
+
   return (
     <div className='Navbar'>
         
         <div className='flex  items-center space-x-4'>
 
             <div className='lg:mr-10 cursor-pointer flex items-center space-x-4'>
-                <img onClick={handleHomeClick} src={logo} className="App-logo" alt="SkyLine Logo"/>
+                <img src={logo} className="App-logo" alt="SkyLine Logo"/>
             </div>
         </div>
         <div className='flex items-center space-x-2 lg:space-x-10'>
 
         <div className=''>
+        <Tooltip title="Home Page">
+            <IconButton onClick={handleHomeClick} >
+              <HomeIcon/>
+            </IconButton>
+            </Tooltip>
+          </div>
+        <div className=''>
+        <Tooltip title="Flights Search">
             <IconButton onClick={handleFlightsSearchClick} >
               <ManageSearchIcon/>
             </IconButton>
+            </Tooltip>
           </div>
 
           <div className=''>
-            <IconButton onClick={handleReservationClick}>
-              
+          <Tooltip title="Your Reservations">
+            <IconButton onClick={handleReservationClick}>             
                 <AirplaneTicketIcon/>
-              
             </IconButton>
+            </Tooltip>
           </div>
           <div className=''>
           <Box sx={{ flexGrow: 0 }}>
@@ -152,16 +177,19 @@ export const Navbar = () => {
         </IconButton>
         <DialogContent dividers>
 
-        <InputLabel id="demo-simple-select-helper-label"  sx={{marginTop: 2}}>First Name</InputLabel>
-        <TextField id="outlined-basic" defaultValue={newFirstName} onChange={handleFirstNameChange} variant="outlined" />
-        <InputLabel id="demo-simple-select-helper-label"  sx={{marginTop: 2}}>Last Name</InputLabel>
-        <TextField id="outlined-basic" defaultValue={newLastName} onChange={handleLastNameChange} variant="outlined" />
-        <InputLabel id="demo-simple-select-helper-label"  sx={{marginTop: 2}}>Phone Number</InputLabel>
-        <TextField id="outlined-basic"  defaultValue={newLastName} onChange={handleLastNameChange} variant="outlined" />
+        <InputLabel id="first-name"  sx={{marginTop: 2}}>First Name</InputLabel>
+        <TextField id="new-first-name" defaultValue={newFirstName}  variant="outlined" />
+        <InputLabel id="last-name"  sx={{marginTop: 2}}>Last Name</InputLabel>
+        <TextField id="new-last-name" defaultValue={newLastName} variant="outlined" />
+        <InputLabel id="phone-number"  sx={{marginTop: 2}}>Phone Number</InputLabel>
+        <TextField format="(###) ###-####" id="new-phone-number" type='tel'  defaultValue={newPhoneNumber} variant="outlined" />
+        
+        
           
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
+          <Button autoFocus 
+          onClick={handleSaveChanges}>
             Save changes
           </Button>
         </DialogActions>

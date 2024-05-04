@@ -26,8 +26,6 @@ public class Avion{
     @OneToMany(cascade= CascadeType.ALL,mappedBy="avion")
     private List<Siege> sieges=new ArrayList<>();
 
-    @OneToMany(cascade= CascadeType.ALL,mappedBy="avionVol")
-    private List<Vol> vols=new ArrayList<>();
 
     @ManyToOne
     private Compagnie compagnie;

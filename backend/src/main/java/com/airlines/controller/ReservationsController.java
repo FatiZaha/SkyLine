@@ -1,8 +1,12 @@
 package com.airlines.controller;
 
+import com.airlines.model.Compagnie;
 import com.airlines.model.Reservation;
 import com.airlines.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
@@ -38,12 +42,11 @@ public class ReservationsController {
         return reservationService.getAllReservationsByClientId(id);
     }
 
+
     @PostMapping("clients/{idc}/vols/{codeVol}/newReservation")
-    public Object bookingFlight(@RequestParam("villeDep")String villeDep,
-                                    @RequestParam("villeArriv")String villeArriv,
-                                    @RequestParam("classType")String classType,
-                                    @PathVariable Long idc,
-                                    @PathVariable Long codeVol) {
+    public Object bookingFlight(@RequestParam("classType")String classType,
+                                @PathVariable Long idc,
+                                @PathVariable Long codeVol) {
 
 
         LocalDateTime date=LocalDateTime.now();
@@ -52,7 +55,7 @@ public class ReservationsController {
         // Convertir Instant en Date
         Date dateRes = Date.from(instant);
 
-        return  reservationService.bookingFlight(villeDep,villeArriv,dateRes,classType,idc,codeVol);
+        return  reservationService.bookingFlight(dateRes,classType,idc,codeVol);
 
 
     }
