@@ -14,7 +14,7 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import FlightIcon from '@mui/icons-material/Flight';
 import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 import { PieChart } from '@mui/icons-material';
-import BasicTable from '../../User/Reservations/Reservation';
+import ReservationsTable from '../../Admin/Reservations/Reservations';
 import FlightsTable from '../Flights/AllFlights';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import FullScreenDialog from '../../Admin/Companies/AddCompany';
@@ -98,7 +98,7 @@ export default function PermanentDrawerLeft() {
             <Button style={{ background: '#158a88', color: '#fff'}} onClick={handleCloseMenu}>Importer</Button>
           </div>
           <div style={{ marginTop:'20px' }}>
-          <BasicTable/>
+          <ReservationsTable/>
         </div>
       </div>
       );

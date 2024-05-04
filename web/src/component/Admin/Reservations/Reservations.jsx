@@ -11,21 +11,21 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import IconButton from '@mui/material/IconButton';
 
 
-export default function FlightsTable() {
-  const [flights, setFlights] = useState([]);
+export default function ReservationsTable() {
+  const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
-    const fetchFlights = async () => {
+    const fetchReservations = async () => {
       try {
         const response = await fetch('http://localhost:8080/api/admin/1/vols/allVols'); // Remplacez '/api/reservations' par l'URL de votre endpoint pour récupérer les réservations
         const data = await response.json();
-        setFlights(data); // Mettez à jour les données de réservation dans le state
+        setReservations(data); // Mettez à jour les données de réservation dans le state
       } catch (error) {
-        console.error('Erreur lors de la récupération des vols :', error);
+        console.error('Erreur lors de la récupération des réservations :', error);
       }
     };
 
-    fetchFlights();
+    fetchReservations();
   }, []);
 
   return (
@@ -33,30 +33,23 @@ export default function FlightsTable() {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Company</TableCell>
-            <TableCell>Ville départ</TableCell>
-            <TableCell>Ville destination</TableCell>
-            <TableCell>Date départ</TableCell>
-            <TableCell>Date arrivée</TableCell>
-            <TableCell>Durée</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Prix</TableCell>
+            <TableCell align="left">Date</TableCell>
+            <TableCell align="left">Ville Départ</TableCell>
+            <TableCell align="left">Ville Destination</TableCell>
+            <TableCell align="left">Prix Total</TableCell>
             <TableCell>Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {flights.map((Flight) => (
-            <TableRow key={Flight.id}>
+          {reservations.map((reservation) => (
+            <TableRow key={reservation.id}>
               <TableCell component="th" scope="row">
-                {Flight.date}
+                {reservation.date}
               </TableCell>
-              <TableCell align="left">{Flight.logo}</TableCell>
-              <TableCell align="left">{Flight.villedepart}</TableCell>
-              <TableCell align="left">{Flight.destination}</TableCell>
-              <TableCell align="left">{Flight.datedepart}</TableCell>
-              <TableCell align="left">{Flight.datearrivee}</TableCell>
-              <TableCell align="left">{Flight.status}</TableCell>
-              <TableCell align="left">{Flight.prix}</TableCell>
+              <TableCell align="left">{reservation.Date}</TableCell>
+              <TableCell align="left">{reservation.villeDepart}</TableCell>
+              <TableCell align="left">{reservation.villeDestination}</TableCell>
+              <TableCell align="left">{reservation.prixtotal}</TableCell>
               <TableCell align="left">
                   <IconButton>
                       <ModeEditIcon />
