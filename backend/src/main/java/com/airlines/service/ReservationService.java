@@ -56,7 +56,7 @@ public class ReservationService {
         if(vol.getStatus()==Status.BOOKED)return null;
         if (reservations.isEmpty()){
 
-            Reservation reservation = new Reservation(vol.getAeroportDepart().getNom()+", "+vol.getAeroportDepart().getVille().getNom(), vol.getAeroportDestination().getNom()+", "+vol.getAeroportDestination().getVille().getNom(), date_res, prix_total, client, vol, places.get(0));
+            Reservation reservation = new Reservation(date_res, prix_total, client, vol, places.get(0));
             return reservationRepository.save(reservation);
         }
         else {
@@ -74,7 +74,7 @@ public class ReservationService {
             Place placeR = optionalPlace.orElse(null);
             if (placeR == null) return null;
             else {
-                Reservation reservation = new Reservation(vol.getAeroportDepart().getNom()+", "+vol.getAeroportDepart().getVille().getNom(), vol.getAeroportDestination().getNom()+", "+vol.getAeroportDestination().getVille().getNom(), date_res, prix_total, client, vol, placeR);
+                Reservation reservation = new Reservation(date_res, prix_total, client, vol, placeR);
 
                 List<Reservation> allReservations = reservationRepository.findReservationsByVol(vol);
                 List<Place> allPlaces=placeRepository.findPlacesBySiegeAvion(vol.getAvionVol());
