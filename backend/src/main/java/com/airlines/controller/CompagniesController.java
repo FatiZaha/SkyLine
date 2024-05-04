@@ -3,6 +3,7 @@ package com.airlines.controller;
 import com.airlines.model.Compagnie;
 import com.airlines.model.Ville;
 import com.airlines.model.Vol;
+import com.airlines.service.AdminService;
 import com.airlines.service.CompagnieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,20 +14,25 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class CompagniesController {
 
     @Autowired
     private CompagnieService compagnieService;
+    @Autowired
+    private AdminService adminService;
 
     @PostMapping("/admin/{id}/compagnies/add")
-    public ResponseEntity<?> addCompagnie(@RequestBody Compagnie compagnie, BindingResult bindingResult) {
+    public ResponseEntity<?> addCompagnie(@PathVariable Long id,@RequestBody Compagnie compagnie, BindingResult bindingResult) {
 
         if (compagnie.getNom() == null || compagnie.getAdresse() == null || compagnie.getLogo() == null || compagnie.getTel() == null || compagnie.getTel().isEmpty()) {
             return ResponseEntity.badRequest().body("Tous les champs sont obligatoires.");
         }
+        compagnie.setAdmin(adminService.getAdminById(id).get());
 
         compagnieService.saveCompagnie(compagnie);
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -64,8 +70,7 @@ public class CompagniesController {
     }
 
     @DeleteMapping("/admin/{id}/compagnies/delete/{codeCompagnie}")
-    public ResponseEntity<?> deleteCompagny(@PathVariable("id") Long id,
-                                            @PathVariable("codeCompagnie") Long codeCompagnie) {
+    public ResponseEntity<?> deleteCompagny(@PathVariable("codeCompagnie") Long codeCompagnie) {
         compagnieService.deleteCompagnie(codeCompagnie);
         return ResponseEntity.noContent().build();
     }

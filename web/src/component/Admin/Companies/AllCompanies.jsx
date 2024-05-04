@@ -59,7 +59,7 @@ export default function AllCompanies() {
             <TableRow key={Compagnie.code}>
               <TableCell align="left" style={{ paddingRight: 0 }}>
               <Avatar sx={{bgcolor:"white",color:"#158a88"}}>
-                  <img src={Compagnie.logo}/>
+                  <img src={Compagnie.logo} alt="airlineLogo"/>
               </Avatar>
               </TableCell>
               <TableCell align="left">{Compagnie.nom}</TableCell>

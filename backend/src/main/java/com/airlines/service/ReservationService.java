@@ -5,6 +5,7 @@ import com.airlines.model.*;
 import com.airlines.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class ReservationService {
 
     @Autowired
@@ -43,7 +45,7 @@ public class ReservationService {
         return reservationRepository.updateReservationByNumRes(EtatPaiement.PAID,numRes);
     }
 
-    public Reservation bookingFlight(String ville_dep, String ville_arriv, Date date_res, String classType, Long idClient, Long idVol){
+    public Reservation bookingFlight(Date date_res, String classType, Long idClient, Long idVol){
         Vol vol= volRepository.findByCodeVol(idVol);
         Client client = clientRepository.getReferenceById(idClient);
         List<Reservation> reservations = reservationRepository.findReservationsByVolAndPlaceSiegeType(vol,Type.valueOf(classType));
@@ -54,7 +56,7 @@ public class ReservationService {
         if(vol.getStatus()==Status.BOOKED)return null;
         if (reservations.isEmpty()){
 
-            Reservation reservation = new Reservation(ville_dep, ville_arriv, date_res, prix_total, client, vol, places.get(0));
+            Reservation reservation = new Reservation(vol.getAeroportDepart().getNom()+", "+vol.getAeroportDepart().getVille().getNom(), vol.getAeroportDestination().getNom()+", "+vol.getAeroportDestination().getVille().getNom(), date_res, prix_total, client, vol, places.get(0));
             return reservationRepository.save(reservation);
         }
         else {
@@ -72,7 +74,7 @@ public class ReservationService {
             Place placeR = optionalPlace.orElse(null);
             if (placeR == null) return null;
             else {
-                Reservation reservation = new Reservation(ville_dep, ville_arriv, date_res, prix_total, client, vol, placeR);
+                Reservation reservation = new Reservation(vol.getAeroportDepart().getNom()+", "+vol.getAeroportDepart().getVille().getNom(), vol.getAeroportDestination().getNom()+", "+vol.getAeroportDestination().getVille().getNom(), date_res, prix_total, client, vol, placeR);
 
                 List<Reservation> allReservations = reservationRepository.findReservationsByVol(vol);
                 List<Place> allPlaces=placeRepository.findPlacesBySiegeAvion(vol.getAvionVol());

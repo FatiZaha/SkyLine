@@ -37,4 +37,11 @@ public class Compagnie {
     @ManyToOne
     private Admin admin;
 
+
+    public Compagnie(String nom, String adresse, String tel, String logo) {
+        this.nom = nom;
+        this.adresse = adresse;
+        this.tel = tel;
+        this.logo = logo;
+    }
 }

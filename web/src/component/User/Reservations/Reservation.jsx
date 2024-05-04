@@ -20,7 +20,7 @@ export default function BasicTable() {
     // Exemple de requête fictive
     const fetchReservations = async () => {
       try {
-        const response = await fetch('/api/reservations'); // Remplacez '/api/reservations' par l'URL de votre endpoint pour récupérer les réservations
+        const response = await fetch('http://localhost:8080/api/clients/1/reservations'); // Remplacez '/api/reservations' par l'URL de votre endpoint pour récupérer les réservations
         const data = await response.json();
         setReservations(data); // Mettez à jour les données de réservation dans le state
       } catch (error) {
