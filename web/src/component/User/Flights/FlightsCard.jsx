@@ -3,7 +3,7 @@ import { Card,Chip,Avatar } from '@mui/material'
 import "./FlightsCard.css"
 
 
-const FlightCard = ({image,title,subtitle,price,airline}) => {
+const FlightCard = ({image,title,subtitle,priceClass1,priceClass2,airline}) => {
   return (
     <Card className='m-5 w-[20rem] card-container'>
         <div className={`${true?'cursor-pointer':"cursor-not-allowed"} relative`}>
@@ -25,7 +25,7 @@ const FlightCard = ({image,title,subtitle,price,airline}) => {
                     {subtitle}
                 </p>
                 <p className='text-gray-500 text-sm'>
-                    {price}
+                    Business Class: ${priceClass1} <br />Eco Class: ${priceClass2}
                 </p>
             </div>
             <div>
