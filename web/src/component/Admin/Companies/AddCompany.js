@@ -100,7 +100,8 @@ export default function FullScreenDialog() {
               </Grid>
               <Grid item>
                 <TextField
-                  id="standard-basic"
+                  id="logo"
+                  name="log"
                   label="Enter the company logo"
                   variant="standard"
                   value={logo}
@@ -116,7 +117,8 @@ export default function FullScreenDialog() {
               </Grid>
               <Grid item>
                 <TextField
-                  id="standard-basic"
+                  id="name"
+                  name="nam"
                   label="Enter the company name"
                   variant="standard"
                   value={nom}
@@ -131,7 +133,8 @@ export default function FullScreenDialog() {
               </Grid>
               <Grid item>
                 <TextField
-                  id="standard-basic"
+                  id="adress"
+                  name="addr"
                   label="Enter the company address"
                   variant="standard"
                   value={adresse}
@@ -146,7 +149,8 @@ export default function FullScreenDialog() {
               </Grid>
               <Grid item>
                 <TextField
-                  id="standard-basic"
+                  id="phone"
+                  name="teleph"
                   label="Enter the company phone"
                   variant="standard"
                   value={tel}
