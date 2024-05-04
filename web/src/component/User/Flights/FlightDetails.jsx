@@ -6,8 +6,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
 import Avatar from  '@mui/material/Avatar';
-import "./FlightDetails.css"
-import { useNavigate } from 'react-router-dom';
+import "./FlightDetails.css";
 
 const FlightDetails = ({title,image,subtitle,price,airline,depart_date,arrive_date}) => {
   
@@ -45,7 +44,7 @@ const FlightDetails = ({title,image,subtitle,price,airline,depart_date,arrive_da
     </AccordionDetails>
     <AccordionActions>
       
-      <Button>Book Now</Button>
+      <Button href="/reservationprocess">Book Now</Button>
     </AccordionActions>
   </Accordion>
   )

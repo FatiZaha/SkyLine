@@ -9,6 +9,8 @@ import SignIn from './component/SignIn/SignIn';
 import SignUp from './component/SignUp/SignUp';
 import Sidebar from './component/Admin/Dashboard/Sidebar';
 import Resevation from './component/User/Reservations/Reservation'
+import ReservationProcess from './component/User/ReservationProcess/ReservationProcess';
+import AllReservations from './component/User/Reservations/AllReservations';
 
 
 function App() {
@@ -26,7 +28,7 @@ function App() {
 
 function AppRouter() {
   const location = useLocation();
-  const hideNavbar = location.pathname === '/signin' || location.pathname === '/' ;
+  const hideNavbar = location.pathname === '/signin' || location.pathname === '/' || location.pathname === '/reservationprocess' ;
 
   return (
     <>
@@ -38,7 +40,8 @@ function AppRouter() {
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/flightsfilter" element={<FlightsFilter />} />
         <Route exact path="/sidebar" element={<Sidebar />} />
-        <Route exact path="/reservations" element={<Resevation />} />
+        <Route exact path="/allreservations" element={<AllReservations />} />
+        <Route exact path="/reservationprocess" element={<ReservationProcess />} />
       </Routes>
     </>
   );
