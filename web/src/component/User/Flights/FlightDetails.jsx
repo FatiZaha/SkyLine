@@ -9,7 +9,7 @@ import Avatar from  '@mui/material/Avatar';
 import "./FlightDetails.css"
 import { useNavigate } from 'react-router-dom';
 
-const FlightDetails = ({title,image,subtitle,price,airline,depart_date,arrive_date}) => {
+const FlightDetails = () => {
   const navigate = useNavigate();
   const handleBookingClick = () => {
     navigate('/reservationprocess');
@@ -17,7 +17,7 @@ const FlightDetails = ({title,image,subtitle,price,airline,depart_date,arrive_da
   const [flights, setFlights] = useState([]);
 
   useEffect(() => {
-      const fetchCompanies = async () => {
+      const fetchFlights = async () => {
         try {
           const response = await fetch('http://localhost:8080/api/clients/1/vols/allVols');
           const data = await response.json();
@@ -27,7 +27,7 @@ const FlightDetails = ({title,image,subtitle,price,airline,depart_date,arrive_da
         }
       };
   
-      fetchCompanies();
+      fetchFlights();
     }, []);
 
   return (

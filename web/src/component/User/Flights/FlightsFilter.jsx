@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState }  from 'react'
 import { Grid,Divider,Typography,FormControl,Stack,Paper,IconButton} from '@mui/material'
 import ConnectingAirportsIcon from '@mui/icons-material/ConnectingAirports';
 
@@ -15,18 +15,28 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 
 
-const FlightsFilter = () => {
-const ville = [
-    { label: 'The Shawshank Redemption', year: 1994 },
-    { label: 'The Godfather', year: 1972 },
-    { label: 'The Godfather: Part II', year: 1974 },
-    { label: 'The Dark Knight', year: 2008 },
-    { label: '12 Angry Men', year: 1957 },
-    { label: "Schindler's List", year: 1993 },
-    { label: 'Pulp Fiction', year: 1994 },]    
+const FlightsFilter = () => { 
 const [date, setDateValue] = React.useState(null);
 const [departCity, setDepartCityValue] = React.useState(null);
 const [destCity, setDestCityValue] = React.useState(null);
+
+const [villesDep, setVillesDep] = useState([]);
+const [villesDest, setVillesDest] = useState([]);
+
+useEffect(() => {
+    const fetchVilles = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/ville/allVilles');
+        const data = await response.json();
+        setVillesDep(data);
+        setVillesDest(data);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des compagnies :', error);
+      }
+    };
+
+    fetchVilles();
+  }, []);
 
   return (
     <div className='px-5 lg:px-12'>
@@ -70,7 +80,7 @@ const [destCity, setDestCityValue] = React.useState(null);
                                     onChange={(event,newValue) => {
                                     setDepartCityValue(newValue);
                                     }}
-                                    options={ville.map((option) => option.label)}
+                                    options={villesDep.map((option) => option.nom)}
                                     renderInput={(params) => (
                                     <TextField
                                         {...params}
@@ -104,7 +114,7 @@ const [destCity, setDestCityValue] = React.useState(null);
                                     setDestCityValue(newValue);
                                     }}
                                     sx={{ width: 400 }}
-                                    options={ville.map((option) => option.label)}
+                                    options={villesDest.map((option) => option.nom)}
                                     renderInput={(params) => (
                                     <TextField
                                         {...params}
