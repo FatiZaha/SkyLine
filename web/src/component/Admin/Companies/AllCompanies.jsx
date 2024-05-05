@@ -10,9 +10,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import IconButton from '@mui/material/IconButton';
 import Avatar from  '@mui/material/Avatar';
+import EditCompany from '../Companies/EditCompany';
 
 export default function AllCompanies() {
   const [companies, setCompanies] = useState([]);
+
+  const [selectedCompany, setSelectedCompany] = useState(null);
+  const handleEditCompany = (company) => {
+    setSelectedCompany(company);
+  };
 
   const handleDeleteCompany = async (code) => {
     try {
@@ -66,7 +72,7 @@ export default function AllCompanies() {
               <TableCell align="left">{Compagnie.adresse}</TableCell>
               <TableCell align="left">{Compagnie.tel}</TableCell>
               <TableCell align="left">
-                <IconButton>
+                <IconButton onClick={() => handleEditCompany(Compagnie)}>
                   <ModeEditIcon />
                 </IconButton>
                 <IconButton onClick={() => handleDeleteCompany(Compagnie.code)}>
@@ -77,6 +83,22 @@ export default function AllCompanies() {
           ))}
         </TableBody>
       </Table>
+      {selectedCompany && (
+  <EditCompany
+    company={selectedCompany}
+    onCancel={() => setSelectedCompany(null)}
+    onSave={(updatedCompany) => {
+      // Mettez à jour la liste des compagnies avec la compagnie modifiée
+      setCompanies(
+        companies.map((company) =>
+          company.code === updatedCompany.code ? updatedCompany : company
+        )
+      );
+      setSelectedCompany(null);
+    }}
+  />
+)}
     </TableContainer>
+    
   );
 }

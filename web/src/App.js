@@ -8,7 +8,7 @@ import FlightsFilter from './component/User/Flights/FlightsFilter';
 import SignIn from './component/SignIn/SignIn';
 import SignUp from './component/SignUp/SignUp';
 import Sidebar from './component/Admin/Dashboard/Sidebar';
-import Resevation from './component/User/Reservations/Reservation'
+import Resevation from './component/User/Reservations/Reservation';
 import ReservationProcess from './component/User/ReservationProcess/ReservationProcess';
 import AllReservations from './component/User/Reservations/AllReservations';
 

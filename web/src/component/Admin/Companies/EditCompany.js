@@ -14,75 +14,67 @@ import Grid from '@mui/material/Grid';
 import { useState } from 'react';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
 
 export default function FullScreenDialog() {
-  const [open, setOpen] = React.useState(false);
-  const [logo, setLogo] = useState('');
-  const [nom, setNom] = useState('');
-  const [adresse, setAdresse] = useState('');
-  const [tel, setTel] = useState('');
+    const [open, setOpen] = React.useState(false);
+    const [logo, setLogo] = useState('');
+    const [nom, setNom] = useState('');
+    const [adresse, setAdresse] = useState('');
+    const [tel, setTel] = useState('');
+    
   
-
-
-  const handleSubmit = async () => {
-    try {
-      const response = await fetch('http://localhost:8080/api/admin/1/compagnies/add', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ logo, nom, adresse, tel}),
-      });
   
-      if (response.ok) {
-        // Réinitialisez les valeurs des champs après l'envoi réussi
-        setLogo('');
-        setNom('');
-        setAdresse('');
-        setTel('');
-  
-        // Fermez la boîte de dialogue après l'envoi réussi
-        handleClose();
-      } else {
-        console.error('Erreur lors de l\'envoi du formulaire');
+    const handleSubmit = async (code) => {
+      try {
+        const response = await fetch(`http://localhost:8080/api/admin/1/compagnies/update/${code}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ logo, nom, adresse, tel}),
+        });
+    
+        if (response.ok) {
+          // Réinitialisez les valeurs des champs après l'envoi réussi
+          setLogo('');
+          setNom('');
+          setAdresse('');
+          setTel('');
+    
+          // Fermez la boîte de dialogue après l'envoi réussi
+          handleClose();
+        } else {
+          console.error('Erreur lors de l\'envoi du formulaire');
+        }
+      } catch (error) {
+        console.error('Erreur lors de l\'envoi du formulaire :', error);
       }
-    } catch (error) {
-      console.error('Erreur lors de l\'envoi du formulaire :', error);
-    }
-  };
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+    };
   
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+  
+    
+  
+    return (
 
-  return (
-    <React.Fragment>
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Button
-          style={{ background: '#158a88', color: '#fff', marginRight: '10px' }}
-          variant="outlined"
-          onClick={handleClickOpen}
-        >
-          Ajouter
-        </Button>
-      </div>
 
-      <Dialog open={open} onClose={handleClose} TransitionComponent={Transition}>
+
+<Dialog open={open} onClose={handleClose} TransitionComponent={Transition}>
         <AppBar sx={{ position: 'relative', width: 600, height: 50 }}>
           <Toolbar style={{ justifyContent: 'space-between' }}>
             <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
               <CloseIcon />
             </IconButton>
-            <Button style={{ justifyContent: 'flex-end' }} autoFocus color="inherit" onClick={handleSubmit}>
-              Save
+            <Button style={{ justifyContent: 'flex-end' }} autoFocus color="inherit" onClick={handleSubmit} title="Save">
+                Save
             </Button>
           </Toolbar>
         </AppBar>
@@ -158,6 +150,5 @@ export default function FullScreenDialog() {
           </div>
         </List>
       </Dialog>
-    </React.Fragment>
-  );
+    );
 }
