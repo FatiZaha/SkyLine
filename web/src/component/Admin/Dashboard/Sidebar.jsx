@@ -13,7 +13,6 @@ import Button from '@mui/material/Button';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import FlightIcon from '@mui/icons-material/Flight';
 import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
-import { PieChart } from '@mui/icons-material';
 import ReservationsTable from '../../Admin/Reservations/Reservations';
 import FlightsTable from '../Flights/AllFlights';
 import BarChartIcon from '@mui/icons-material/BarChart';
@@ -21,7 +20,8 @@ import FullScreenDialog from '../../Admin/Companies/AddCompany';
 import FlightsDialog from '../Flights/AddFlights';
 import AllCompanies from '../Companies/AllCompanies';
 import { useRef } from 'react';
-
+import BarChart from '../Statistiques/BarChart';
+import PieChart from '../Statistiques/PieChart';
 const drawerWidth = 240;
 
 export default function PermanentDrawerLeft() {
@@ -121,19 +121,10 @@ export default function PermanentDrawerLeft() {
   const afficherContenuStatistics = () => {
     if (contexteActif === 'statistics') {
       return (
-        <PieChart
-        series={[
-          {
-            data: [
-              { id: 0, value: 10, label: 'series A' },
-              { id: 1, value: 15, label: 'series B' },
-              { id: 2, value: 20, label: 'series C' },
-            ],
-          },
-        ]}
-        width={400}
-        height={200}
-      />
+        <div>
+          <BarChart/>
+          <PieChart/>
+        </div>
       );
     }
     return null;
