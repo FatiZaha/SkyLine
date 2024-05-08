@@ -2,10 +2,8 @@ FROM openjdk:latest
 
 WORKDIR /app
 
-COPY ./target/classes /app
+COPY ./src/main/java/ /app
 
 EXPOSE 8080
 
-
-CMD ["java", "com.airlines.BackendApplication"]
-
+ENTRYPOINT ["java","-jar","BackendApplication.jar"]

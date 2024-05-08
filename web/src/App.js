@@ -28,7 +28,7 @@ function App() {
 
 function AppRouter() {
   const location = useLocation();
-  const hideNavbar = location.pathname === '/signin' || location.pathname === '/' || location.pathname === '/reservationprocess' ;
+  const hideNavbar = location.pathname === '/signin' || location.pathname === '/' || location.pathname === '/reservationprocess' || location.pathname === '/sidebar' ;
 
   return (
     <>

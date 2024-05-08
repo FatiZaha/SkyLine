@@ -17,7 +17,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function EditCompanyDialog(props) {
+export default function EditFlightDialog(props) {
   const [companyData, setCompanyData] = useState({
     code: props.company ? props.company.code : '',
     logo: props.company ? props.company.logo : '',
