@@ -20,6 +20,7 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import FullScreenDialog from '../../Admin/Companies/AddCompany';
 import FlightsDialog from '../Flights/AddFlights';
 import AllCompanies from '../Companies/AllCompanies';
+import { useRef } from 'react';
 
 const drawerWidth = 240;
 
@@ -87,6 +88,17 @@ export default function PermanentDrawerLeft() {
     }
     return null;
   };
+  const reservationsTableRef = useRef();
+  
+  const handleExport = () => {
+    if (reservationsTableRef && reservationsTableRef.current) {
+      reservationsTableRef.current.handleExport();
+    }
+  };
+
+  const handleImport = () => {
+    // Gérer l'importation
+  };
 
   const afficherContenuReservation = () => {
     if (contexteActif === 'reservation') {
@@ -94,8 +106,8 @@ export default function PermanentDrawerLeft() {
         <div style={{ display: 'block'}}>
         
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Button  style={{ background: '#158a88', color: '#fff', marginRight: '10px' }} onClick={handleCloseMenu}>Exporter</Button>
-            <Button style={{ background: '#158a88', color: '#fff'}} onClick={handleCloseMenu}>Importer</Button>
+            <Button  style={{ background: '#158a88', color: '#fff', marginRight: '10px' }} onClick={handleExport}>Exporter</Button>
+            <Button style={{ background: '#158a88', color: '#fff'}} onClick={handleImport}>Importer</Button>
           </div>
           <div style={{ marginTop:'20px' }}>
           <ReservationsTable/>
@@ -134,9 +146,7 @@ export default function PermanentDrawerLeft() {
         position="fixed"
         sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
       >
-        <Toolbar>
-          {/* ... */}
-        </Toolbar>
+        
       </AppBar>
       <Drawer
         sx={{
@@ -145,6 +155,7 @@ export default function PermanentDrawerLeft() {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            backgroundColor: '#158a88',
           },
         }}
         variant="permanent"
@@ -190,31 +201,10 @@ export default function PermanentDrawerLeft() {
         {afficherContenuReservation()}
         {afficherContenuStatistics()}
       </Box>
-      <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
-      >
-        <Toolbar>
-          <div style={{ display: 'flex', flexGrow: 1 }}>
-            <div style={{  textAlign: 'center'}}>
-                <input
-                type="search"
-                placeholder="Search"
-                style={{ borderRadius: '10px', outline: 'none', textAlign: 'center', padding:'5px 70px 5px 70px' }}
-                />
-            </div>
-          </div>
-          <div>
-            <Button color="inherit" style={{ marginLeft: 'auto',background: '#158a88' }}>
-              Logout
-            </Button>
-          </div>
-        </Toolbar>
-      </AppBar>
-      {/* Rest of the code */}
+      
+      
+      
     </Box>
-    </Box>
+    
   );
 }

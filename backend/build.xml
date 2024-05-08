@@ -1,0 +1,7 @@
+<project name="BackendApplication" default="compile-run">
+    <target name="compile-run">
+        <mkdir dir="classes"/>
+        <javac srcdir="src" destdir="classes"/>
+        <java classname="com.airlines.BackendApplication" classpath="classes"/>
+    </target>
+</project>
