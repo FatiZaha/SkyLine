@@ -14,12 +14,25 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "axios": "^1.6.8",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.10",
+    "pdfkit": "^0.15.0",
+=======
+    "chart.js": "^4.4.2",
+    "d3": "^7.9.0",
+    "dayjs": "^1.11.11",
+>>>>>>> ea8c098fa13e1c384faac6d0ce9731e0a98b2e33
+=======
     "axios": "^1.6.8",
     "cors": "^2.8.5",
     "pdfkit": "^0.15.0",
     "chart.js": "^4.4.2",
     "d3": "^7.9.0",
     "dayjs": "^1.11.11",
+>>>>>>> 1f3c28b268a77afb6441e63d6e6b888fd7f2a1b8
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
     "react-chartjs-2": "^5.2.0",
