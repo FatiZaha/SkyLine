@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Accordion, AccordionSummary,AccordionDetails, Avatar } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export default function BasicTable() {
+export default function BasicTable({client}) {
   const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function BasicTable() {
     // Exemple de requête fictive
     const fetchReservations = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/clients/1/reservations'); // Remplacez '/api/reservations' par l'URL de votre endpoint pour récupérer les réservations
+        const response = await fetch(`http://localhost:8080/api/clients/${client.id}/reservations`); // Remplacez '/api/reservations' par l'URL de votre endpoint pour récupérer les réservations
         const data = await response.json();
         setReservations(data); // Mettez à jour les données de réservation dans le state
       } catch (error) {
@@ -39,7 +39,7 @@ export default function BasicTable() {
         <div className='lg:flex justify-between'>
           
           <div className='lg:flex items-center lg:gap-5'>
-            <img src={reservation.vol.aeroportDestination.ville.image} alt="" className='w-[7rem] h-[7rem] object-cover' />
+            <img src={'https://source.unsplash.com/random?'+reservation.vol.aeroportDestination.ville.nom} alt="" className='w-[7rem] h-[7rem] object-cover' />
             <div className='space-y-1 lg:space-y-1 lg:max-w-2xl'>
               <p className='text-xl'>{reservation.vol.aeroportDestination.ville.nom}</p>
               <p className='text-gray-300 text-lg'>Class : {reservation.place.siege.type === 'Classe1' ? 'Business Class' : 'Eco Class'} </p>

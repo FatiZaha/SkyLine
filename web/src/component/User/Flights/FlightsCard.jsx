@@ -3,17 +3,17 @@ import { Card,Chip,Avatar } from '@mui/material'
 import "./FlightsCard.css"
 
 
-const FlightCard = ({image,title,subtitle,priceClass1,priceClass2,airline}) => {
+const FlightCard = ({image,title,subtitle,priceClass1,priceClass2,airline,status}) => {
   return (
     <Card className='m-5 w-[20rem] card-container'>
-        <div className={`${true?'cursor-pointer':"cursor-not-allowed"} relative`}>
+        <div className={`${status==='AVAILABLE'?'cursor-pointer':"cursor-not-allowed"} relative`}>
             <img className='w-full h-[10rem] rounded-t-md object-cover'
             src={image} alt={title}/>
             <Chip
             size='small'
             className='absolute top-2 left-2'
-            color={true?"success":"error"}
-            label={true? "Available":"Booked"}
+            color={status==='AVAILABLE'?"success":"error"}
+            label={status==='AVAILABLE'? "Available":"Booked"}
             />
         </div>
         <div className='p-4 textPart lg:flex w-full justify-between'>

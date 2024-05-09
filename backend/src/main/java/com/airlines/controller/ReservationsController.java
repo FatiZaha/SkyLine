@@ -43,10 +43,10 @@ public class ReservationsController {
     }
 
 
-    @PostMapping("clients/{idc}/vols/{codeVol}/newReservation")
-    public Object bookingFlight(@RequestParam("classType")String classType,
-                                @PathVariable Long idc,
-                                @PathVariable Long codeVol) {
+    @PostMapping("clients/{idc}/newReservation")
+    public Reservation bookingFlight( @PathVariable Long idc,
+                                      @RequestParam("classType")String classType,
+                                      @RequestParam("codeVol") Long codeVol) {
 
 
         LocalDateTime date=LocalDateTime.now();
@@ -55,7 +55,7 @@ public class ReservationsController {
         // Convertir Instant en Date
         Date dateRes = Date.from(instant);
 
-        return  reservationService.bookingFlight(dateRes,classType,idc,codeVol);
+        return reservationService.bookingFlight(dateRes,classType,idc,codeVol);
 
 
     }

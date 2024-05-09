@@ -5,12 +5,14 @@ import Home from './component/User/Home/Home';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { darkTheme } from './Theme/DarkTheme';
 import FlightsFilter from './component/User/Flights/FlightsFilter';
-import SignIn from './component/SignIn/SignIn';
-import SignUp from './component/SignUp/SignUp';
+import SignInUser from './component/User/SignIn/SignIn';
+import SignInAdmin from './component/Admin/SignIn/SignIn';
+import SignUp from './component/User/SignUp/SignUp';
 import Sidebar from './component/Admin/Dashboard/Sidebar';
 import Resevation from './component/User/Reservations/Reservation';
 import ReservationProcess from './component/User/ReservationProcess/ReservationProcess';
 import AllReservations from './component/User/Reservations/AllReservations';
+import React from 'react';
 
 
 function App() {
@@ -27,21 +29,24 @@ function App() {
 }
 
 function AppRouter() {
+  const [client, setClient] = React.useState(null);
+  const [flight, setFlight] = React.useState(null);
   const location = useLocation();
   const hideNavbar = location.pathname === '/signin' || location.pathname === '/' || location.pathname === '/reservationprocess' || location.pathname === '/sidebar' ;
 
   return (
     <>
-      {!hideNavbar && <Navbar />} {/* Afficher la Navbar sauf dans la page "SignIn" */}
+      {!hideNavbar && <Navbar client={client} />} {/* Afficher la Navbar sauf dans la page "SignIn" */}
       <Outlet />
       <Routes>
         <Route exact path="/" element={<SignUp />} /> 
-        <Route exact path="/signin" element={<SignIn />} />
-        <Route exact path="/home" element={<Home />} />
-        <Route exact path="/flightsfilter" element={<FlightsFilter />} />
+        <Route exact path="/signin" element={<SignInUser setClientData={setClient} />} />
+        <Route exact path="/admin" element={<SignInAdmin />} />
+        <Route exact path="/home" element={<Home client={client} />} />
+        <Route exact path="/flightsfilter" element={<FlightsFilter setFlight={setFlight} client={client}/>} />
         <Route exact path="/sidebar" element={<Sidebar />} />
-        <Route exact path="/allreservations" element={<AllReservations />} />
-        <Route exact path="/reservationprocess" element={<ReservationProcess />} />
+        <Route exact path="/allreservations" element={<AllReservations client={client}/>} />
+        <Route exact path="/reservationprocess" element={<ReservationProcess flight={flight} client={client} />} />
       </Routes>
     </>
   );

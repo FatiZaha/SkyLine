@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -12,14 +10,16 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import {Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { Alert, AlertTitle, Collapse, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 function Copyright(props) {
   
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://localhost:3000">
+        Skylink
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -30,18 +30,49 @@ function Copyright(props) {
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const [open, setOpen] = React.useState(false);
+  const [messageError, setError] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [client, setClient] = React.useState(null);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    try {
+      if(!email || !password) {
+        setError('Insert All the sections');
+        setOpen(true);
+      }
+      else {
+      const response = await fetch(`http://localhost:8080/api/admin?login=${email}&password=${password}`);
+      const data = await response.json();
+
+      setClient(data);
+      if(client) navigate('/sidebar');
+      else {
+        setError('Email or password invalid');
+      setOpen(true);}
+      }
+
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   const handleHomeClick = () => {
-    navigate('/Home');
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    if(!email || !password) {
+      setError('Insert All the sections');
+      setOpen(true);
+    }
+    else {
+      if(client) navigate('/sidebar');
+      else {
+        setError('Email or password invalid');
+      setOpen(true);
+      }
+    }
   };
 
   return (
@@ -76,7 +107,7 @@ const SignIn = () => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Admin Login
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
@@ -84,10 +115,10 @@ const SignIn = () => {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="Login"
                 name="email"
-                autoComplete="email"
                 autoFocus
+                value={email} onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -98,11 +129,28 @@ const SignIn = () => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={password} onChange={(e) => setPassword(e.target.value)}
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
+              <Collapse in={open}>
+                <Alert severity="error"
+                  action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                      onClick={() => {
+                        setOpen(false);
+                      }}
+                    >
+                      <CloseIcon fontSize="inherit" />
+                    </IconButton>
+                  }
+                  sx={{ mb: 2 }}
+                >
+                  <AlertTitle>Error</AlertTitle>
+                  {messageError} !!
+                </Alert>
+              </Collapse>
               <Button
                 onClick={handleHomeClick}
                 type="submit"
@@ -110,20 +158,9 @@ const SignIn = () => {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Login
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <a  href="/" variant="body2" >
-                    Don't have an account? Sign Up
-                  </a>
-                </Grid>
-              </Grid>
+              
               <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
