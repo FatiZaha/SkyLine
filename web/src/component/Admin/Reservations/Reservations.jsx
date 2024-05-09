@@ -67,10 +67,10 @@ function ReservationsTable(props, ref) {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="left">Date</TableCell>
-            <TableCell align="left">Ville Départ</TableCell>
-            <TableCell align="left">Ville Destination</TableCell>
-            <TableCell align="left">Prix</TableCell>
+          <TableCell align="left">Date</TableCell>
+<TableCell align="left">Departure City</TableCell>
+<TableCell align="left">Destination City</TableCell>
+<TableCell align="left">Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

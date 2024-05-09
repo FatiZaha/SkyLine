@@ -121,7 +121,7 @@ export default function PermanentDrawerLeft() {
   const afficherContenuStatistics = () => {
     if (contexteActif === 'statistics') {
       return (
-        <div>
+        <div style={{display:'flex'}}>
           <BarChart/>
           <PieChart/>
         </div>
