@@ -2,12 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimary">#158a88</color>
+    <color name="colorPrimaryDark">#158a88</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="secondary_text">#757575</color>
+    <color name="secondary_text">#158a88</color>
     <color name="background">#FFFFFF</color>
-    <color name="primary">#007bff</color>
+    <color name="primary">#158a88</color>
     <color name="button_background">#4CAF50</color>
     <color name="button_color">#158a88</color>
 </resources>
