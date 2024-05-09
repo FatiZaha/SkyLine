@@ -18,9 +18,13 @@ public class ReservationService {
 
     @Autowired
     private ReservationRepository reservationRepository;
+    @Autowired
     private VolRepository volRepository;
+    @Autowired
     private PlaceRepository placeRepository;
+    @Autowired
     private SiegeRepository siegeRepository;
+    @Autowired
     private ClientRepository clientRepository;
 
     public List<Reservation> getAllReservations(){
@@ -42,16 +46,19 @@ public class ReservationService {
     }
 
     public Reservation confirmReservationById(Long numRes){
-        return reservationRepository.updateReservationByNumRes(EtatPaiement.PAID,numRes);
+        reservationRepository.updateReservationByNumRes(EtatPaiement.PAID,numRes);
+        return reservationRepository.findByNumRes(numRes).get();
     }
 
     public Reservation bookingFlight(Date date_res, String classType, Long idClient, Long idVol){
-        Vol vol= volRepository.findByCodeVol(idVol);
-        Client client = clientRepository.getReferenceById(idClient);
+        Vol vol= volRepository.findVolByCodeVol(idVol).get();
+        Client client = clientRepository.findClientById(idClient);
+        Type type= Type.valueOf(classType);
+
         List<Reservation> reservations = reservationRepository.findReservationsByVolAndPlaceSiegeType(vol,Type.valueOf(classType));
-        Siege siege = siegeRepository.findByType(Type.valueOf(classType));
+        Siege siege = siegeRepository.findSiegeByTypeAndAvionNumero(type,vol.getAvionVol().getNumero());
         List<Place> places = placeRepository.findPlacesBySiege(siege);
-        float prix_total = Type.valueOf(classType)==Type.Classe1?vol.getPrixClass1():vol.getPrixClass2();
+        float prix_total = type==Type.Classe1?vol.getPrixClass1():vol.getPrixClass2();
 
         if(vol.getStatus()==Status.BOOKED)return null;
         if (reservations.isEmpty()){
@@ -92,7 +99,8 @@ public class ReservationService {
                 Place lastPlace = optionalLastPlace.orElse(null);
                 if (lastPlace == null) volRepository.updateVolByCodeVol(vol.getCodeVol(),Status.BOOKED);
 
-                return reservationRepository.save(reservation);
+                reservationRepository.save(reservation);
+                return reservation;
             }
 
 

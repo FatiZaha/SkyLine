@@ -7,20 +7,37 @@ import Typography from '@mui/material/Typography';
 import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded';
 import SimCardRoundedIcon from '@mui/icons-material/SimCardRounded';
 import { styled } from '@mui/system';
+import { Button } from '@mui/material';
 
 const FormGrid = styled('div')(() => ({
   display: 'flex',
   flexDirection: 'column',
 }));
 
-export default function PaymentForm() {
+export default function PaymentForm({client,reservation,setReservation}) {
   
   const [cardNumber, setCardNumber] = React.useState('');
   const [cvv, setCvv] = React.useState('');
   const [expirationDate, setExpirationDate] = React.useState('');
+  const [name, setName] = React.useState('');
+
 
   
+const handleValidateReservation= async()=>{
+  try {
+      
+    const response = await fetch(`http://localhost:8080/api/clients/${client.id}/reservations/${reservation.numRes}`, {
+      method: 'PUT',
+    });
+    const data = await response.json();
+    setReservation(data);
+    
 
+  } catch (error) {
+    console.error('Erreur lors de la création de la réservation :', error);
+  }
+
+}
   const handleCardNumberChange = (event) => {
     const value = event.target.value.replace(/\D/g, '');
     const formattedValue = value.replace(/(\d{4})(?=\d)/g, '$1 ');
@@ -118,6 +135,19 @@ export default function PaymentForm() {
             </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
               <FormGrid sx={{ flexGrow: 1 }}>
+              <FormLabel htmlFor="name" required>
+                  Name
+                </FormLabel>
+                <OutlinedInput
+                  id="name"
+                  autoComplete="name"
+                  placeholder="first + last name"
+                  required
+                  value={name}
+                  onChange={setName}
+                />
+              </FormGrid>
+              <FormGrid sx={{ flexGrow: 1 }}>
               <FormLabel htmlFor="card-expiration" required>
                   Expiration date
                 </FormLabel>
@@ -129,9 +159,9 @@ export default function PaymentForm() {
                   value={expirationDate}
                   onChange={handleExpirationDateChange}
                 />
-              </FormGrid>
-              <FormGrid sx={{ flexGrow: 1 }}>
-                
+                <FormGrid item xs={12} md={20}>
+      <Button onClick={handleValidateReservation}>Confirm Reservation</Button></FormGrid>
+      <FormGrid item xs={12} md={20}></FormGrid>
               </FormGrid>
             </Box>
           </Box>

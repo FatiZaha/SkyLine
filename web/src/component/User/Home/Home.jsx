@@ -2,7 +2,7 @@ import React from 'react'
 import "./Home.css";
 import MultitemCarousel from './MultitemCarousel';
 import FlightCardsCarousel from '../Flights/FlightCardCarousel';
-const Home = () => {
+const Home = ({ client }) => {
   
   return (
     <div className='pb-10'>
@@ -32,7 +32,7 @@ const Home = () => {
             Flights
           </h1>
           <div>
-          <FlightCardsCarousel/>
+          <FlightCardsCarousel client={client}/>
           </div>
         </section>
 

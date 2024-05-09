@@ -8,16 +8,18 @@ import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-const nom = ['Zaha', 'Fatima Zahra'];
+
+export default function Review({reservation}) {
+const nom = [reservation.client.nom, reservation.client.prenom];
 const payments = [
-  { name: 'Reservation date: ', detail: dayjs().toString() },
-  { name: 'Departure: ', detail: 'Aeroport 01/01/2024 02:02 AM' },
-  { name: 'Destination: ', detail: 'Aeroport 01/01/2024 05:02 AM' },
-  { name: 'Class: ', detail: 'Eco Class' },
-  { name: 'Place number: ', detail: '162' },
+  { name: 'Reservation date: ', detail: new Date(reservation.dateRes).toString() },
+  { name: 'Departure: ', detail: reservation.vol.aeroportDepart.nom+' '+new Date(reservation.vol.dateDepart).toString() },
+  { name: 'Destination: ', detail: reservation.vol.aeroportDestination.nom+' '+new Date(reservation.vol.dateArrive).toString() },
+  { name: 'Class: ', detail: reservation.place.siege.type==='Classe1'?'Business Class':'Eco Class' },
+  { name: 'Place number: ', detail: reservation.place.numplace },
 ];
 
-export default function Review() {
+
   return (
     <Stack spacing={2} sx={{}}>
       
@@ -64,7 +66,7 @@ export default function Review() {
         <ListItem>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $49
+            ${reservation.prixTotal}
           </Typography>
         </ListItem>
       </List>

@@ -10,7 +10,8 @@ import java.util.List;
 public interface SiegeRepository extends JpaRepository<Siege, Long> {
 
 
-    public Siege findByType(Type type);
+    public Siege findSiegeByTypeAndAvionNumero(Type type,Long avionId);
 
     public List<Siege> findSiegesByAvion(Avion avion);
+
 }
