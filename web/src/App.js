@@ -9,7 +9,7 @@ import SignInUser from './component/User/SignIn/SignIn';
 import SignInAdmin from './component/Admin/SignIn/SignIn';
 import SignUp from './component/User/SignUp/SignUp';
 import Sidebar from './component/Admin/Dashboard/Sidebar';
-import Resevation from './component/User/Reservations/Reservation'
+import Resevation from './component/User/Reservations/Reservation';
 import ReservationProcess from './component/User/ReservationProcess/ReservationProcess';
 import AllReservations from './component/User/Reservations/AllReservations';
 import React from 'react';
@@ -32,7 +32,7 @@ function AppRouter() {
   const [client, setClient] = React.useState(null);
   const [flight, setFlight] = React.useState(null);
   const location = useLocation();
-  const hideNavbar = location.pathname === '/signin' || location.pathname === '/' || location.pathname === '/reservationprocess' ;
+  const hideNavbar = location.pathname === '/signin' || location.pathname === '/' || location.pathname === '/reservationprocess' || location.pathname === '/sidebar' ;
 
   return (
     <>
