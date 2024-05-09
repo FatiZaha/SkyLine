@@ -10,7 +10,6 @@ import Stack from '@mui/material/Stack';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
-
 import Typography from '@mui/material/Typography';
 
 
@@ -26,6 +25,9 @@ import Info from './Info';
 import InfoMobile from './InfoMobile';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+import { useNavigate } from 'react-router-dom';
+import ReservationTicket from './ReservationTicket';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 
 
 
@@ -34,26 +36,40 @@ const steps = ['Revervation params', 'Review your reservation', 'Payment details
 
 
 
-function getStepContent(step) {
+
+
+export default function ReservationProcess({client,flight}) {
+  
+  function getStepContent(step) {
   switch (step) {
     case 0:
-      return <ReservationParams />;
+      return <ReservationParams flight={flight} client={client} setNewReservation={setReservation}/>;
     case 1:
-      return <Review />;
+      return <Review reservation={reservation}/>;
     case 2:
-      return <PaymentForm />;
+      return <PaymentForm client={client} reservation={reservation} setReservation={setReservation}/>;
     default:
       throw new Error('Unknown step');
   }
 }
-
-export default function ReservationProcess() {
-
+  function test()
+  {
+    <ReservationTicket reservation={reservation}/>
+  }
+  const [reservation, setReservation] = React.useState('');
   const [activeStep, setActiveStep] = React.useState(0);
+  const navigate = useNavigate();
+  const handleFlightsSearchClick = () => {
+    navigate('/flightsfilter');
+  };
 
-  
-
-
+const handleGetTicket = ()=>{console.log(reservation);
+return(
+<PDFDownloadLink document={<ReservationTicket reservation={reservation} />} fileName="ticket.pdf">
+      {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
+    </PDFDownloadLink>
+);
+};
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -94,7 +110,7 @@ export default function ReservationProcess() {
             <Button
               startIcon={<ArrowBackRoundedIcon />}
               component="a"
-              href="/flightsfilter"
+              onClick={handleFlightsSearchClick}
               sx={{ ml: '-8px' }}
             >
               Back to Flight Search
@@ -110,7 +126,7 @@ export default function ReservationProcess() {
               maxWidth: 500,
             }}
           >
-            <Info totalPrice={activeStep >= 2 ? '$144.97' : '$134.98'} />
+            <Info flightDetails={flight} />
           </Box>
         </Grid>
         <Grid
@@ -150,7 +166,7 @@ export default function ReservationProcess() {
               <Button
                 startIcon={<ArrowBackRoundedIcon />}
                 component="a"
-                href="/flightsfilter"
+                onClick={handleFlightsSearchClick}
                 sx={{ alignSelf: 'start' }}
               >
                 Back to Flight Search
@@ -213,7 +229,7 @@ export default function ReservationProcess() {
                   Flight Details
                 </Typography>
               </div>
-              <InfoMobile flightDetails={activeStep >= 2 ? '$144.97' : '$134.98'} />
+              <InfoMobile flightDetails={flight} />
             </CardContent>
           </Card>
           <Box
@@ -263,6 +279,7 @@ export default function ReservationProcess() {
                     alignSelf: 'start',
                     width: { xs: '100%', sm: 'auto' },
                   }}
+                  onClick={test}
                 >
                   Get your ticket !
                 </Button>

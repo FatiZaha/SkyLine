@@ -28,19 +28,20 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export const Navbar = () => {
+export const Navbar = ({ client }) => {
 
-  const [newFirstName, setFirstName] = React.useState('zaha');
+  
+  const [newFirstName, setFirstName] = React.useState(client.prenom);
   const handleFirstNameChange = (event) => {
     
     setFirstName(event.value);
   };
-  const [newPhoneNumber, setPhoneNumber] = React.useState('0634581199');
+  const [newPhoneNumber, setPhoneNumber] = React.useState(client.tel);
   const handlePhoneNumberChange = (event) => {
     
     setPhoneNumber(event.value);
   };
-  const [newLastName, setLastName] = React.useState('fatima zahra');
+  const [newLastName, setLastName] = React.useState(client.nom);
   const handleLastNameChange = (event) => {
     setLastName(event.value);
   };

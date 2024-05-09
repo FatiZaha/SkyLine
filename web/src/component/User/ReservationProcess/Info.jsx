@@ -12,23 +12,23 @@ function Info({ flightDetails }) {
   const flight = [
   {
     name: 'Departure',
-    desc: 'Aeroport name',
-    price: '01/02/2024 04:10 AM',
+    desc: flightDetails.aeroportDepart.nom,
+    info: new Date(flightDetails.dateDepart).toString(),
   },
   {
     name: 'Destination',
-    desc: 'Aeroport name',
-    price: '01/02/2024 07:10 AM',
+    desc: flightDetails.aeroportDestination.nom,
+    info: new Date(flightDetails.dateArrive).toString(),
   },
   {
     name: 'Business Class',
     desc: 'Price',
-    price: '$69.99',
+    info: '$'+flightDetails.prixClass1,
   },
   {
     name: 'Eco Class',
     desc: 'Price',
-    price: '$69.99',
+    info: '$'+flightDetails.prixClass2,
   },
 ];
   return (
@@ -46,7 +46,7 @@ function Info({ flightDetails }) {
               secondary={details.desc}
             />
             <Typography variant="body1" fontWeight="medium">
-              {details.price}
+              {details.info}
             </Typography>
           </ListItem>
         ))}
@@ -56,7 +56,7 @@ function Info({ flightDetails }) {
 }
 
 Info.propTypes = {
-  totalPrice: PropTypes.string.isRequired,
+  flightDetails: PropTypes.string.isRequired,
 };
 
 export default Info;

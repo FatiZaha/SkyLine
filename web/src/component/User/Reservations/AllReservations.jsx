@@ -6,7 +6,7 @@ import Reservation from './Reservation';
 
 
 
-function AllReservations() {
+const AllReservations= ({ client }) =>{
 
 
   return (
@@ -28,7 +28,7 @@ function AllReservations() {
         <Divider/>
         <section className='pt-[1rem]  space-y-5 lg:flex relative'>
 
-                <Reservation/>
+                <Reservation client={client}/>
 
         </section>
     </div>

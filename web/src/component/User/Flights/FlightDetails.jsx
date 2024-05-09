@@ -9,21 +9,23 @@ import Avatar from  '@mui/material/Avatar';
 import "./FlightDetails.css"
 import { useNavigate } from 'react-router-dom';
 
-const FlightDetails = () => {
+const FlightDetails = ({client,setFlight}) => {
   const navigate = useNavigate();
+  
   const handleBookingClick = () => {
     navigate('/reservationprocess');
   };
+  
   const [flights, setFlights] = useState([]);
 
   useEffect(() => {
       const fetchFlights = async () => {
         try {
-          const response = await fetch('http://localhost:8080/api/clients/1/vols/allVols');
+          const response = await fetch(`http://localhost:8080/api/clients/${client.id}/vols/allVols`);
           const data = await response.json();
           setFlights(data);
         } catch (error) {
-          console.error('Erreur lors de la récupération des compagnies :', error);
+          console.error('Erreur lors de la récupération des vols :', error);
         }
       };
   
@@ -42,7 +44,7 @@ const FlightDetails = () => {
       <div className='lg:flex justify-between'>
         
         <div className='lg:flex items-center lg:gap-5'>
-          <img src={flight.aeroportDestination.ville.image} alt="" className='w-[7rem] h-[7rem] object-cover' />
+          <img src={'https://source.unsplash.com/random?'+flight.aeroportDestination.ville.nom} alt="" className='w-[7rem] h-[7rem] object-cover' />
           <div className='space-y-1 lg:space-y-1 lg:max-w-2xl'>
             <p className='text-xl'>{flight.aeroportDestination.ville.nom}</p>
             <p className='text-gray-300 text-lg'>Business Class Price : ${flight.prixClass1}/person</p>
@@ -67,7 +69,7 @@ const FlightDetails = () => {
     </AccordionDetails>
     <AccordionActions>
       
-      <Button onClick={handleBookingClick}>Book Now</Button>
+      <Button onClick={()=>{setFlight(flight);handleBookingClick();}}>Book Now</Button>
     </AccordionActions>
   </Accordion>
   ))}

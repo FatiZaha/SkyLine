@@ -22,9 +22,7 @@ public class Siege {
     
     private Type type;
 
-    @JsonIgnore
-    @OneToMany(cascade= CascadeType.ALL,mappedBy="siege")
-    private List<Place> places=new ArrayList<>();
+
 
     @ManyToOne
     private Avion avion;

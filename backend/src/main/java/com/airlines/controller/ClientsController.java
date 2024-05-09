@@ -13,8 +13,10 @@ import nonapi.io.github.classgraph.fileslice.reader.RandomAccessArrayReader;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.mail.SimpleMailMessage;
@@ -27,7 +29,7 @@ import java.util.UUID;
 import java.util.random.RandomGenerator;
 
 import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.linkTo;
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 
@@ -54,29 +56,20 @@ public class ClientsController {
         return clientService.oneClient(id);
     }
     @PostMapping("/inscription")
-    public Object inscriptionClient(@RequestParam("email") String email,
-                                    @RequestParam("nom") String nom,
-                                    @RequestParam("prenom") String prenom,
-                                    @RequestParam("tel") String tel,
-                                    @RequestParam("password") String password) {
+    public Object inscriptionClient(@RequestBody Client client,
+                                    BindingResult bindingResult) {
 
 
-        // Effectuer la vérification de l'email en utilisant l'API de Hunter.io
-        boolean isEmailVerified = verifyEmail(email);
+     return clientService.Inscription(client.getNom(),client.getPrenom(),client.getEmail(),client.getTel(),client.getPassword());
 
-        if (isEmailVerified) {
-
-            if(clientService.ifClientExist(email)){
-                return "this account already exist";
-            }
-
-            else return clientService.Inscription(nom,prenom,email,tel,password);
-        } else {
-            return "email invalid";
-        }
     }
+    @GetMapping("/emailexistance/{email}")
+    private boolean EmailExist(@PathVariable String email) {
 
-    private boolean verifyEmail(String email) {
+        return clientService.ifClientExist(email);
+    }
+    @GetMapping("/emailvalidation/{email}")
+    private boolean verifyEmail(@PathVariable String email) {
         String apiUrl = "https://api.hunter.io/v2/email-verifier?email=" + email + "&api_key=" + apiKey;
 
         RestTemplate restTemplate = new RestTemplate();

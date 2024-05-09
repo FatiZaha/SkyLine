@@ -26,7 +26,7 @@ function InfoMobile({ flightDetails }) {
       >
         <CloseIcon />
       </IconButton>
-      <Info totalPrice={flightDetails} />
+      <Info flightDetails={flightDetails} />
     </Box>
   );
 
