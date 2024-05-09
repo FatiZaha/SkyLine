@@ -1,8 +1,12 @@
-COPY package-lock.json /code/package-lock.json
+FROM node:14-alpine
 
-COPY . .
+WORKDIR /code
+
+COPY package.json package-lock.json /code/
 
 RUN npm install
+
+COPY . .
 
 EXPOSE 3000
 

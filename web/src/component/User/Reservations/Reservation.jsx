@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import DeleteIcon from '@mui/icons-material/Delete';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import IconButton from '@mui/material/IconButton';
+import { Accordion, AccordionSummary,AccordionDetails, Avatar } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function BasicTable() {
   const [reservations, setReservations] = useState([]);
@@ -31,41 +23,47 @@ export default function BasicTable() {
     fetchReservations();
   }, []);
 
+ 
+
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell align="right">Ville Départ</TableCell>
-            <TableCell align="right">Ville Destination</TableCell>
-            <TableCell align="right">Prix Total</TableCell>
-            <TableCell align="right">Date </TableCell>
-            <TableCell>Action</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {reservations.map((reservation) => (
-            <TableRow key={reservation.id}>
-              <TableCell component="th" scope="row">
-                {reservation.date}
-              </TableCell>
-              <TableCell align="right">{reservation.villeDepart}</TableCell>
-              <TableCell align="right">{reservation.villeDestination}</TableCell>
-              <TableCell align="right">{reservation.prixtotal}</TableCell>
-              <TableCell align="right">
-                  <IconButton>
-                      <ModeEditIcon />
-                  </IconButton>
-                  <IconButton>
-                      <DeleteIcon />
-                  </IconButton>
-                
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+
+      <div className='space-y-5 lg:w-[100%] filter'>
+      {reservations.map((reservation)=>(
+        
+      <Accordion>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel3-content"
+        id="panel3-header"
+      >
+        <div className='lg:flex justify-between'>
+          
+          <div className='lg:flex items-center lg:gap-5'>
+            <img src={reservation.vol.aeroportDestination.ville.image} alt="" className='w-[7rem] h-[7rem] object-cover' />
+            <div className='space-y-1 lg:space-y-1 lg:max-w-2xl'>
+              <p className='text-xl'>{reservation.vol.aeroportDestination.ville.nom}</p>
+              <p className='text-gray-300 text-lg'>Class : {reservation.place.siege.type === 'Classe1' ? 'Business Class' : 'Eco Class'} </p>
+              <p className='text-gray-300 text-lg'>Place Number : {reservation.place.numplace}</p>
+              <p className='text-gray-300 text-sm'>Price : ${reservation.prixTotal}</p>
+              
+            </div>
+            <Avatar sx={{bgcolor:"white",color:"#158a88"}}>
+              <img src={reservation.vol.avionVol.compagnie.logo} alt="airlineLogo" />
+            </Avatar>
+          
+          </div>
+          
+          
+        </div>
+      </AccordionSummary>
+      <AccordionDetails>
+      <p><span className='text-gray-300 text-lg'>Departure Aeroport  </span> {reservation.vol.aeroportDepart.nom}</p>
+      <p><span className='text-gray-300 text-lg'>Departure date  </span> {reservation.vol.dateDepart.toString()}</p><br />
+      <p><span className='text-gray-300 text-lg'>Destination Aeroport  </span> {reservation.vol.aeroportDestination.nom}</p>
+      <p><span className='text-gray-300 text-lg'>Destination date  </span> {reservation.vol.dateArrive.toString()}</p>
+      </AccordionDetails>
+    </Accordion>
+    ))}
+    </div>
+  )
 }

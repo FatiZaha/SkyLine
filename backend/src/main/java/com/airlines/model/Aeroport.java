@@ -25,17 +25,12 @@ public class Aeroport {
     @JoinColumn(nullable = false)
     private Ville ville;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "aeroportDepart")
-    private List<Vol> departVols = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "aeroportDestination")
-    private List<Vol> destinationVols = new ArrayList<>();
 
-    public Aeroport(String nom, Ville ville, List<Vol> departVols, List<Vol> destinationVols) {
+    public Aeroport(String nom, Ville ville) {
         this.nom = nom;
         this.ville = ville;
-        this.departVols = departVols;
-        this.destinationVols = destinationVols;
+
     }
 
 }

@@ -18,14 +18,80 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function FullScreenDialog() {
+  const [companies, setCompanies] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [logo, setLogo] = useState('');
   const [nom, setNom] = useState('');
   const [adresse, setAdresse] = useState('');
   const [tel, setTel] = useState('');
+  
+  const [errors, setErrors] = useState({
+    logoError: '',
+    telError: ''
+  });
 
   const handleSubmit = async () => {
     try {
+      // Réinitialiser les erreurs
+      setErrors({
+        logoError: '',
+        telError: ''
+      });
+
+      // Valider les données
+      let isValid = true;
+
+      if (!logo.endsWith('.svg')) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          logoError: 'Logo file format must be .svg'
+        }));
+        isValid = false;
+      }
+
+      if (!/^[+\-\d]+$/.test(tel)) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          telError: 'Phone number must be numeric'
+        }));
+        isValid = false;
+      }
+
+      if (tel.length < 10 || tel.length > 15) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          telError: 'Invalid phone number'
+        }));
+        isValid = false;
+      } else if (tel && companies.some(company => company.tel === tel)) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          telError: 'Phone number already exists'
+        }));
+        isValid = false;
+      }
+
+      if (nom && companies.some(company => company.nom === nom)) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          nameError: 'Company name already exists'
+        }));
+        isValid = false;
+      }
+
+      if (adresse && companies.some(company => company.adresse === adresse)) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          addressError: 'Company address already exists'
+        }));
+        isValid = false;
+      }
+
+      if (!isValid) {
+        return;
+      }
+
+      // Envoyer les données si tout est valide
       const response = await fetch('http://localhost:8080/api/admin/1/compagnies/add', {
         method: 'POST',
         headers: {
@@ -43,6 +109,7 @@ export default function FullScreenDialog() {
   
         // Fermez la boîte de dialogue après l'envoi réussi
         handleClose();
+        window.location.reload();
       } else {
         console.error('Erreur lors de l\'envoi du formulaire');
       }
@@ -57,14 +124,6 @@ export default function FullScreenDialog() {
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleLogoInputChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      // Faites quelque chose avec le fichier sélectionné, par exemple, stockez-le dans l'état
-      setLogo(file);
-    }
   };
 
   return (
@@ -100,11 +159,13 @@ export default function FullScreenDialog() {
               </Grid>
               <Grid item>
                 <TextField
-                  id="standard-basic"
-                  label="Enter the company logo"
+                  id="logo"
+                  name="log"
                   variant="standard"
                   value={logo}
                   onChange={(e) => setLogo(e.target.value)}
+                  error={!!errors.logoError}
+                helperText={errors.logoError}
                 />
               </Grid>
             </Grid>
@@ -116,8 +177,8 @@ export default function FullScreenDialog() {
               </Grid>
               <Grid item>
                 <TextField
-                  id="standard-basic"
-                  label="Enter the company name"
+                  id="name"
+                  name="nam"
                   variant="standard"
                   value={nom}
                   onChange={(e) => setNom(e.target.value)}
@@ -131,8 +192,8 @@ export default function FullScreenDialog() {
               </Grid>
               <Grid item>
                 <TextField
-                  id="standard-basic"
-                  label="Enter the company address"
+                  id="adress"
+                  name="addr"
                   variant="standard"
                   value={adresse}
                   onChange={(e) =>setAdresse(e.target.value)}
@@ -146,11 +207,13 @@ export default function FullScreenDialog() {
               </Grid>
               <Grid item>
                 <TextField
-                  id="standard-basic"
-                  label="Enter the company phone"
+                  id="phone"
+                  name="teleph"
                   variant="standard"
                   value={tel}
                   onChange={(e) => setTel(e.target.value)}
+                  error={!!errors.telError}
+                  helperText={errors.telError}
                 />
               </Grid>
             </Grid>

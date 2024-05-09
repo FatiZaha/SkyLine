@@ -25,14 +25,15 @@ public interface CompagnieRepository extends JpaRepository<Compagnie, Long>  {
             @Param("tel") String tel,
             @Param("logo") float logo
     );
-    void deleteCompagnieByCode(Long code);
+    public void deleteCompagnieByCode(Long code);
 
-    Compagnie findCompanieByNom(String nom);
+    public void deleteByCode(Long code);
+    public Compagnie findCompanieByNom(String nom);
 
-    List<Compagnie>findAll();
+    public List<Compagnie>findAll();
 
-    Compagnie findCompByCode(Long code);
+    public Compagnie findCompByCode(Long code);
 
 
-    Compagnie findCompanieByCode(Long code);
+    public Compagnie findCompanieByCode(Long code);
 }
