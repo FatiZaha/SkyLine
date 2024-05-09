@@ -1,14 +1,28 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
-
 function PieChart() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:8080/api/admin/1/reservations')
       .then(response => response.json())
-      .then(data => setData(data));
+      .then(data => {
+        const formattedData = data.reduce((acc, reservation) => {
+          const month = new Date(reservation.dateRes).getMonth() + 1;
+          if (acc[month]) {
+            acc[month].count += 1;
+          } else {
+            acc[month] = {
+              month: month,
+              count: 1
+            };
+          }
+          return acc;
+        }, {});
+        const pieData = Object.values(formattedData);
+        setData(pieData);
+      });
   }, []);
 
   const svgRef = useRef();
@@ -45,9 +59,17 @@ function PieChart() {
       arcs.append('text')
         .attr('transform', d => `translate(${arc.centroid(d)})`)
         .attr('text-anchor', 'middle')
-        .text(d => `${d.data.month} (${d.data.percentage}%)`);
+        .text(d => `${getMonthName(d.data.month)} (${d.data.count})`);
     }
   }, [data]);
+
+  const getMonthName = (monthNumber) => {
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    return months[monthNumber - 1];
+  };
 
   return (
     <div style={{ margin: 'auto', width: 'fit-content' }}>
