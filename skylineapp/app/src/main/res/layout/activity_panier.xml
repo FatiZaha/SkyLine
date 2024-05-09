@@ -1,7 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/black">
 
     <TextView
         android:id="@+id/reservation_title"
@@ -10,7 +11,8 @@
         android:text="Reservation History"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:padding="16dp" />
+        android:padding="16dp"
+        android:textColor="@android:color/white"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -45,8 +47,10 @@
                         android:id="@+id/flight_path1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Flight Path"
-                        android:textSize="18sp" />
+                        android:text="Flight "
+                        android:textSize="18sp"
+                        android:textColor="@android:color/white"
+                        />
 
                     <TextView
                         android:id="@+id/flight_details1"
@@ -54,7 +58,8 @@
                         android:layout_height="wrap_content"
                         android:text="From London to Marrakech"
                         android:layout_marginTop="15dp"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp"
+                        android:textColor="@android:color/white"/>
 
                     <TextView
                         android:id="@+id/flight_price1"
@@ -62,7 +67,8 @@
                         android:layout_height="wrap_content"
                         android:text="Price: $100"
                         android:textSize="14sp"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginTop="8dp"
+                        android:textColor="@android:color/white"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -90,8 +96,9 @@
                         android:id="@+id/flight_path2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Flight Path"
-                        android:textSize="18sp" />
+                        android:text="Flight "
+                        android:textSize="18sp"
+                        android:textColor="@android:color/white" />
 
                     <TextView
                         android:id="@+id/flight_details2"
@@ -99,7 +106,8 @@
                         android:layout_height="wrap_content"
                         android:text="From Paris to Rome"
                         android:layout_marginTop="15dp"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp"
+                        android:textColor="@android:color/white"/>
 
                     <TextView
                         android:id="@+id/flight_price2"
@@ -107,7 +115,8 @@
                         android:layout_height="wrap_content"
                         android:text="Price: $150"
                         android:textSize="14sp"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginTop="8dp"
+                        android:textColor="@android:color/white"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -135,8 +144,9 @@
                         android:id="@+id/flight_path3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Flight Path"
-                        android:textSize="18sp" />
+                        android:text="Flight "
+                        android:textSize="18sp"
+                        android:textColor="@android:color/white"/>
 
                     <TextView
                         android:id="@+id/flight_details3"
@@ -144,7 +154,8 @@
                         android:layout_height="wrap_content"
                         android:text="From New York to Los Angeles"
                         android:layout_marginTop="15dp"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp"
+                        android:textColor="@android:color/white"/>
 
                     <TextView
                         android:id="@+id/flight_price3"
@@ -152,7 +163,8 @@
                         android:layout_height="wrap_content"
                         android:text="Price: $200"
                         android:textSize="14sp"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginTop="8dp"
+                        android:textColor="@android:color/white"/>
 
                 </LinearLayout>
             </LinearLayout>
