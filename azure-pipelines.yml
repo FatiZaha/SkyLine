@@ -6,6 +6,9 @@
 trigger:
 - main
 
+variables:
+      productionDirectory: 'D:\Program Files\JAVA\SkyLine'
+
 stages:
   - stage: Build
     displayName: Build Stage
@@ -18,8 +21,8 @@ stages:
           - agent.name -equals LAPTOP-CJGFCSTM
 
         steps:
-          - script: 
-              cd web
+          - script:
+              cd $(productionDirectory)/web
               npm install
               npm run build
             displayName: 'Build Frontend'
@@ -32,8 +35,8 @@ stages:
 
         steps:       
           - script: 
-              cd backend
-              ./mvnw clean package -DskiTests
+              cd $(productionDirectory)/backend
+              ./mvnw clean package -DskipTests
             displayName: 'Build Backend'
       
         
@@ -43,10 +46,12 @@ stages:
       - job: FrontendTests
         displayName: Run Frontend Tests
         pool:
-          vmImage: 'ubuntu-latest'
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
         steps:    
           - script:
-              cd web
+              cd $(productionDirectory)/web
               npm install
               npm run test
             displayName: 'Run Frontend Tests'
@@ -58,11 +63,11 @@ stages:
           - agent.name -equals LAPTOP-CJGFCSTM
         steps:     
           - script:
-              cd backend
+              cd $(productionDirectory)/backend
               ./mvnw clean test
             displayName: 'Run Backend Tests'
       
-  - stage: Desploy
+  - stage: Deploy
     displayName: Deploy Stage
     jobs:
       - job: DeployBackend
@@ -73,7 +78,7 @@ stages:
           - agent.name -equals LAPTOP-CJGFCSTM
         steps:
           - script: 
-              cd backend
+              cd $(productionDirectory)/backend
               ./mvnw clean package -DskipTests
       - job: DeployFrontend
         displayName: Deploy Frontend to Production 
@@ -83,8 +88,8 @@ stages:
           - agent.name -equals LAPTOP-CJGFCSTM
         steps:
           - script: 
-              cd web
+              cd $(productionDirectory)/web
               npm install
-              nom run build
+              npm run build
 
 
