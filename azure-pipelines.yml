@@ -7,7 +7,6 @@ trigger:
 - main
 
 
-
 stages:
   - stage: Build
     displayName: Build Stage
@@ -22,6 +21,7 @@ stages:
         steps:
           - script:
               cd "D:\SkyLine\web"
+              npm install
               npm run build
             displayName: 'Build Frontend'
       - job: BackendBuild
@@ -50,6 +50,7 @@ stages:
         steps:    
           - script:
               cd "D:\SkyLine\web"
+              npm install
               npm run test
             displayName: 'Run Frontend Tests'
       - job: BackendTests
@@ -86,6 +87,5 @@ stages:
         steps:
           - script: 
               cd "D:\SkyLine\web"
+              npm install
               npm run build
-
-
