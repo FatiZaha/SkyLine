@@ -18,12 +18,12 @@ public interface CompagnieRepository extends JpaRepository<Compagnie, Long>  {
 
     @Modifying
     @Query("UPDATE Compagnie SET nom = :nom, adresse = :adresse, tel = :tel, logo = :logo WHERE code = :code")
-    void updateVolByCodeVol(
+    void updateCompagnieByCode(
             @Param("code") Long code,
             @Param("nom") String nom,
             @Param("adresse") String adresse,
             @Param("tel") String tel,
-            @Param("logo") float logo
+            @Param("logo") String logo
     );
     public void deleteCompagnieByCode(Long code);
 

@@ -21,14 +21,7 @@ public class CompagnieService{
     }
 
     public void updateCompagnie(Long code, String nom, String adresse, String tel, String logo) {
-        Compagnie compagnie = compagnieRepository.findCompByCode(code);
-        if (compagnie != null) {
-            compagnie.setNom(nom);
-            compagnie.setAdresse(adresse);
-            compagnie.setTel(tel);
-            compagnie.setLogo(logo);
-            compagnieRepository.save(compagnie);
-        }
+        compagnieRepository.updateCompagnieByCode(code,nom,adresse,tel,logo);
 
     }
 
