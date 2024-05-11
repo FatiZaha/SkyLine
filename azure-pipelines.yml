@@ -14,7 +14,7 @@ stages:
       - job: FrontendBuild
         displayName: Build Frontend React
         pool:
-          environment: skyline
+          vmImage: 'skyline'
 
 
         steps:
@@ -26,7 +26,7 @@ stages:
       - job: BackendBuild
         displayName: Build Backend Spring Boot
         pool:
-          environment: skyline
+          vmImage: 'skyline'
 
         steps:       
           - script: 
@@ -41,7 +41,7 @@ stages:
       - job: FrontendTests
         displayName: Run Frontend Tests
         pool:
-          environment: skyline
+          vmImage: 'skyline'
         steps:    
           - script:
               cd "D:\SkyLine\web"
@@ -51,7 +51,7 @@ stages:
       - job: BackendTests
         displayName: Run Backend Tests
         pool:
-          nenvironment: skyline
+          vmImage: 'skyline'
         steps:     
           - script:
               cd "D:\SkyLine\backend"
@@ -64,7 +64,7 @@ stages:
       - job: DeployBackend
         displayName: Deploy Backend to Production
         pool:
-          environment: skyline
+          vmImage: 'skyline'
         steps:
           - script: 
               cd "D:\SkyLine\backend"
@@ -72,7 +72,7 @@ stages:
       - job: DeployFrontend
         displayName: Deploy Frontend to Production 
         pool: 
-          environment: skyline
+          vmImage: 'skyline'
         steps:
           - script: 
               cd "D:\SkyLine\web"
