@@ -6,11 +6,11 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#158a88"
         android:orientation="horizontal"
-        android:padding="25dp">
+        android:padding="25dp"
+        android:layout_height="wrap_content">
 
         <ImageView
             android:layout_width="0dp"
