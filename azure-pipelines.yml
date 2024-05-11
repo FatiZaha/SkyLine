@@ -14,8 +14,9 @@ stages:
       - job: FrontendBuild
         displayName: Build Frontend React
         pool:
-          vmImage: 'skyline'
-
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
 
         steps:
           - script:
@@ -26,12 +27,14 @@ stages:
       - job: BackendBuild
         displayName: Build Backend Spring Boot
         pool:
-          vmImage: 'skyline'
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
 
         steps:       
           - script: 
               cd "D:\SkyLine\backend"
-              mvn clean package -DskipTests
+              ./mvnw clean package -DskipTests
             displayName: 'Build Backend'
       
         
@@ -41,7 +44,9 @@ stages:
       - job: FrontendTests
         displayName: Run Frontend Tests
         pool:
-          vmImage: 'skyline'
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
         steps:    
           - script:
               cd "D:\SkyLine\web"
@@ -51,11 +56,13 @@ stages:
       - job: BackendTests
         displayName: Run Backend Tests
         pool:
-          vmImage: 'skyline'
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
         steps:     
           - script:
               cd "D:\SkyLine\backend"
-              mvn clean test
+              ./mvnw clean test
             displayName: 'Run Backend Tests'
       
   - stage: Deploy
@@ -64,15 +71,19 @@ stages:
       - job: DeployBackend
         displayName: Deploy Backend to Production
         pool:
-          vmImage: 'skyline'
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
         steps:
           - script: 
               cd "D:\SkyLine\backend"
-              mvn clean package -DskipTests
+              ./mvnw clean package -DskipTests
       - job: DeployFrontend
         displayName: Deploy Frontend to Production 
         pool: 
-          vmImage: 'skyline'
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
         steps:
           - script: 
               cd "D:\SkyLine\web"
