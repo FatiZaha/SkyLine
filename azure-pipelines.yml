@@ -22,7 +22,6 @@ stages:
         steps:
           - script:
               cd "D:\SkyLine\web"
-              npm install
               npm run build
             displayName: 'Build Frontend'
       - job: BackendBuild
@@ -35,7 +34,7 @@ stages:
         steps:       
           - script: 
               cd "D:\SkyLine\backend"
-              ./mvnw clean package -DskipTests
+              mvn clean package -DskipTests
             displayName: 'Build Backend'
       
         
@@ -51,7 +50,6 @@ stages:
         steps:    
           - script:
               cd "D:\SkyLine\web"
-              npm install
               npm run test
             displayName: 'Run Frontend Tests'
       - job: BackendTests
@@ -63,7 +61,7 @@ stages:
         steps:     
           - script:
               cd "D:\SkyLine\backend"
-              ./mvnw clean test
+              mvn clean test
             displayName: 'Run Backend Tests'
       
   - stage: Deploy
@@ -78,7 +76,7 @@ stages:
         steps:
           - script: 
               cd "D:\SkyLine\backend"
-              ./mvnw clean package -DskipTests
+              mvn clean package -DskipTests
       - job: DeployFrontend
         displayName: Deploy Frontend to Production 
         pool: 
@@ -88,7 +86,6 @@ stages:
         steps:
           - script: 
               cd "D:\SkyLine\web"
-              npm install
               npm run build
 
 
