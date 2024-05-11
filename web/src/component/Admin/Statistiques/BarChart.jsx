@@ -60,14 +60,6 @@ function BarChart() {
       chart.append('g')
         .call(d3.axisLeft(y));
 
-      const legend = svg.append('g')
-        .attr('transform', `translate(${margin.left}, ${height + margin.top + 20})`);
-
-      legend.append('rect')
-        .attr('width', 20)
-        .attr('height', 20)
-        .attr('fill', '#158a88');
-
       // Titre en haut avec classe CSS
       svg.append('text')
         .attr('class', 'chart-title') // Ajouter la classe CSS

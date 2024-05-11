@@ -41,10 +41,10 @@ export default function EditCompanyDialog(props) {
 
        // Valider les données
        let isValid = true;
-       if (!companyData.logo.endsWith('.svg')) {
+       if (!companyData.logo.endsWith('.svg') && !companyData.logo.endsWith('.png') && !companyData.logo.endsWith('.jpg')) {
         setErrors((prevErrors) => ({
           ...prevErrors,
-          logoError: 'Logo file format must be .svg'
+          logoError: 'Logo file format must be .svg, .png, or .jpg'
         }));
         isValid = false;
       }

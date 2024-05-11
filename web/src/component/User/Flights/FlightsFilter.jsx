@@ -15,7 +15,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 
 
-const FlightsFilter = () => { 
+const FlightsFilter = ({client,setFlight}) => { 
 const [date, setDateValue] = React.useState(null);
 const [departCity, setDepartCityValue] = React.useState(null);
 const [destCity, setDestCityValue] = React.useState(null);
@@ -167,7 +167,7 @@ useEffect(() => {
 
                 </div>
             </div>
-                <FlightDetails/>
+                <FlightDetails client={client} setFlight={setFlight}/>
         </section>
     </div>
   )

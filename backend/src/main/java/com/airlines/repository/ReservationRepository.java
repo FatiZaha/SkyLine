@@ -24,7 +24,7 @@ public interface ReservationRepository extends JpaRepository<Reservation,Long> {
 
     @Modifying
     @Query("UPDATE Reservation r SET r.confirmerResevation = :etatPaiement WHERE r.numRes = :numRes")
-    public Reservation updateReservationByNumRes(@Param("etatPaiement") EtatPaiement etatPaiement, @Param("numRes") Long numRes);
+    public void updateReservationByNumRes(@Param("etatPaiement") EtatPaiement etatPaiement, @Param("numRes") Long numRes);
 
     public Reservation deleteReservationByNumRes(Long numRes);
 }

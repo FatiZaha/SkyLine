@@ -69,7 +69,7 @@ public class VolService  {
     }
 
     public Vol GetVolByCodeVol(Long codeVol){
-        return volRepository.findByCodeVol(codeVol);
+        return volRepository.findVolByCodeVol(codeVol).get();
     }
 }
 

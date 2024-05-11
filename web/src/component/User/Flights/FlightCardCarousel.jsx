@@ -6,7 +6,7 @@ import Slider from 'react-slick';
 
 import FlightCard from './FlightsCard';
 
-const FlightCardsCarousel = () => {
+const FlightCardsCarousel = ({client}) => {
     const settings={
         dots: true,
         infinite: true,
@@ -21,7 +21,7 @@ const FlightCardsCarousel = () => {
       React.useEffect(() => {
           const fetchFlights = async () => {
             try {
-              const response = await fetch('http://localhost:8080/api/clients/1/vols/allVols');
+              const response = await fetch(`http://localhost:8080/api/clients/${client.id}/vols/allVols`);
               const data = await response.json();
               setFlights(data);
             } catch (error) {
@@ -36,7 +36,7 @@ const FlightCardsCarousel = () => {
     <div>
         <Slider {...settings} className='flex flex-wrap items-center justify-around gap-5'>
             {Flights.map((item)=>(
-            <FlightCard image={item.aeroportDestination.ville.image} title={item.aeroportDestination.ville.nom} subtitle={item.aeroportDestination.nom} priceClass1={item.prixClass1} priceClass2={item.prixClass2} airline={item.avionVol.compagnie.logo}/>
+            <FlightCard image={'https://source.unsplash.com/random?'+item.aeroportDestination.ville.nom} title={item.aeroportDestination.ville.nom} subtitle={item.aeroportDestination.nom} priceClass1={item.prixClass1} priceClass2={item.prixClass2} airline={item.avionVol.compagnie.logo} status={item.status}/>
             ))}
         </Slider>
     </div>

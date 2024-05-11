@@ -20,6 +20,7 @@ import FullScreenDialog from '../../Admin/Companies/AddCompany';
 import FlightsDialog from '../Flights/AddFlights';
 import AllCompanies from '../Companies/AllCompanies';
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BarChart from '../Statistiques/BarChart';
 import PieChart from '../Statistiques/PieChart';
 const drawerWidth = 240;
@@ -55,6 +56,10 @@ export default function PermanentDrawerLeft() {
     setReservationMenuAnchor(null);
     setStatisticsMenuAnchor(null);
   };
+  const navigate = useNavigate();
+  const handleLogOut =() =>{
+    navigate('/admin');
+  }
   
   
   
@@ -96,9 +101,7 @@ export default function PermanentDrawerLeft() {
     }
   };
 
-  const handleImport = () => {
-    // Gérer l'importation
-  };
+  
 
   const afficherContenuReservation = () => {
     if (contexteActif === 'reservation') {
@@ -107,7 +110,7 @@ export default function PermanentDrawerLeft() {
         
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button  style={{ background: '#158a88', color: '#fff', marginRight: '10px' }} onClick={handleExport}>Exporter</Button>
-            <Button style={{ background: '#158a88', color: '#fff'}} onClick={handleImport}>Importer</Button>
+            
           </div>
           <div style={{ marginTop:'20px' }}>
           <ReservationsTable/>
@@ -121,7 +124,7 @@ export default function PermanentDrawerLeft() {
   const afficherContenuStatistics = () => {
     if (contexteActif === 'statistics') {
       return (
-        <div>
+        <div style={{display:'flex'}}>
           <BarChart/>
           <PieChart/>
         </div>
@@ -181,6 +184,7 @@ export default function PermanentDrawerLeft() {
           </ListItem>
         </List>
         <Divider />
+        <Button style={{marginTop: 270}} onClick={handleLogOut}>Log Out</Button>
       </Drawer>
       <Box
         component="main"

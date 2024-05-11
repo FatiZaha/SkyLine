@@ -41,10 +41,10 @@ export default function FullScreenDialog() {
       // Valider les données
       let isValid = true;
 
-      if (!logo.endsWith('.svg')) {
+      if (!logo.endsWith('.svg') && !logo.endsWith('.png') && !logo.endsWith('.jpg')) {
         setErrors((prevErrors) => ({
           ...prevErrors,
-          logoError: 'Logo file format must be .svg'
+          logoError: 'Logo file format must be .svg, .png, or .jpg'
         }));
         isValid = false;
       }
