@@ -1,9 +1,9 @@
-FROM openjdk:latest
+FROM maven:latest
 
 WORKDIR /app
 
-COPY ./src/main/java/ /app
+COPY . /app
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","BackendApplication.jar"]
+CMD ["mvn", "spring-boot:run"]
