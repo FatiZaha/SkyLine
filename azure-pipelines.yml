@@ -14,9 +14,8 @@ stages:
       - job: FrontendBuild
         displayName: Build Frontend React
         pool:
-          name: 'Skyline'
-          demands:
-          - agent.name -equals LAPTOP-CJGFCSTM
+          environment: skyline
+
 
         steps:
           - script:
@@ -27,9 +26,7 @@ stages:
       - job: BackendBuild
         displayName: Build Backend Spring Boot
         pool:
-          name: 'Skyline'
-          demands:
-          - agent.name -equals LAPTOP-CJGFCSTM
+          environment: skyline
 
         steps:       
           - script: 
@@ -44,9 +41,7 @@ stages:
       - job: FrontendTests
         displayName: Run Frontend Tests
         pool:
-          name: 'Skyline'
-          demands:
-          - agent.name -equals LAPTOP-CJGFCSTM
+          environment: skyline
         steps:    
           - script:
               cd "D:\SkyLine\web"
@@ -56,9 +51,7 @@ stages:
       - job: BackendTests
         displayName: Run Backend Tests
         pool:
-          name: 'Skyline'
-          demands:
-          - agent.name -equals LAPTOP-CJGFCSTM
+          nenvironment: skyline
         steps:     
           - script:
               cd "D:\SkyLine\backend"
@@ -71,9 +64,7 @@ stages:
       - job: DeployBackend
         displayName: Deploy Backend to Production
         pool:
-          name: 'Skyline'
-          demands:
-          - agent.name -equals LAPTOP-CJGFCSTM
+          environment: skyline
         steps:
           - script: 
               cd "D:\SkyLine\backend"
@@ -81,9 +72,7 @@ stages:
       - job: DeployFrontend
         displayName: Deploy Frontend to Production 
         pool: 
-          name: 'Skyline'
-          demands:
-          - agent.name -equals LAPTOP-CJGFCSTM
+          environment: skyline
         steps:
           - script: 
               cd "D:\SkyLine\web"
