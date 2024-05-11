@@ -9,11 +9,14 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
-import { TextField } from '@mui/material';
+import { Stack, TextField } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { useState } from 'react';
-import { DatePicker } from '@mui/lab';
-
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -28,10 +31,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     const [nom, setCompany] = useState('');
     const [vdepart, setVdepart] = useState('');
     const [vdestination, setVdeset] = useState('');
-    const [datedepart, setDdepart] = useState({});
-    const [datedestination, setDdest] = useState('');
+    const [datedepart, setDdepart] = useState(null);
+    const [datedestination, setDdest] = useState(null);
     const [status, setStatus] = useState('');
     const [prix, setPrix] = useState('');
+   
     const handleClickOpen = () => {
       setOpen(true);
     };
@@ -156,22 +160,68 @@ const Transition = React.forwardRef(function Transition(props, ref) {
               </Grid>
             </Grid>
             <Divider />
-            <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
-              <Grid item>
-                <Typography variant="body1">D depart:</Typography>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer
+                  components={[
+                  'DatePicker',
+                  ]}
+                  
+                  
+              >
+              <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
+                <Grid item>
+                  <Typography variant="body1">Departure date:</Typography>
+                
+                <Grid item>
+                  
+                    <DemoItem  valueType="date" >
+                        <DatePicker 
+                        
+                          slotProps={{
+                            
+                            openPickerButton: { color: 'primary' },
+                            textField: {
+                              focused: true,
+                              color: 'primary',
+                            },
+                          }}
+                
+                        minDate={dayjs()} value={datedepart} onChange={(newValue) => setDdepart(newValue)}/>
+                        
+                    </DemoItem>
+                    
+                    
+                </Grid></Grid>
               </Grid>
-              <Grid item>
-                <DatePicker/>
+              <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
+                <Grid item>
+                  <Typography variant="body1">Arrival date:</Typography>
+                
+                <Grid item>
+                  
+                    <DemoItem valueType="date" >
+                        <DatePicker 
+                        
+                          slotProps={{
+                            
+                            openPickerButton: { color: 'primary' },
+                            textField: {
+                              focused: true,
+                              color: 'primary',
+                            },
+                          }}
+                
+                        minDate={dayjs()} value={datedestination} onChange={(newValue) => setDdest(newValue)}/>
+                        
+                    </DemoItem>
+                    
+                    
+                </Grid></Grid>
               </Grid>
-            </Grid>
-            <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
-              <Grid item>
-                <Typography variant="body1">D dest:</Typography>
-              </Grid>
-              <Grid item>
-              <DatePicker/>
-              </Grid>
-            </Grid>
+                       
+              </DemoContainer>
+          </LocalizationProvider>
+                            
             
             <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
               <Grid item>
