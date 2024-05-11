@@ -1,0 +1,79 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+stages:
+  - stage: Build
+    displayName: Build Stage
+    jobs:
+      - job: FrontendBuild
+        displayName: Build Frontend React
+        pool:
+          vmImage: ubuntu-latest
+
+        steps:
+          - script: 
+              cd web
+              npm install
+              npm run build
+            displayName: 'Build Frontend'
+      - job: BackendBuild
+        displayName: Build Backend Spring Boot
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - script: 
+              cd backend
+              ./mvnw clean package -DskiTests
+            displayName: 'Build Backend'
+      
+        
+  - stage: Test
+    displayName: Test Stage
+    jobs:
+      - job: FrontendTests
+        displayName: Run Frontend Tests
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - script:
+              cd web
+              npm install
+              npm run test
+            displayName: 'Run Frontend Tests'
+      - job: BackendTests
+        displayName: Run Backend Tests
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - script:
+              cd backend
+              ./mvnw clean test
+            displayName: 'Run Backend Tests'
+      
+  - stage: Desploy
+    displayName: Deploy Stage
+    jobs:
+      - job: DeployBackend
+        displayName: Deploy Backend to Production
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - script: 
+              cd backend
+              ./mvnw clean package -DskipTests
+      - job: DeployFrontend
+        displayName: Deploy Frontend to Production 
+        pool: 
+          vmImage: 'ubuntu-latest'
+        steps:
+          - script: 
+              cd web
+              npm install
+              nom run build
+
+
