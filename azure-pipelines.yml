@@ -13,7 +13,9 @@ stages:
       - job: FrontendBuild
         displayName: Build Frontend React
         pool:
-          vmImage: ubuntu-latest
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
 
         steps:
           - script: 
@@ -24,7 +26,10 @@ stages:
       - job: BackendBuild
         displayName: Build Backend Spring Boot
         pool:
-          vmImage: ubuntu-latest
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
+
         steps:
           - script: 
               cd backend
@@ -48,7 +53,9 @@ stages:
       - job: BackendTests
         displayName: Run Backend Tests
         pool:
-          vmImage: 'ubuntu-latest'
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
         steps:
           - script:
               cd backend
@@ -61,7 +68,9 @@ stages:
       - job: DeployBackend
         displayName: Deploy Backend to Production
         pool:
-          vmImage: 'ubuntu-latest'
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
         steps:
           - script: 
               cd backend
@@ -69,7 +78,9 @@ stages:
       - job: DeployFrontend
         displayName: Deploy Frontend to Production 
         pool: 
-          vmImage: 'ubuntu-latest'
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
         steps:
           - script: 
               cd web
