@@ -32,7 +32,7 @@ function AppRouter() {
   const [client, setClient] = React.useState(null);
   const [flight, setFlight] = React.useState(null);
   const location = useLocation();
-  const hideNavbar = location.pathname === '/signin' || location.pathname === '/' || location.pathname === '/reservationprocess' || location.pathname === '/sidebar' ;
+  const hideNavbar = location.pathname === '/signin' ||location.pathname === '/admin' || location.pathname === '/' || location.pathname === '/reservationprocess' || location.pathname === '/sidebar' ;
 
   return (
     <>
