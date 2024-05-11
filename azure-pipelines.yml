@@ -18,9 +18,6 @@ stages:
           - agent.name -equals LAPTOP-CJGFCSTM
 
         steps:
-          - powershell: |
-              git config --global http.sslCAInfo "D:\Program Files\Git\usr\ssl\certs\ca-bundle.crt"
-            displayName: 'Set Git SSL Certificate Path'
           - script: 
               cd web
               npm install
@@ -33,10 +30,7 @@ stages:
           demands:
           - agent.name -equals LAPTOP-CJGFCSTM
 
-        steps:
-          - powershell: |
-              git config --global http.sslCAInfo "D:\Program Files\Git\usr\ssl\certs\ca-bundle.crt"
-            displayName: 'Set Git SSL Certificate Path'        
+        steps:       
           - script: 
               cd backend
               ./mvnw clean package -DskiTests
@@ -50,10 +44,7 @@ stages:
         displayName: Run Frontend Tests
         pool:
           vmImage: 'ubuntu-latest'
-        steps:
-          - powershell: |
-              git config --global http.sslCAInfo "D:\Program Files\Git\usr\ssl\certs\ca-bundle.crt"
-            displayName: 'Set Git SSL Certificate Path'        
+        steps:    
           - script:
               cd web
               npm install
@@ -65,10 +56,7 @@ stages:
           name: 'Skyline'
           demands:
           - agent.name -equals LAPTOP-CJGFCSTM
-        steps:
-          - powershell: |
-              git config --global http.sslCAInfo "D:\Program Files\Git\usr\ssl\certs\ca-bundle.crt"
-            displayName: 'Set Git SSL Certificate Path'        
+        steps:     
           - script:
               cd backend
               ./mvnw clean test
@@ -84,9 +72,6 @@ stages:
           demands:
           - agent.name -equals LAPTOP-CJGFCSTM
         steps:
-          - powershell: |
-              git config --global http.sslCAInfo "D:\Program Files\Git\usr\ssl\certs\ca-bundle.crt"
-            displayName: 'Set Git SSL Certificate Path'        
           - script: 
               cd backend
               ./mvnw clean package -DskipTests
@@ -97,9 +82,6 @@ stages:
           demands:
           - agent.name -equals LAPTOP-CJGFCSTM
         steps:
-          - powershell: |
-              git config --global http.sslCAInfo "D:\Program Files\Git\usr\ssl\certs\ca-bundle.crt"
-            displayName: 'Set Git SSL Certificate Path'        
           - script: 
               cd web
               npm install
