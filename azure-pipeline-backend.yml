@@ -23,3 +23,8 @@ steps:
     ./mvnw spring-boot:run
   displayName: 'Start Application'
   workingDirectory: 'backend'
+  
+- script: |
+    ./mvnw spring-boot:stop
+  displayName: 'Stop Application'
+  workingDirectory: 'backend'
