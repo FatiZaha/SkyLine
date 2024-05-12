@@ -20,7 +20,8 @@ steps:
   workingDirectory: 'backend'
 
 - script: |
-    ./mvnw spring-boot:run
+    ./mvnw spring-boot:run &
+      sleep 300
   displayName: 'Start Application'
   workingDirectory: 'backend'
   
