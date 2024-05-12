@@ -13,16 +13,6 @@ pool:
 
 steps:
 - checkout: self
-- task: JavaToolInstaller@0
-  inputs:
-    versionSpec: '21'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'LocalDirectory'
-    jdkFile: 'D:\agent\jdk-21_windows-x64_bin.zip'
-    jdkDestinationDirectory: 'backend'
-    cleanDestinationDirectory: true
-  displayName: 'Install JDK'
-    
 
 
 - script: |
