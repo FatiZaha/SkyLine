@@ -6,7 +6,6 @@
 trigger:
 - main
 
-
 stages:
   - stage: Build
     displayName: Build Stage
@@ -14,8 +13,9 @@ stages:
       - job: FrontendBuild
         displayName: Build Frontend React
         pool:
-          name: 'Azure Pipelines'
-
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
 
         steps:
           - script:
@@ -26,12 +26,14 @@ stages:
       - job: BackendBuild
         displayName: Build Backend Spring Boot
         pool:
-          name: 'Azure Pipelines'
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
 
         steps:       
           - script: 
               cd "D:\SkyLine\backend"
-              ./mvnw clean package -DskipTests
+              mvn clean package -DskipTests
             displayName: 'Build Backend'
       
         
@@ -41,7 +43,9 @@ stages:
       - job: FrontendTests
         displayName: Run Frontend Tests
         pool:
-          name: 'Azure Pipelines'
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
         steps:    
           - script:
               cd "D:\SkyLine\web"
@@ -51,11 +55,13 @@ stages:
       - job: BackendTests
         displayName: Run Backend Tests
         pool:
-          name: 'Azure Pipelines'
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
         steps:     
           - script:
               cd "D:\SkyLine\backend"
-              ./mvnw clean test
+              mvn clean test
             displayName: 'Run Backend Tests'
       
   - stage: Deploy
@@ -64,15 +70,19 @@ stages:
       - job: DeployBackend
         displayName: Deploy Backend to Production
         pool:
-          name: 'Azure Pipelines'
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
         steps:
           - script: 
               cd "D:\SkyLine\backend"
-              ./mvnw clean package -DskipTests
+              mvn clean package -DskipTests
       - job: DeployFrontend
         displayName: Deploy Frontend to Production 
         pool: 
-          name: 'Azure Pipelines'
+          name: 'Skyline'
+          demands:
+          - agent.name -equals LAPTOP-CJGFCSTM
         steps:
           - script: 
               cd "D:\SkyLine\web"
