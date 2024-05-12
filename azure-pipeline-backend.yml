@@ -20,7 +20,7 @@ steps:
   workingDirectory: 'backend'
 
 - script: |
-    ./mvnw deploy:deploy
+    ./mvnw spring-boot:run &
   displayName: 'Deploy Application'
   workingDirectory: 'backend'
   
