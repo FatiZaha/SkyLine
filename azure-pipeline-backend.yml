@@ -13,17 +13,13 @@ pool:
 
 steps:
 - checkout: self
-
-- task: JavaToolInstaller@0
+- task: adopt-openjdk-installer@1
   inputs:
-    versionSpec: '21.x'
+    majorVersion: '11'
+    useLatestOption: 'latest'
     jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'LocalDirectory'
-    jdkFile: 'D:\agent\jdk-21_windows-x64_bin.exe'
-    jdkDestinationDirectory: 'backend'
-    cleanDestinationDirectory: false
-    createExtractDirectory: false
-  displayName: 'Install JDK'
+    jvmOption: 'hotspot'
+
 
 - script: |
     ./mvnw clean install
