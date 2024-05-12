@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
@@ -15,16 +10,15 @@ steps:
 - checkout: self
 
 
+
 - script: |
     ./mvnw clean install
   displayName: 'Build Application'
-  workingDirectory: 'backend'
 
 - script: |
     ./mvnw test
   displayName: 'Run Tests'
-  workingDirectory: 'backend'
 
 - script: |
     ./mvnw spring-boot:run
-  displayName: 'Start Application'
+  displayName: 'Start Application'
