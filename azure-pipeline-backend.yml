@@ -13,12 +13,16 @@ pool:
 
 steps:
 - checkout: self
-- task: adopt-openjdk-installer@1
+- task: JavaToolInstaller@0
   inputs:
-    majorVersion: '11'
-    useLatestOption: 'latest'
+    versionSpec: '21'
     jdkArchitectureOption: 'x64'
-    jvmOption: 'hotspot'
+    jdkSourceOption: 'LocalDirectory'
+    jdkFile: 'jdk-21_windows-x64_bin.zip'
+    jdkDestinationDirectory: 'backend'
+    cleanDestinationDirectory: true
+  displayName: 'Install JDK'
+    
 
 
 - script: |
