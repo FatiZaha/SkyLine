@@ -29,7 +29,10 @@ steps:
     command: 'custom'
     workingDir: 'web'
     customCommand: 'run build'
-    
+#- script: |
+#    npm test
+#  displayName: 'Test React'
+#  workingDirectory: 'web'    
 - script: |
     npm install -g serve
     serve -s build -l 3000
