@@ -18,8 +18,11 @@ steps:
   inputs:
     versionSpec: '21.x'
     jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
+    jdkSourceOption: 'LocalDirectory'
+    jdkFile: 'D:\Program Files\JAVA\jdk-21'
     jdkDestinationDirectory: 'backend'
+    cleanDestinationDirectory: false
+    createExtractDirectory: false
   displayName: 'Install JDK'
 
 - script: |
