@@ -27,7 +27,8 @@ steps:
 
 - script: |
     ./mvnw spring-boot:run &
-    sleep 60
-    taskkill /IM java.exe /F
+    timeout /t 60
+    taskkill /im java.exe /f
   displayName: 'Start and Stop Application'
+
 
