@@ -19,7 +19,7 @@ steps:
     versionSpec: '21.x'
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'LocalDirectory'
-    jdkFile: 'D:\Program Files\JAVA\jdk-21'
+    jdkFile: 'D:\agent\jdk-21_windows-x64_bin.exe'
     jdkDestinationDirectory: 'backend'
     cleanDestinationDirectory: false
     createExtractDirectory: false
