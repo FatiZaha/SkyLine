@@ -26,6 +26,8 @@ steps:
   workingDirectory: 'backend'
 
 - script: |
-    ./mvnw spring-boot:run
-  displayName: 'Start Application'
-  workingDirectory: 'backend'
+    ./mvnw spring-boot:run &
+    sleep 60
+    pkill -f "java -jar"
+  displayName: 'Start and Stop Application'
+
