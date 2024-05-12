@@ -10,10 +10,6 @@ pool:
   name: 'Skyline'
   demands:
   - agent.name -equals LAPTOP-CJGFCSTM
-variables:
-  buildDirectory: 'build'
-  productionDirectory: 'D:\Skyline\web'
-
 
 steps:
 - checkout: self
@@ -21,18 +17,24 @@ steps:
   inputs:
     versionSpec: '20.x'
   displayName: 'Install Node.js'
+- task: Npm@1
+  displayName: 'Install React'
+  inputs:
+    command: 'install'
+    workingDir: 'web'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'nun Frontend build'
-  workingDirectory: $(Build.SourcesDirectory)
-- script:
-    npm test
-  displayName: 'Run Frontend Tests'
-- script: 
-    robocopy $(Build.SourcesDirectory)\$(buildDirectory) $(productionDirectory) /MIR
-    if %ERRORLEVEL% LEQ 1 (exit 0) else (exit %ERRORLEVEL%)
-  displayName: 'Déployer l application React Springboot dans le répertoire de production'
-
-
+- task: Npm@1
+  displayName: 'Build React'
+  inputs:
+    command: 'custom'
+    workingDir: 'web'
+    customCommand: 'run build'
+- task: CopyFiles@2
+  inputs:
+    Contents: 'web/**'
+    TargetFolder: $(Build.ArtifactStagingDirectory)
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'release'
+    publishLocation: 'Container'
