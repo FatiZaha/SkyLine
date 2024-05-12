@@ -1,0 +1,38 @@
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- main
+
+pool:
+  name: 'Skyline'
+  demands:
+  - agent.name -equals LAPTOP-CJGFCSTM
+variables:
+  buildDirectory: 'build'
+  productionDirectory: 'D:\Skyline\web'
+
+
+steps:
+- checkout: self
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'nun Frontend build'
+  workingDirectory: $(Build.SourcesDirectory)
+- script:
+    npm run test
+  displayName: 'Run Frontend Tests'
+- script: 
+    robocopy $(Build.SourcesDirectory)\$(buildDirectory) $(productionDirectory) /MIR
+    if %ERRORLEVEL% LEQ 1 (exit 0) else (exit %ERRORLEVEL%)
+  displayName: 'Déployer l application React Springboot dans le répertoire de production'
+
+
