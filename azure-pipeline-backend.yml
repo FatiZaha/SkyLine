@@ -28,6 +28,6 @@ steps:
 - script: |
     ./mvnw spring-boot:run &
     sleep 60
-    pkill -f "java -jar"
+    taskkill /IM java.exe /F
   displayName: 'Start and Stop Application'
 
