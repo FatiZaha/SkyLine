@@ -1,0 +1,37 @@
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- main
+
+pool:
+  name: 'Skyline'
+  demands:
+  - agent.name -equals LAPTOP-CJGFCSTM
+
+steps:
+- checkout: self
+- task: NodeTool@0
+  inputs:
+    versionSpec: '20.x'
+  displayName: 'Install Node.js'
+- task: Npm@1
+  displayName: 'Install React'
+  inputs:
+    command: 'install'
+    workingDir: 'web'
+
+- task: Npm@1
+  displayName: 'Build React'
+  inputs:
+    command: 'custom'
+    workingDir: 'web'
+    customCommand: 'run build'
+    
+- script: |
+    npm install -g serve
+    serve -s build -l 3000
+  displayName: 'Deploy React'
+  workingDirectory: 'web'
