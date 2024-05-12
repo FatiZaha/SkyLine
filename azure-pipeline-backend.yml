@@ -28,7 +28,3 @@ steps:
 - script: |
     ./mvnw spring-boot:run
   displayName: 'Start Application'
-
-- script: |
-    ./mvnw spring-boot:stop
-  displayName: 'Stop Application'
