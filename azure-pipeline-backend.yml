@@ -26,9 +26,9 @@ steps:
   workingDirectory: 'backend'
 
 - script: |
-    ./mvnw spring-boot:run &
-    timeout /t 60
-    taskkill /im java.exe /f
-  displayName: 'Start and Stop Application'
+    ./mvnw spring-boot:run
+  displayName: 'Start Application'
 
-
+- script: |
+    ./mvnw spring-boot:stop
+  displayName: 'Stop Application'
