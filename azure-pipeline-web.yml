@@ -29,12 +29,12 @@ steps:
     command: 'custom'
     workingDir: 'web'
     customCommand: 'run build'
-- task: CopyFiles@2
-  inputs:
-    Contents: 'web/**'
-    TargetFolder: $(Build.ArtifactStagingDirectory)
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'release'
-    publishLocation: 'Container'
+
+- script: |
+    npm test
+  displayName: 'Test React'
+    
+- script: |
+    npm install -g serve
+    serve -s build -l 3000
+  displayName: 'Deploy React'
