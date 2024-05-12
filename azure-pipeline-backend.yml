@@ -9,16 +9,17 @@ pool:
 steps:
 - checkout: self
 
-
-
 - script: |
     ./mvnw clean install
   displayName: 'Build Application'
+  workingDirectory: 'backend'
 
 - script: |
     ./mvnw test
   displayName: 'Run Tests'
+  workingDirectory: 'backend'
 
 - script: |
     ./mvnw spring-boot:run
   displayName: 'Start Application'
+  workingDirectory: 'backend'
