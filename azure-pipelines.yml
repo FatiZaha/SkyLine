@@ -19,7 +19,7 @@ stages:
 
         steps:
           - script:
-              cd "D:\SkyLine\web"
+              cd D:\SkyLine\web
               npm install
               npm run build
             displayName: 'Build Frontend'
@@ -32,7 +32,7 @@ stages:
 
         steps:       
           - script: 
-              cd "D:\SkyLine\backend"
+              cd D:\SkyLine\backend
               mvn clean package -DskipTests
             displayName: 'Build Backend'
       
@@ -48,7 +48,7 @@ stages:
           - agent.name -equals LAPTOP-CJGFCSTM
         steps:    
           - script:
-              cd "D:\SkyLine\web"
+              cd D:\SkyLine\web
               npm install
               npm run test
             displayName: 'Run Frontend Tests'
@@ -60,7 +60,7 @@ stages:
           - agent.name -equals LAPTOP-CJGFCSTM
         steps:     
           - script:
-              cd "D:\SkyLine\backend"
+              cd D:\SkyLine\backend
               mvn clean test
             displayName: 'Run Backend Tests'
       
@@ -75,7 +75,7 @@ stages:
           - agent.name -equals LAPTOP-CJGFCSTM
         steps:
           - script: 
-              cd "D:\SkyLine\backend"
+              cd D:\SkyLine\backend
               mvn clean package -DskipTests
       - job: DeployFrontend
         displayName: Deploy Frontend to Production 
@@ -85,6 +85,6 @@ stages:
           - agent.name -equals LAPTOP-CJGFCSTM
         steps:
           - script: 
-              cd "D:\SkyLine\web"
+              cd D:\SkyLine\web
               npm install
               npm run build
