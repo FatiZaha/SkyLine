@@ -20,7 +20,7 @@ steps:
   workingDirectory: 'backend'
 
 - script: |
-    ./mvnw deploy
+    ./mvnw deploy:deploy
   displayName: 'Deploy Application'
   workingDirectory: 'backend'
   
