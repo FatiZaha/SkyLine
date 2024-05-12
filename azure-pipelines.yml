@@ -20,7 +20,7 @@ stages:
         steps:
           - script:
               git clone https://github.com/FatiZaha/SkyLine.git
-              cd web
+              cd SkyLine/web
               npm install
               npm run build
             displayName: 'Build Frontend'
@@ -34,7 +34,7 @@ stages:
         steps:       
           - script: 
               git clone https://github.com/FatiZaha/SkyLine.git
-              cd backend
+              cd SkyLine/backend
               mvn clean package -DskipTests
             displayName: 'Build Backend'
       
