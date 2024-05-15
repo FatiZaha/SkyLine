@@ -20,7 +20,7 @@ steps:
   workingDirectory: 'backend'
 
 - script: |
-    mvn spring-boot:run &
+    docker run -p 8080:8080 backend_image
   displayName: 'Deploy Application'
   workingDirectory: 'backend'
   
