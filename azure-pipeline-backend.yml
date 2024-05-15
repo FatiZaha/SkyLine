@@ -20,7 +20,7 @@ steps:
   workingDirectory: 'backend'
 
 - script: |
-    docker run -p 8080:8080 backend_image
+    mvn clean package
   displayName: 'Deploy Application'
   workingDirectory: 'backend'
   
