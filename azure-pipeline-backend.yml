@@ -20,7 +20,7 @@ steps:
   workingDirectory: 'backend'
 
 - script: |
-    java -jar backend-0.0.1-SNAPSHOT.jar
+    java -jar backend-0.0.1-SNAPSHOT.jar > output.log &
   displayName: 'Deploy Application'
   workingDirectory: 'backend/target'
   
