@@ -33,6 +33,7 @@ public class FlightsActivity extends AppCompatActivity {
         flightPrices.add("$1200");
         flightPrices.add("$300");
 
+        
         // Get the flight card IDs
         int[] flightCardIds = {R.id.flight1};
 

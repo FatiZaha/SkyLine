@@ -39,10 +39,10 @@ public class Client {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
-    private List<Reservation> reservations = new ArrayList<>();
+    private List<Reservation> reservations = new ArrayList<Reservation>();
 
     @ElementCollection
-    private List<AirlinesDto> fav=new ArrayList<>();
+    private List<AirlinesDto> fav=new ArrayList<AirlinesDto>();
 
     public Client(String nom, String prenom, String email, String tel, String password) {
 

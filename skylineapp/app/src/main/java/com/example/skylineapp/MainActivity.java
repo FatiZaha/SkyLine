@@ -25,16 +25,15 @@ public class MainActivity extends AppCompatActivity {
         viewFlightsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Action à effectuer lors du clic sur le bouton "View Available Flights"
-                Toast.makeText(MainActivity.this, "Button Clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, FlightsActivity.class);
+                startActivity(intent);
             }
         });
-
         homeButton = findViewById(R.id.home_button);
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Créer un Intent pour démarrer MainActivity
+
                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         cartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Créer un Intent pour démarrer la nouvelle activité représentant la page de réservation
+
                 Intent intent = new Intent(MainActivity.this, ReservationActivity.class);
                 startActivity(intent);
             }
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Créer un Intent pour démarrer la nouvelle activité représentant la page de profil
+
                 Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(intent);
             }
