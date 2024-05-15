@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class AdminService {
-    @Autowired
+
     private AdminRepository adminRepository;
 
     public Optional<Admin> getAdmin(String login, String password){
