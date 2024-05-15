@@ -5,73 +5,50 @@ import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FlightsActivity extends AppCompatActivity {
+
+    private List<String> flightNames;
+    private List<String> flightPrices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flights);
 
-        CardView flightCard1 = findViewById(R.id.flight1);
-        CardView flightCard2 = findViewById(R.id.flight2);
-        CardView flightCard3 = findViewById(R.id.flight3);
-        CardView flightCard4 = findViewById(R.id.flight4);
-        CardView flightCard5 = findViewById(R.id.flight5);
+        // Initialize flight names and prices
+        flightNames = new ArrayList<>();
+        flightNames.add("Flight from London to Marrakech");
+        flightNames.add("Flight from Paris to New York");
+        flightNames.add("Flight from Rome to Barcelona");
+        flightNames.add("Flight from Tokyo to Sydney");
+        flightNames.add("Flight from New York to Los Angeles");
 
-        flightCard1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Gérer l'événement de clic pour le vol 1
-                Intent intent = new Intent(FlightsActivity.this, ReservationActivity.class);
-                intent.putExtra("flightName", "Flight from London to Marrakech");
-                intent.putExtra("flightPrice", "$500");
-                startActivity(intent);
-            }
-        });
+        flightPrices = new ArrayList<>();
+        flightPrices.add("$500");
+        flightPrices.add("$800");
+        flightPrices.add("$400");
+        flightPrices.add("$1200");
+        flightPrices.add("$300");
 
-        flightCard2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Gérer l'événement de clic pour le vol 2
-                Intent intent = new Intent(FlightsActivity.this, ReservationActivity.class);
-                intent.putExtra("flightName", "Flight from Paris to New York");
-                intent.putExtra("flightPrice", "$800");
-                startActivity(intent);
-            }
-        });
+        // Get the flight card IDs
+        int[] flightCardIds = {R.id.flight1, R.id.flight2, R.id.flight3, R.id.flight4, R.id.flight5};
 
-        flightCard3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Gérer l'événement de clic pour le vol 3
-                Intent intent = new Intent(FlightsActivity.this, ReservationActivity.class);
-                intent.putExtra("flightName", "Flight from Rome to Barcelona");
-                intent.putExtra("flightPrice", "$400");
-                startActivity(intent);
-            }
-        });
-
-        flightCard4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Gérer l'événement de clic pour le vol 4
-                Intent intent = new Intent(FlightsActivity.this, ReservationActivity.class);
-                intent.putExtra("flightName", "Flight from Tokyo to Sydney");
-                intent.putExtra("flightPrice", "$1200");
-                startActivity(intent);
-            }
-        });
-
-        flightCard5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Gérer l'événement de clic pour le vol 5
-                Intent intent = new Intent(FlightsActivity.this, ReservationActivity.class);
-                intent.putExtra("flightName", "Flight from New York to Los Angeles");
-                intent.putExtra("flightPrice", "$300");
-                startActivity(intent);
-            }
-        });
+        // Loop through the flight cards
+        for (int i = 0; i < flightCardIds.length; i++) {
+            final int flightIndex = i;
+            CardView flightCard = findViewById(flightCardIds[i]);
+            flightCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(FlightsActivity.this, ReservationActivity.class);
+                    intent.putExtra("flightName", flightNames.get(flightIndex));
+                    intent.putExtra("flightPrice", flightPrices.get(flightIndex));
+                    startActivity(intent);
+                }
+            });
+        }
     }
 }

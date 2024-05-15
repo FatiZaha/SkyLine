@@ -1,10 +1,4 @@
 services:
-  frontend:
-    image: frontend_image
-    ports:
-      - 3000:3000
-    networks:
-      - react-spring
 
   backend-app:
     image: backend_image
@@ -16,10 +10,13 @@ services:
       - react-spring
       - spring-mysql
     depends_on:
-      - db
+
+      db:
+        condition: service_healthy
+
 
   db:
-    image: mysql:latest
+    image: mysql:8.3.0
     ports:
       - 3306:3306
     environment:
@@ -27,19 +24,33 @@ services:
       - MYSQL_ROOT_PASSWORD=skyline
     restart: always
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root -p skyline"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
+      test: ["CMD", "mysqladmin","ping","-h","127.0.0.1","--silent"]
+      interval: 3s
+      retries: 5
+      start_period: 30s
     volumes:
       - my-db-volume:/var/lib/mysql
     networks:
       - spring-mysql
 
+    
+  frontend:
+    image: frontend_image
+    ports:
+      - 3000:3000
+    networks:
+      - react-spring
+    depends_on:
+      - backend-app
+    expose:
+      - 3306
+      - 33060
+
+
 volumes:
-  my-db-volume:
+  my-db-volume: {}
 
 networks:
   react-spring: {}
   spring-mysql: {}
-  
+
