@@ -95,9 +95,10 @@ export default function PermanentDrawerLeft() {
   };
   const reservationsTableRef = useRef();
   
-  const handleExport = () => {
+  const handleExportClick = () => {
     if (reservationsTableRef && reservationsTableRef.current) {
       reservationsTableRef.current.handleExport();
+      
     }
   };
 
@@ -109,11 +110,10 @@ export default function PermanentDrawerLeft() {
         <div style={{ display: 'block'}}>
         
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Button  style={{ background: '#158a88', color: '#fff', marginRight: '10px' }} onClick={handleExport}>Exporter</Button>
-            
+            <Button  style={{ background: '#158a88', color: '#fff', marginRight: '10px' }} onClick={handleExportClick}>Exporter</Button>
           </div>
           <div style={{ marginTop:'20px' }}>
-          <ReservationsTable/>
+          <ReservationsTable ref={reservationsTableRef} />
         </div>
       </div>
       );

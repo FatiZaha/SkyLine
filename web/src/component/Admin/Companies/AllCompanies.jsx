@@ -61,11 +61,11 @@ export default function AllCompanies() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Logo</TableCell>
-              <TableCell>Nom</TableCell>
-              <TableCell>Adresse</TableCell>
-              <TableCell>Tel</TableCell>
-              <TableCell>Action</TableCell>
+            <TableCell>Logo</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Address</TableCell>
+            <TableCell>Phone</TableCell>
+            <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
