@@ -34,7 +34,7 @@ public class FlightsActivity extends AppCompatActivity {
         flightPrices.add("$300");
 
         // Get the flight card IDs
-        int[] flightCardIds = {R.id.flight1, R.id.flight2, R.id.flight3, R.id.flight4, R.id.flight5};
+        int[] flightCardIds = {R.id.flight1};
 
         // Loop through the flight cards
         for (int i = 0; i < flightCardIds.length; i++) {

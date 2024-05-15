@@ -73,15 +73,15 @@ export default function FlightTable() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Company</TableCell>
-              <TableCell>Ville départ</TableCell>
-              <TableCell>Ville destination</TableCell>
-              <TableCell>Date départ</TableCell>
-              <TableCell>Date arrivée</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>Business Class</TableCell>
-              <TableCell>Eco Class</TableCell>
-              <TableCell>Action</TableCell>
+            <TableCell>Company</TableCell>
+            <TableCell>Departure City</TableCell>
+            <TableCell>Destination City</TableCell>
+            <TableCell>Departure Date</TableCell>
+            <TableCell>Arrival Date</TableCell>
+            <TableCell>Status</TableCell>
+            <TableCell>Business Class</TableCell>
+            <TableCell>Economy Class</TableCell>
+            <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

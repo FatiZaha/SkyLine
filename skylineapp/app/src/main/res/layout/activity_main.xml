@@ -106,55 +106,5 @@
             android:layout_width="match_parent"
             android:layout_height="24dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="120dp"
-                android:layout_weight="1"
-                android:scaleType="centerCrop"
-                android:src=""
-                android:padding="4dp" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="120dp"
-                android:layout_marginLeft="16dp"
-                android:layout_weight="1"
-                android:scaleType="centerCrop"
-                android:src=""
-                android:padding="4dp" />
-
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="24dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="120dp"
-                android:layout_weight="1"
-                android:scaleType="centerCrop"
-                android:src=""
-                android:padding="4dp" />
-
-            <ImageView
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_marginLeft="16dp"
-            android:layout_weight="1"
-            android:scaleType="centerCrop"
-            android:src=""
-            android:padding="4dp" />
-
-        </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>
