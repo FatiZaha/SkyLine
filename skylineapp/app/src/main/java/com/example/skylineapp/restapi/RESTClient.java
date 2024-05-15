@@ -42,7 +42,7 @@ public class RESTClient {
         // Create a request
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), requestBody.toString());
         Request request = new Request.Builder()
-                .url(BASE_URL + "/register")
+                .url(BASE_URL + "/inscription")
                 .post(body)
                 .build();
 
@@ -61,17 +61,14 @@ public class RESTClient {
         }
     }
 
-    public Client loginUser(String username, String password) throws JSONException {
+    public Object loginUser(String username, String password) throws JSONException {
         // Create a JSON object for the user login data
-        JSONObject requestBody = new JSONObject();
-        requestBody.put("username", username);
-        requestBody.put("password", password);
+
 
         // Create a request
-        RequestBody body = RequestBody.create(MediaType.parse("application/json"), requestBody.toString());
+        
         Request request = new Request.Builder()
-                .url(BASE_URL + "/login")
-                .post(body)
+                .url(BASE_URL + "/connexion?email="+username+"&password="+password)
                 .build();
 
         try {
@@ -84,7 +81,8 @@ public class RESTClient {
 
                 // Parse the JSON response using Gson
                 Gson gson = new Gson();
-                Type clientType = new TypeToken<Client>() {}.getType();
+                Type clientType = new TypeToken<Client>() {
+                }.getType();
                 Client client_info = gson.fromJson(responseData, clientType);
                 return client_info;
             } else {
@@ -93,6 +91,7 @@ public class RESTClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
 
