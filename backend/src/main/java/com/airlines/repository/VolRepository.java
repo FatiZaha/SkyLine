@@ -19,7 +19,7 @@ public interface VolRepository extends JpaRepository<Vol, Long> {
 
     @Modifying
     @Query("UPDATE Vol SET dateDepart = :dateDepart, dateArrive = :dateArrive, status = :status,prixClass1 =:prixClass1, prixClass2 =:prixClass2 WHERE codeVol = :codeVol")
-    void updateVolByCodeVol(
+    void updateVol(
             @Param("codeVol") Long codeVol,
             @Param("dateDepart") Date dateDepart,
             @Param("dateArrive") Date dateArrive,
