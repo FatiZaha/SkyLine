@@ -1,0 +1,26 @@
+trigger:
+- main
+
+pool:
+  name: 'Skyline'
+  demands:
+  - agent.name -equals LAPTOP-CJGFCSTM
+
+steps:
+- checkout: self
+
+- script: |
+    ./mvnw clean install
+  displayName: 'Build Application'
+  workingDirectory: 'backend'
+
+- script: |
+    ./mvnw test
+  displayName: 'Run Tests'
+  workingDirectory: 'backend'
+
+- script: |
+    mvn package
+  displayName: 'Deploy Application'
+  workingDirectory: 'backend'
+  
