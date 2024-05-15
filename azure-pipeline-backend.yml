@@ -22,5 +22,5 @@ steps:
 - script: |
     mvn package
   displayName: 'Deploy Application'
-  workingDirectory: 'backend/target'
+  workingDirectory: 'backend'
   
