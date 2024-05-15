@@ -1,4 +1,5 @@
 services:
+
   backend-app:
     image: backend_image
     ports:
@@ -9,8 +10,10 @@ services:
       - react-spring
       - spring-mysql
     depends_on:
+
       db:
         condition: service_healthy
+
 
   db:
     image: mysql:8.3.0
@@ -29,6 +32,7 @@ services:
       - my-db-volume:/var/lib/mysql
     networks:
       - spring-mysql
+
     
   frontend:
     image: frontend_image
@@ -49,3 +53,4 @@ volumes:
 networks:
   react-spring: {}
   spring-mysql: {}
+
