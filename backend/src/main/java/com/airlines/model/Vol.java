@@ -35,7 +35,7 @@ public class Vol {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vol")
-    private List<Reservation> reservations = new ArrayList<>();
+    private List<Reservation> reservations = new ArrayList<Reservation>();
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "aeroport_depart_id")

@@ -48,11 +48,11 @@ public class ClientsController {
 
     }
     @GetMapping("/connexion")
-    public Optional<Client> connexionClient(@RequestParam("email") String email,@RequestParam("password") String password){
+    public Object connexionClient(@RequestParam("email") String email,@RequestParam("password") String password){
         return clientService.Connexion(email,password);
     }
     @GetMapping("/clients/{id}")
-    public Optional<Client> oneClient(@PathVariable Long id){
+    public Object oneClient(@PathVariable Long id){
         return clientService.oneClient(id);
     }
     @PostMapping("/inscription")
