@@ -69,7 +69,7 @@ public class RESTClient {
         return null;
     }
 
-    public Object loginUser(String username, String password) throws JSONException {
+    public Client loginUser(String username, String password) throws JSONException {
         // Create a JSON object for the user login data
 
 
