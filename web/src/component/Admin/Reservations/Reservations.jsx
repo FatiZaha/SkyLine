@@ -41,14 +41,16 @@ function ReservationsTable(props, ref) {
 
   useImperativeHandle(ref, () => ({
     handleExport: () => {
-      const csvContent = reservations.map((reservation) => {
+      const csvContent = reservations.reduce((content, reservation) => {
         const formattedDate = formatDate(reservation.dateRes);
         const villeDepart = reservation.vol.aeroportDepart.ville.nom;
         const villeDestination = reservation.vol.aeroportDestination.ville.nom;
         const prixTotal = `${reservation.prixTotal} $`;
+  
+        return `${content}${formattedDate},${villeDepart},${villeDestination},${prixTotal}\n`;
+      }, 'Date,Departure City,Destination City,Price\n');
 
-        return `${formattedDate},${villeDepart},${villeDestination},${prixTotal}`;
-      }).join('\n');
+      console.log('Contenu CSV :', csvContent); // Ajout du console.log
 
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
       const link = document.createElement('a');
@@ -67,10 +69,10 @@ function ReservationsTable(props, ref) {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-          <TableCell align="left">Date</TableCell>
-<TableCell align="left">Departure City</TableCell>
-<TableCell align="left">Destination City</TableCell>
-<TableCell align="left">Price</TableCell>
+            <TableCell align="left">Date</TableCell>
+            <TableCell align="left">Departure City</TableCell>
+            <TableCell align="left">Destination City</TableCell>
+            <TableCell align="left">Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
