@@ -1,19 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_dark">
 
-    <!-- Profile Image -->
+    <!-- Barre de navigation -->
+    <LinearLayout
+        android:id="@+id/navbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dp"
+        android:background="#7A52C0">
+
+        <!-- Bouton Accueil -->
+        <ImageView
+            android:id="@+id/home_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icon_home1"
+            android:padding="8dp" />
+
+        <!-- Bouton Recherche -->
+        <ImageView
+            android:id="@+id/search_button"
+            android:layout_width="0dp"
+            android:layout_height="63dp"
+            android:layout_weight="1"
+            android:src="@drawable/icon_search"
+            android:padding="8dp" />
+
+        <!-- Bouton Panier -->
+        <ImageView
+            android:id="@+id/cart_button"
+            android:layout_width="0dp"
+            android:layout_height="63dp"
+            android:layout_weight="1"
+            android:src="@drawable/icon_cart"
+            android:padding="8dp" />
+
+        <!-- Bouton Profil -->
+        <ImageView
+            android:id="@+id/profile_button"
+            android:layout_width="0dp"
+            android:layout_height="63dp"
+            android:layout_weight="1"
+            android:src="@drawable/icon_profile"
+            android:padding="8dp" />
+
+    </LinearLayout>
+
+    <!-- Image de profil -->
     <ImageView
         android:id="@+id/profile_image"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:src="@drawable/icon_profile"
-        android:layout_marginTop="32dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@id/navbar_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:src="@drawable/icon_profile" />
 
-    <!-- Edit Profile Image Button -->
+    <!-- Bouton Modifier l'image de profil -->
     <Button
         android:id="@+id/edit_profile_image_button"
         android:layout_width="wrap_content"
@@ -23,7 +70,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp" />
 
-    <!-- Name Field -->
+    <!-- Champ Nom -->
     <TextView
         android:id="@+id/name_label"
         android:layout_width="wrap_content"
@@ -38,15 +85,15 @@
         android:id="@+id/name_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter your name"
         android:layout_toEndOf="@id/name_label"
         android:layout_alignBaseline="@id/name_label"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:minHeight="48dp"
+        android:hint="Enter your name"
         android:textColor="@android:color/white" />
 
-    <!-- Email Field -->
+    <!-- Champ Email -->
     <TextView
         android:id="@+id/email_label"
         android:layout_width="wrap_content"
@@ -61,23 +108,24 @@
         android:id="@+id/email_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter your email"
         android:inputType="textEmailAddress"
         android:layout_toEndOf="@id/email_label"
         android:layout_alignBaseline="@id/email_label"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:minHeight="48dp"
+        android:hint="Enter your email"
         android:textColor="@android:color/white" />
 
-    <!-- Save Button -->
+    <!-- Bouton Enregistrer -->
     <Button
         android:id="@+id/save_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save"
         android:layout_below="@id/email_edittext"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp" />
+
+        android:layout_marginTop="32dp"
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>
