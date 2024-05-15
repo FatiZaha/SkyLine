@@ -32,7 +32,7 @@ public class RESTClient {
     }
 
 
-    public void registerUser(String username, String password, String email) throws JSONException {
+    public Client registerUser(String username, String password, String email) throws JSONException {
         // Create a JSON object for the user registration data
         JSONObject requestBody = new JSONObject();
         requestBody.put("username", username);
@@ -52,13 +52,21 @@ public class RESTClient {
 
             // Check the response
             if (response.isSuccessful()) {
-                System.out.println("User registration successful");
+                String responseData = response.body().string();
+
+                // Parse the JSON response using Gson
+                Gson gson = new Gson();
+                Type clientType = new TypeToken<Client>() {
+                }.getType();
+                Client client_info = gson.fromJson(responseData, clientType);
+                return client_info;
             } else {
-                System.out.println("User registration failed with code: " + response.code());
+                return null;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     public Object loginUser(String username, String password) throws JSONException {
@@ -66,7 +74,7 @@ public class RESTClient {
 
 
         // Create a request
-        
+
         Request request = new Request.Builder()
                 .url(BASE_URL + "/connexion?email="+username+"&password="+password)
                 .build();
