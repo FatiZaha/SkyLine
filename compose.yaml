@@ -42,4 +42,4 @@ volumes:
 networks:
   react-spring: {}
   spring-mysql: {}
-  
+
