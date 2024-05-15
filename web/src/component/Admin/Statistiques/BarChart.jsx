@@ -63,30 +63,30 @@ function BarChart() {
       // Titre en haut avec classe CSS
       svg.append('text')
         .attr('class', 'chart-title') // Ajouter la classe CSS
-        .attr('y', 30)
+        .attr('y', 20)
         .attr('x', width / 2 + margin.left)
         .attr('dy', '1em')
         .style('text-anchor', 'middle')
-        .text('Nombre de compagnies par villes ');
+        .text('Number of companies per cities');
 
       // Ajout du nom de l'axe y avec classe CSS
       svg.append('text')
         .attr('class', 'axis-label') // Ajouter la classe CSS
         .attr('transform', 'rotate(-90)')
-        .attr('y', 10)
+        .attr('y', 5)
         .attr('x', -(height / 2))
         .attr('dy', '1em')
         .style('text-anchor', 'middle')
-        .text('Nombre');
+        .text('Number');
 
       // Ajout du nom de l'axe x avec classe CSS
       svg.append('text')
         .attr('class', 'axis-label') // Ajouter la classe CSS
-        .attr('y', height + margin.top + margin.bottom - 10)
+        .attr('y', height + margin.top + margin.bottom - 20)
         .attr('x', width / 2 + margin.left)
         .attr('dy', '1em')
         .style('text-anchor', 'middle')
-        .text('Villes');
+        .text('Cities');
     }
   }, [data]);
 
