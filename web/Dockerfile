@@ -2,11 +2,7 @@ FROM node:14-alpine
 
 WORKDIR /code
 
-COPY package.json package-lock.json /code/
-
-RUN npm install
-
-COPY . .
+COPY . /code/
 
 EXPOSE 3000
 
