@@ -1,109 +1,59 @@
 package com.example.skylineapp.restapi;
 
 import com.example.skylineapp.model.Client;
-import com.google.gson.Gson;
+import com.example.skylineapp.service.ClientService;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-import javax.security.cert.CertificateException;
-import com.google.gson.reflect.TypeToken;
-import okhttp3.MediaType;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import retrofit2.Response;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RESTClient {
     private static final String BASE_URL = "http://localhost:8080/api"; // Replace with your actual API base URL
-
-    private OkHttpClient client;
+    private Retrofit retrofit;
 
     public RESTClient() {
-        client = new OkHttpClient(); // Create an instance of OkHttpClient
-    }
-
-
-    public Client registerUser(String username, String password, String email) throws JSONException {
-        // Create a JSON object for the user registration data
-        JSONObject requestBody = new JSONObject();
-        requestBody.put("username", username);
-        requestBody.put("password", password);
-        requestBody.put("email", email);
-
-        // Create a request
-        RequestBody body = RequestBody.create(MediaType.parse("application/json"), requestBody.toString());
-        Request request = new Request.Builder()
-                .url(BASE_URL + "/inscription")
-                .post(body)
+        retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
-        try {
-            // Execute the request
-            Response response = client.newCall(request).execute();
-
-            // Check the response
-            if (response.isSuccessful()) {
-                String responseData = response.body().string();
-
-                // Parse the JSON response using Gson
-                Gson gson = new Gson();
-                Type clientType = new TypeToken<Client>() {
-                }.getType();
-                Client client_info = gson.fromJson(responseData, clientType);
-                return client_info;
-            } else {
-                return null;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
-    public Client loginUser(String username, String password) throws JSONException {
-        // Create a JSON object for the user login data
+    public Client registerUser(String nom, String prenom, String password, String email) throws JSONException, IOException {
+        Client client = new Client();
+        client.setNom(nom);
+        client.setPrenom(prenom);
+        client.setEmail(email);
+        client.setPassword(password);
 
+        ClientService clientService = retrofit.create(ClientService.class);
 
-        // Create a request
+        Call<Client> call = clientService.Inscription(client);
+        Response<Client> response = call.execute();
 
-        Request request = new Request.Builder()
-                .url(BASE_URL + "/connexion?email="+username+"&password="+password)
-                .build();
-
-        try {
-            // Execute the request
-            Response response = client.newCall(request).execute();
-
-            // Check the response
-            if (response.isSuccessful()) {
-                String responseData = response.body().string();
-
-                // Parse the JSON response using Gson
-                Gson gson = new Gson();
-                Type clientType = new TypeToken<Client>() {
-                }.getType();
-                Client client_info = gson.fromJson(responseData, clientType);
-                return client_info;
-            } else {
-                return null;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (response.isSuccessful()) {
+            return response.body();
+        } else {
+            return null;
         }
-        return null;
     }
 
+    public Client loginUser(String username, String password) throws IOException {
+        ClientService clientService = retrofit.create(ClientService.class);
 
+        Call<Client> call = clientService.Connexion(username, password);
+        Response<Client> response = call.execute();
 
-
+        if (response.isSuccessful()) {
+            return response.body();
+        } else {
+            return null;
+        }
+    }
 }
-

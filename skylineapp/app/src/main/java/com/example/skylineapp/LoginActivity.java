@@ -43,16 +43,19 @@ public class LoginActivity extends AppCompatActivity {
                     Client client = restClient.loginUser(email,password);
                     if (client != null) {
                         // Connexion réussie
+                        System.out.println("success");
                         Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
                         // Échec de la connexion
+                        System.out.println("connexion failed");
                         Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
                     }
                 }catch (Exception e){
-                    Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+                    System.out.println("request failed");
+                    Toast.makeText(LoginActivity.this, "Request failed", Toast.LENGTH_SHORT).show();
                 }
 
 
