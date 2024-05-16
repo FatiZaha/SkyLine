@@ -2,6 +2,7 @@ package com.airlines.repository;
 
 
 import com.airlines.service.CompagnieService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import com.airlines.model.Compagnie;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,23 +26,21 @@ public class CompagnieRepositoryTest {
 
     @Autowired
     private CompagnieRepository compagnieRepository;
-    @Autowired
-    private CompagnieService compagnieService;
 
+    @BeforeEach
+    public void setup() {
+        // Create a Vol object and persist it in the database
+        Compagnie compagnie1 = new Compagnie();
+        compagnie1.setCode(1L);
+        compagnie1.setNom("Compagnie A");
+        compagnie1.setAdresse("Adresse_A");
+        compagnie1.setTel("1111111111");
+        compagnie1.setLogo("logotestA.png");
+        entityManager.merge(compagnie1);
+    }
 
     @Test
     void testdeleteCompagnie() {
-        // Create a Vol object and persist it in the database
-        Compagnie compagnie = new Compagnie();
-        compagnie.setCode(20L);
-        compagnie.setNom("NomTest");
-        compagnie.setAdresse("AdresseTest");
-        compagnie.setTel("0000000000");
-        compagnie.setAdresse("AdresseTest");
-        compagnie.setAdresse("AdresseTest");
-        entityManager.merge(compagnie);
-        //vérifier si l'entité a été effectivement supprimée en cherchant une entité avec le même code.
-        // Si l'entité est supprimée, le résultat de entityManager.find sera null.
 
         compagnieRepository.deleteCompagnieByCode(20L);
         Compagnie  deleteCompagnie =  entityManager.find(Compagnie.class,20);;//entityManager.find(Vol.class,30);
