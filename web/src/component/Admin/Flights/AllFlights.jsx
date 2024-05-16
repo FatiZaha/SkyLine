@@ -27,13 +27,13 @@ export default function FlightTable() {
     setSelectedFlight(null);
   };
 
-  const handleDeleteFlight = async (code) => {
+  const handleDeleteFlight = async (codeVol) => {
     try {
-      await fetch(`http://localhost:8080/api/admin/1/vols/${code}`, {
+      await fetch(`http://localhost:8080/api/admin/1/vols/${codeVol}`, {
         method: 'DELETE',
       });
 
-      setFlight(flight.filter((flight) => flight.code !== code));
+      setFlight(flight.filter((flight) => flight.codeVol !== codeVol));
     } catch (error) {
       console.error('Erreur lors de la suppression du vol :', error);
     }
@@ -99,7 +99,7 @@ export default function FlightTable() {
                   <IconButton onClick={() => handleClickOpen(Flight)}>
                     <ModeEditIcon style={{ color: '#158a88'}}/>
                   </IconButton>
-                  <IconButton onClick={() => handleDeleteFlight(Flight.code)}>
+                  <IconButton onClick={() => handleDeleteFlight(Flight.codeVol)}>
                     <DeleteIcon style={{ color: '#158a88'}}/>
                   </IconButton>
                 </TableCell>
