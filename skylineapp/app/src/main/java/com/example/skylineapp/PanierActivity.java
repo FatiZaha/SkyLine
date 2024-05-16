@@ -36,16 +36,10 @@ public class PanierActivity extends AppCompatActivity {
         flightPath1 = findViewById(R.id.flight_path1);
         flightDetails1 = findViewById(R.id.flight_details1);
         flightPrice1 = findViewById(R.id.flight_price1);
-        flightImage2 = findViewById(R.id.flight_image2);
-        flightPath2 = findViewById(R.id.flight_path2);
-        flightDetails2 = findViewById(R.id.flight_details2);
-        flightPrice2 = findViewById(R.id.flight_price2);
-        flightImage3 = findViewById(R.id.flight_image3);
-        flightPath3 = findViewById(R.id.flight_path3);
-        flightDetails3 = findViewById(R.id.flight_details3);
-        flightPrice3 = findViewById(R.id.flight_price3);
+
         checkoutButton = findViewById(R.id.checkout_button);
 
+        checkoutButton.setText("Proceed to Checkout");
         // Les valeurs des vues
         reservationTitleTextView.setText("Reservation History");
 
@@ -55,15 +49,7 @@ public class PanierActivity extends AppCompatActivity {
         flightDetails1.setText("From London to Marrakech");
         flightPrice1.setText("Price: $100");
 
-      //  flightImage2.setImageResource(R.drawable.flight_image2);
-        flightPath2.setText("Flight Path");
-        flightDetails2.setText("From Paris to Rome");
-        flightPrice2.setText("Price: $150");
 
-      //  flightImage3.setImageResource(R.drawable.flight_image3);
-        flightPath3.setText("Flight Path");
-        flightDetails3.setText("From New York to Los Angeles");
-        flightPrice3.setText("Price: $200");
 
         checkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override

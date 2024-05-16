@@ -8,7 +8,7 @@
         android:id="@+id/reservation_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reservation History"
+        android:text=""
         android:textSize="24sp"
         android:textStyle="bold"
         android:padding="16dp"
@@ -34,7 +34,7 @@
                     android:id="@+id/flight_image1"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/flight_image" />
+                    android:src="@drawable/icon_cart" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -47,7 +47,7 @@
                         android:id="@+id/flight_path1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Flight "
+                        android:text=""
                         android:textSize="18sp"
                         android:textColor="@android:color/white"
                         />
@@ -56,7 +56,7 @@
                         android:id="@+id/flight_details1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="From London to Marrakech"
+                        android:text=""
                         android:layout_marginTop="15dp"
                         android:textSize="14sp"
                         android:textColor="@android:color/white"/>
@@ -65,7 +65,7 @@
                         android:id="@+id/flight_price1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Price: $100"
+                        android:text=""
                         android:textSize="14sp"
                         android:layout_marginTop="8dp"
                         android:textColor="@android:color/white"/>
@@ -80,7 +80,7 @@
         android:id="@+id/checkout_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Proceed to Checkout"
+        android:text=""
         android:layout_gravity="center"
         android:layout_margin="16dp" />
 
