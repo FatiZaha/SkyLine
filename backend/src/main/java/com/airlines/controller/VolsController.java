@@ -53,7 +53,6 @@ public class VolsController {
                 codeVol,
                 request.getDateDepart(),
                 request.getDateArrive(),
-                request.getStatus(),
                 request.getPrixClass1(),
                 request.getPrixClass2()
         );

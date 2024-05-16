@@ -132,7 +132,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
             <Divider />
             <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
               <Grid item>
-                <Typography variant="body1">V Depart:</Typography>
+                <Typography variant="body1">Departure City:</Typography>
               </Grid>
               <Grid item>
                 <TextField
@@ -147,7 +147,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
             <Divider />
             <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
               <Grid item>
-                <Typography variant="body1">V Dest:</Typography>
+                <Typography variant="body1">Destination City:</Typography>
               </Grid>
               <Grid item>
                 <TextField
@@ -170,7 +170,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
               >
               <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
                 <Grid item>
-                  <Typography variant="body1">Departure date:</Typography>
+                  <Typography variant="body1">Departure Date:</Typography>
                 
                 <Grid item>
                   
@@ -195,7 +195,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
               </Grid>
               <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
                 <Grid item>
-                  <Typography variant="body1">Arrival date:</Typography>
+                  <Typography variant="body1">Arrival Date:</Typography>
                 
                 <Grid item>
                   
@@ -225,7 +225,23 @@ const Transition = React.forwardRef(function Transition(props, ref) {
             
             <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
               <Grid item>
-                <Typography variant="body1">Prix:</Typography>
+                <Typography variant="body1">Business Class:</Typography>
+              </Grid>
+              <Grid item>
+                <TextField
+                  id="prix"
+                  name="prixv"
+                  variant="standard"
+                  value={prix}
+                  onChange={(e) => setPrix(e.target.value)}
+                  //error={!!errors.telError}
+                  //helperText={errors.telError}
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
+              <Grid item>
+                <Typography variant="body1">Economy Class:</Typography>
               </Grid>
               <Grid item>
                 <TextField

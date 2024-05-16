@@ -12,92 +12,36 @@ import Slide from '@mui/material/Slide';
 import { TextField } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { useState, useEffect } from 'react';
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function EditFlightDialog(props) {
-  const [companyData, setCompanyData] = useState({
-    code: props.company ? props.company.code : '',
-    logo: props.company ? props.company.logo : '',
-    nom: props.company ? props.company.nom : '',
-    adresse: props.company ? props.company.adresse : '',
-    tel: props.company ? props.company.tel : ''
+  const [ volData, setVolData] = useState({
+    codeVol: props.vol ? props.vol.codeVol : '',
+    depdate: props.vol ? props.vol.depdate : '',
+    arrivaldate: props.vol ? props.vol.arrivaldate : '',
+    bclass: props.vol ? props.vol.bclass : '',
+    ecoclass: props.vol ? props.vol.ecoclass : ''
   });
 
-  const [errors, setErrors] = useState({
-    logoError: '',
-    telError: ''
-  });
+  
 
   const handleSubmit = async () => {
-    try {
-      // Réinitialiser les erreurs
-      setErrors({
-        logoError: '',
-        telError: ''
-      });
-
-       // Valider les données
-       let isValid = true;
-       if (!companyData.logo.endsWith('.svg')) {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          logoError: 'Logo file format must be .svg'
-        }));
-        isValid = false;
-      }
-
-      if (!/^[+\-\d]+$/.test(companyData.tel)) {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          telError: 'Phone number must be numeric'
-        }));
-        isValid = false;
-      }
-
-      if (companyData.tel.length < 10 || companyData.tel.length > 15) {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          telError: 'Invalid phone number'
-        }));
-        isValid = false;
-      } else if (companyData.tel && props.companies.some(company => company.tel === companyData.tel)) {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          telError: 'Phone number already exists'
-        }));
-        isValid = false;
-      }
-
-      if (companyData.nom && props.companies.some(company => company.nom === companyData.nom)) {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          nameError: 'Company name already exists'
-        }));
-        isValid = false;
-      }
-
-      if (companyData.adresse && props.companies.some(company => company.adresse === companyData.adresse)) {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          addressError: 'Company address already exists'
-        }));
-        isValid = false;
-      }
-
-      if (!isValid) {
-        return;
-      }
-
+    
       // Envoyer les données si tout est valide
-      const response = await fetch(`http://localhost:8080/api/admin/1/compagnies/update/${companyData.code}`, {
+      const response = await fetch(`http://localhost:8080/api//admin/{id}/vols/${volData.codeVol}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(companyData)
+        body: JSON.stringify(volData)
       });
 
       if (response.ok) {
@@ -107,28 +51,26 @@ export default function EditFlightDialog(props) {
       } else {
         console.error('Erreur lors de l\'envoi du formulaire');
       }
-    } catch (error) {
-      console.error('Erreur lors de l\'envoi du formulaire :', error);
-    }
+    
   };
 
   const handleClose = () => {
-    setCompanyData((prevData) => ({
+    setVolData((prevData) => ({
       ...prevData,
-      code: props.company ? props.company.code : '',
-      logo: props.company ? props.company.logo : '',
-      nom: props.company ? props.company.nom : '',
-      adresse: props.company ? props.company.adresse : '',
-      tel: props.company ? props.company.tel : ''
+      codeVol: props.vol ? props.vol.codeVol : '',
+    depdate: props.vol ? props.vol.depdate : '',
+    arrivaldate: props.vol ? props.vol.arrivaldate : '',
+    bclass: props.vol ? props.vol.bclass : '',
+    ecoclass: props.vol ? props.vol.ecoclass : ''
     }));
     props.handleClose();
   };
 
   useEffect(() => {
-    if (props.company) {
-      setCompanyData(props.company);
+    if (props.vol) {
+      setVolData(props.vol);
     }
-  }, [props.company]);
+  }, [props.vol]);
 
   return (
     <Dialog open={props.open} onClose={handleClose} TransitionComponent={Transition}>
@@ -143,74 +85,144 @@ export default function EditFlightDialog(props) {
         </Toolbar>
       </AppBar>
 
-      <List style={{ display: 'flex', justifyContent: 'center', textAlign: 'center' }}>
+      <List style={{ display: 'flex', justifyContent: 'center', textAlign: 'center'}}>
         <div>
           <Divider />
-          <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
+          <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 , marginLeft:10 , marginLRight:10 }}>
             <Grid item>
-              <Typography variant="body1">Company Logo:</Typography>
+              <Typography variant="body1">Company :</Typography>
             </Grid>
             <Grid item>
               <TextField
                 id="logo"
                 name="log"
                 variant="standard"
-                value={companyData.logo}
-                onChange={(e) => setCompanyData({ ...companyData, logo: e.target.value })}
-                error={!!errors.logoError}
-                helperText={errors.logoError}
+                value={volData.logo}
+                onChange={(e) => setVolData({ ...volData, logo: e.target.value })}
+                
               />
             </Grid>
           </Grid>
           <Divider />
           <Divider />
-          <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
+          <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 , marginLeft:10 , marginLRight:10 }}>
             <Grid item>
-              <Typography variant="body1">Company Name:</Typography>
+              <Typography variant="body1">Departure City:</Typography>
             </Grid>
             <Grid item>
               <TextField
                 id="name"
                 name="nam"
                 variant="standard"
-                value={companyData.nom}
-                onChange={(e) => setCompanyData({ ...companyData, nom: e.target.value })}
-                error={!!errors.nameError}
-                helperText={errors.nameError}
+                value={volData.nom}
+                onChange={(e) => setVolData({ ...volData, nom: e.target.value })}
+                
                 />
             </Grid>
           </Grid>
           <Divider />
-          <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
+          <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 , marginLeft:10 , marginLRight:10 }}>
             <Grid item>
-              <Typography variant="body1">Company Address:</Typography>
+              <Typography variant="body1">Destination City:</Typography>
             </Grid>
             <Grid item>
              <TextField
                 id="adress"
                 name="addr"
                 variant="standard"
-                value={companyData.adresse}
-                onChange={(e) => setCompanyData({ ...companyData, adresse: e.target.value })}              
-                error={!!errors.adressError}
-                helperText={errors.adressError}
+                value={volData.adresse}
+                onChange={(e) => setVolData({ ...volData, adresse: e.target.value })}              
+                
                 />
             </Grid>
           </Grid>
           <Divider />
-          <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 }}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer
+                  components={[
+                  'DatePicker',
+                  ]}
+                  >
+            <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 , marginLeft:10 , marginLRight:10 }}>
+              <Grid item>
+                <Typography variant="body1">Departure Date:</Typography>
+              </Grid>
+              <Grid item>
+                    
+                      <DemoItem  valueType="date" >
+                          <DatePicker 
+                          
+                            slotProps={{
+                              
+                              openPickerButton: { color: 'primary' },
+                              textField: {
+                                focused: true,
+                                color: 'primary',
+                              },
+                            }}
+                  
+                          onChange={(e) => setVolData({ ...volData, depdate: e.target.value })}/>
+                          
+                          
+                      </DemoItem>
+                      
+                      
+                  </Grid>
+            </Grid>
+            <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 , marginLeft:10 , marginLRight:10 }}>
+              <Grid item>
+                <Typography variant="body1">Arrival Date:</Typography>
+              </Grid>
+              <Grid item>
+                    
+                      <DemoItem valueType="date" >
+                          <DatePicker 
+                          
+                            slotProps={{
+                              
+                              openPickerButton: { color: 'primary' },
+                              textField: {
+                                focused: true,
+                                color: 'primary',
+                              },
+                            }}
+                  
+                          onChange={(e) => setVolData({ ...volData, arrivaldate: e.target.value })}/>
+                          
+                      </DemoItem>
+                      
+                      
+                  </Grid>
+            </Grid>
+            </DemoContainer>
+          </LocalizationProvider>
+          <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 , marginLeft:10 , marginLRight:10 }}>
             <Grid item>
-              <Typography variant="body1">Company Phone:</Typography>
+              <Typography variant="body1">Business Class:</Typography>
             </Grid>
             <Grid item>
               <TextField
                 id="phone"
                 name="teleph"
                 variant="standard"
-                value={companyData.tel}
-                onChange={(e) => setCompanyData({ ...companyData, tel: e.target.value })}
-                error={!!errors.telError}
-                helperText={errors.telError}
+                value={volData.tel}
+                onChange={(e) => setVolData({ ...volData, tel: e.target.value })}
+                
+              />
+            </Grid>
+          </Grid>
+          <Grid container spacing={2} alignItems="center" style={{ justifyContent: 'space-between', marginTop: 10 , marginLeft:10 , marginLRight:10 }}>
+            <Grid item>
+              <Typography variant="body1">Economy Class:</Typography>
+            </Grid>
+            <Grid item>
+              <TextField
+                id="phone"
+                name="teleph"
+                variant="standard"
+                value={volData.tel}
+                onChange={(e) => setVolData({ ...volData, tel: e.target.value })}
+                
               />
             </Grid>
           </Grid>

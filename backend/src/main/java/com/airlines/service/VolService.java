@@ -23,16 +23,9 @@ public class VolService  {
         volRepository.save(vol);
     }
 
-    public void updateVol(Long codeVol, Date dateDepart, Date dateArrivee, Status status, float prixClass1, float prixClass2) {
-        Vol vol = volRepository.findById(codeVol).orElse(null);
-        if (vol != null) {
-            vol.setDateDepart(dateDepart);
-            vol.setDateArrive(dateArrivee);
-            vol.setStatus(status);
-            vol.setPrixClass1(prixClass1);
-            vol.setPrixClass2(prixClass2);
-            volRepository.save(vol);
-        }
+    public void updateVol(Long codeVol ,Date dateDepart, Date dateArrivee, float prixClass1, float prixClass2) {
+        volRepository.updateVol(codeVol, dateDepart, dateArrivee, prixClass1, prixClass2);
+
 
     }
 
