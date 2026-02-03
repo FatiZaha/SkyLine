@@ -74,7 +74,7 @@ git clone https://github.com/FatiZaha/SkyLine.git
 
 ### 3. Frontend Setup (React)
 ```bash
-cd skyline-frontend
+cd web
 npm install
 npm start
 ```
