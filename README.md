@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/Backend-Spring%20Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white" />
 </p>
 
-**SkyLine** is a high-performance airline management platform. It combines a sophisticated **React** frontend—styled with the precision of **MUI** and the flexibility of **Tailwind CSS**—with a robust **Spring Boot** REST API. SkyLine is designed to manage high-traffic flight schedules, secure passenger bookings, and complex fleet logistics.
+**SkyLink** is a high-performance airline management platform. It combines a sophisticated **React** frontend—styled with the precision of **MUI** and the flexibility of **Tailwind CSS**—with a robust **Spring Boot** REST API. SkyLine is designed to manage high-traffic flight schedules, secure passenger bookings, and complex fleet logistics.
 
 ---
 
